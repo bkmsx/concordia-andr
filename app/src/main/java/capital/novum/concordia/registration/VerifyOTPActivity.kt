@@ -1,19 +1,17 @@
 package capital.novum.concordia.registration
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
-import capital.novum.concordia.main.ProjectListActivity
 
-class RegistrationActivity: BaseActivity() {
+class VerifyOTPActivity : BaseActivity(){
     /*
-    *   Custom Views
-    */
+        Custom Views
+     */
 
     override fun getLayoutId(): Int {
-        return R.layout.registration_activity
+        return R.layout.verify_otp_activity
     }
 
     override fun setupToolBar() {
@@ -25,11 +23,11 @@ class RegistrationActivity: BaseActivity() {
     }
 
     /*
-        Events
-     */
+       Events
+    */
 
     fun goNext(view : View) {
-        val intent = Intent(this, VerifyOTPActivity::class.java)
+        val intent = Intent(this, RegisterInformationAcitivity::class.java)
         startActivity(intent)
     }
 }

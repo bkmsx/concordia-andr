@@ -4,10 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".forgotpassword.ForgotPasswordActivity">
-
+    tools:context=".registration.RegistrationActivity">
     <include layout="@layout/app_toolbar"/>
-
     <LinearLayout
         android:layout_width="380dp"
         android:layout_height="535dp"
@@ -19,8 +17,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forgot password"
-            android:textColor="@android:color/white"
+            android:text="Verify OTP"
             android:onClick="goNext"/>
     </LinearLayout>
 

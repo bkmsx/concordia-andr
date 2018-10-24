@@ -1,26 +1,24 @@
-package capital.novum.concordia.registration
+package capital.novum.concordia.forgotpassword
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
-import capital.novum.concordia.main.ProjectListActivity
+import capital.novum.concordia.main.LoginActivity
 
-class RegistrationActivity: BaseActivity() {
+class GotPasswordSuccessActivity : BaseActivity() {
     /*
-    *   Custom Views
-    */
-
+        Custom views
+     */
     override fun getLayoutId(): Int {
-        return R.layout.registration_activity
+        return R.layout.got_password_success_activity
     }
 
     override fun setupToolBar() {
         super.setupToolBar()
         leftToolbarButton.setImageResource(R.mipmap.back_blue)
         leftToolbarButton.visibility = View.VISIBLE
-        toolbarTitle.text = "NEW USER REGISTRATION"
+        toolbarTitle.text = "FORGOT PASSWORD"
         rightToolbarButton.visibility = View.INVISIBLE
     }
 
@@ -29,7 +27,8 @@ class RegistrationActivity: BaseActivity() {
      */
 
     fun goNext(view : View) {
-        val intent = Intent(this, VerifyOTPActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
+
 }

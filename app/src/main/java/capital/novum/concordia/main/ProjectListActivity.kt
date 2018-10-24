@@ -48,4 +48,12 @@ class ProjectListActivity : BaseActivity(){
             rightToolbarButton.setImageResource(R.mipmap.menu)
         }
     }
+
+    override fun leftToolbarClick() {
+        super.leftToolbarClick()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
 }
