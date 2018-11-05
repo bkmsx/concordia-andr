@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import capital.novum.concordia.R
 import capital.novum.concordia.forgotpassword.ForgotPasswordActivity
 import capital.novum.concordia.model.Citizenship
@@ -24,33 +25,42 @@ class LoginActivity : BaseActivity() {
         return R.layout.login_activity
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    /**
+     *      Events
+     */
 
     fun login(view : View) {
-        disposable = concordiaService.loginAccount("tien@novum.capital", "123456", "123", "Android")
+        val email = findViewById<EditText>(R.id.edt_email).text.toString()
+        val password = findViewById<EditText>(R.id.edt_password).text.toString()
+        disposable = concordiaService.loginAccount(email, password, "123", "Android")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                    result -> Log.e("Login", result.toString())
                     LocalData.saveUserDetail(this, result.user)
+                    gotoProjectList()
                 }
 
     }
-    fun register(view : View) {
-        disposable = concordiaService.getNationalities()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    result -> Log.e("Login", result.toString())
-                }
+
+    /**
+     *      Navigation
+     */
+
+    fun gotoProjectList() {
+        val intent = Intent(this, ProjectListActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
-    fun forgotPassword(view : View) {
-        Log.e("Login", PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.firstName, "No name"))
-        Log.e("Login", PreferenceManager.getDefaultSharedPreferences(this).getInt(UserConstant.id, 1).toString())
+    fun gotoRegister(view : View) {
+        val intent = Intent(this, RegistrationActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun gotoForgotPassword(view : View) {
+        val intent = Intent(this, ForgotPasswordActivity::class.java)
+        startActivity(intent)
     }
 
 }

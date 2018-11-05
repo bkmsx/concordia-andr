@@ -19,7 +19,7 @@
 
         <activity android:name=".registration.RegistrationActivity" />
         <activity android:name=".registration.VerifyOTPActivity" />
-        <activity android:name=".registration.RegisterInformationAcitivity" />
+        <activity android:name=".registration.RegisterInformationActivity" />
         <activity android:name=".registration.RegistrationSuccessActivity" />
         <activity android:name=".forgotpassword.ForgotPasswordActivity" />
         <activity android:name=".forgotpassword.GotPasswordSuccessActivity" />

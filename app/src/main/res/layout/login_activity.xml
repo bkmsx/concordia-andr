@@ -21,7 +21,7 @@
         app:srcCompat="@mipmap/lock" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/edt_email"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/edt_password"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -54,22 +54,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
         android:text="FORGOT PASSWORD?"
+        android:onClick="gotoForgotPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_login"
         android:layout_width="230dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
@@ -78,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/btn_forgot_password"
         android:onClick="login"/>
 
     <LinearLayout
@@ -89,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2">
+        app:layout_constraintTop_toBottomOf="@+id/btn_login">
 
         <TextView
             android:id="@+id/textView"
@@ -100,12 +101,12 @@
             android:text="Don't have an account?" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btn_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:onClick="register"
+            android:onClick="gotoRegister"
             android:text="REGISTER" />
     </LinearLayout>
 

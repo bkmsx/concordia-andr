@@ -2,10 +2,12 @@ package capital.novum.concordia.registration
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import capital.novum.concordia.main.ProjectListActivity
+import com.hbb20.CountryCodePicker
 
 class RegistrationActivity: BaseActivity() {
     /*
@@ -29,7 +31,7 @@ class RegistrationActivity: BaseActivity() {
      */
 
     fun goNext(view : View) {
-        val intent = Intent(this, VerifyOTPActivity::class.java)
-        startActivity(intent)
+//        val phoneCode = findViewById<CountryCodePicker>(R.id.country_code_picker).selectedCountryCode
+//        Log.e("Registration Activity", phoneCode)
     }
 }

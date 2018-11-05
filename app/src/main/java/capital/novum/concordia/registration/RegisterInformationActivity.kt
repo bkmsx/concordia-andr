@@ -5,7 +5,7 @@ import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 
-class RegisterInformationAcitivity : BaseActivity(){
+class RegisterInformationActivity : BaseActivity(){
     /*
         Custom Views
      */

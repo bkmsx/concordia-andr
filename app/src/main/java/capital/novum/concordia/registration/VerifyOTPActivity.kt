@@ -27,7 +27,7 @@ class VerifyOTPActivity : BaseActivity(){
     */
 
     fun goNext(view : View) {
-        val intent = Intent(this, RegisterInformationAcitivity::class.java)
+        val intent = Intent(this, RegisterInformationActivity::class.java)
         startActivity(intent)
     }
 }

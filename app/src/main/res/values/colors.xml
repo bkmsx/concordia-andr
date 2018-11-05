@@ -6,4 +6,5 @@
     <color name="actionBar">#121212</color>
     <color name="light_blue">#008ce5</color>
     <color name="light_gray">#D3D3D3</color>
+    <color name="dark_gray">#9f9f9f</color>
 </resources>
