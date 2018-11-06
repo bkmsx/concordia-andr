@@ -7,14 +7,16 @@ import android.os.Handler
 import android.transition.Slide
 import android.view.Gravity
 import capital.novum.concordia.R
+import capital.novum.concordia.registration.RegisterInformationActivity
 import capital.novum.concordia.registration.RegistrationActivity
+import capital.novum.concordia.registration.VerifyOTPActivity
 
 class SplashScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen_activity)
-        val intent = Intent(applicationContext, LoginActivity::class.java)
+        val intent = Intent(applicationContext, RegisterInformationActivity::class.java)
         var slide = Slide()
         slide.setDuration(500)
         slide.slideEdge = Gravity.RIGHT

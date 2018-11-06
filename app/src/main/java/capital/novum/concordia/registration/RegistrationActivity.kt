@@ -31,7 +31,7 @@ class RegistrationActivity: BaseActivity() {
      */
 
     fun goNext(view : View) {
-//        val phoneCode = findViewById<CountryCodePicker>(R.id.country_code_picker).selectedCountryCode
-//        Log.e("Registration Activity", phoneCode)
+        val intent = Intent(this, VerifyOTPActivity::class.java)
+        startActivity(intent)
     }
 }

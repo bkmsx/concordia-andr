@@ -4,21 +4,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registration.RegistrationActivity">
+    tools:context=".registration.RegistrationActivity"
+    android:background="@mipmap/background">
     <include layout="@layout/app_toolbar"/>
-    <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="535dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/textview_citizenship"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/citizenship_margin"
+        android:layout_marginStart="@dimen/citizenship_margin"
+        android:layout_marginTop="25dp"
+        android:text="CITIZENSHIP"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        tools:layout_editor_absoluteY="75dp" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Register information"
-            android:onClick="goNext"/>
-    </LinearLayout>
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/spinner_citizenship"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textview_citizenship"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/citizenship_margin"
+        android:layout_marginEnd="@dimen/citizenship_margin"
+        app:ms_multiline="false"
+        app:ms_enableFloatingLabel="false"
+        app:ms_enableErrorLabel="false"
+        app:ms_floatingLabelText="floating label"
+        app:ms_arrowColor="@color/dark_gray"
+        app:ms_highlightColor="@color/white"
+        app:ms_thickness="2dp"
+        app:ms_arrowSize="16dp"
+        app:ms_alignLabels="false"
+        app:ms_floatingLabelColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textview_country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/citizenship_margin"
+        android:layout_marginStart="@dimen/citizenship_margin"
+        android:layout_marginTop="10dp"
+        android:text="COUNTRY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_citizenship"
+        tools:layout_editor_absoluteY="75dp" />
+
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/spinner_country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textview_country"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/citizenship_margin"
+        android:layout_marginEnd="@dimen/citizenship_margin"
+        app:ms_multiline="false"
+        app:ms_enableFloatingLabel="false"
+        app:ms_enableErrorLabel="false"
+        app:ms_floatingLabelText="floating label"
+        app:ms_arrowColor="@color/dark_gray"
+        app:ms_highlightColor="@color/white"
+        app:ms_thickness="2dp"
+        app:ms_arrowSize="16dp"
+        app:ms_alignLabels="false"
+        app:ms_floatingLabelColor="@color/white" />
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/checkbox1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/citizenship_margin"
+        android:layout_marginStart="@dimen/citizenship_margin"
+        android:layout_marginTop="30dp"
+        android:buttonTint="@color/light_blue"
+        android:gravity="top"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:text="By clicking the Continue button below, you hereby confirm that all information submitted during this registration process is true and correct."
+        android:textColor="@color/light_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner_country" />
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/checkbox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/citizenship_margin"
+        android:layout_marginTop="10dp"
+        android:buttonTint="@color/light_blue"
+        android:drawablePadding="0dp"
+        android:gravity="top"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:text="Agree to"
+        android:textColor="@color/light_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/checkbox1" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:layout_marginStart="5dp"
+        android:background="@color/transparent"
+        android:padding="0dp"
+        android:text="Terms of Use"
+        app:layout_constraintBottom_toBottomOf="@+id/checkbox2"
+        app:layout_constraintStart_toEndOf="@+id/checkbox2"
+        app:layout_constraintTop_toTopOf="@+id/checkbox2" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="SUBMIT"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/light_blue"
+        android:textColor="@android:color/white"
+        android:onClick="goNext"/>
+
 
 </android.support.constraint.ConstraintLayout>
