@@ -32,5 +32,6 @@ class RegistrationSuccessActivity: BaseActivity() {
     fun goNext(view : View) {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }

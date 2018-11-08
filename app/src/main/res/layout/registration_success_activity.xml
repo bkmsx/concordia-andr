@@ -5,20 +5,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".registration.RegistrationActivity">
-    <include layout="@layout/app_toolbar"/>
+
+    <include layout="@layout/app_toolbar" />
+
+    <ImageView
+        android:id="@+id/check_image"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@mipmap/check"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        android:layout_marginTop="40dp"
+        android:padding="20dp"
+        android:background="@drawable/circle_shape"/>
     <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="535dp"
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/check_image"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REGISTRATION"
+            android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/light_blue"
+            android:layout_marginStart="5dp"
+            android:text="COMPLETE"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/description_1"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:maxLines="5"
+        android:text="@string/resgitration_success_text1"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_text" />
+    <TextView
+        android:id="@+id/description_2"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:maxLines="5"
+        android:text="@string/resgitration_success_text2"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/description_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="25dp"
+        android:gravity="center"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:onClick="goNext"
+        android:text="GO TO LOGIN PAGE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Registration Success"
-            android:onClick="goNext"/>
-    </LinearLayout>
-
+        android:layout_margin="0dp"
+        android:textColor="@color/white"
+        android:background="@color/light_blue"/>
 </android.support.constraint.ConstraintLayout>
