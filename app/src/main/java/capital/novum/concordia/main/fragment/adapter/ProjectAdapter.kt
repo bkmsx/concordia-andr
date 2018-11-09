@@ -4,11 +4,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import capital.novum.concordia.R
 import kotlinx.android.synthetic.main.item_project.view.*
 
 class ProjectAdapter: RecyclerView.Adapter<ProjectAdapter.ViewHolder> {
+    lateinit var onProjectListener: OnProjectListener
 
     constructor()
 
@@ -18,6 +18,9 @@ class ProjectAdapter: RecyclerView.Adapter<ProjectAdapter.ViewHolder> {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ProjectAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_project, parent, false)
+        view.button.setOnClickListener {
+            onProjectListener.onDetailButtonClick()
+        }
         return ViewHolder(view);
     }
 
@@ -29,5 +32,9 @@ class ProjectAdapter: RecyclerView.Adapter<ProjectAdapter.ViewHolder> {
         fun bindView(name : String) {
             itemView.textview.text = name
         }
+    }
+
+    interface OnProjectListener {
+        fun onDetailButtonClick();
     }
 }

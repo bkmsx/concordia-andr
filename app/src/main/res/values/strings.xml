@@ -2,4 +2,5 @@
     <string name="app_name">Concordia</string>
     <string name="resgitration_success_text1">Thank you for registering . It may take up to 3 business days to process your application.</string>
     <string name="resgitration_success_text2">You may proceed to login and view the list of token sales available for participation.</string>
+    <string name="project_detail_user_status">You are successfully verified</string>
 </resources>
