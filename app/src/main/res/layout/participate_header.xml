@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent">
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/project_icon_background"
+        android:layout_marginTop="15dp"
+        android:src="@mipmap/concordia_2"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="W GREEN PAY"
+        android:textColor="@color/light_blue"
+        android:layout_marginTop="15dp"/>
+    <LinearLayout
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+        <View
+            android:layout_width="@dimen/participate_indicator_size"
+            android:layout_height="@dimen/participate_indicator_size"
+            android:background="@drawable/participate_indicator_blue"/>
+        <View
+            android:layout_width="@dimen/participate_indicator_size"
+            android:layout_height="@dimen/participate_indicator_size"
+            android:background="@color/white"
+            android:layout_marginStart="@dimen/participate_indicator_space"/>
+        <View
+            android:layout_width="@dimen/participate_indicator_size"
+            android:layout_height="@dimen/participate_indicator_size"
+            android:background="@color/white"
+            android:layout_marginStart="@dimen/participate_indicator_space"/>
+        <View
+            android:layout_width="@dimen/participate_indicator_size"
+            android:layout_height="@dimen/participate_indicator_size"
+            android:background="@color/white"
+            android:layout_marginStart="@dimen/participate_indicator_space"/>
+    </LinearLayout>
+</merge>

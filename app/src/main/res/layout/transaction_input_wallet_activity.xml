@@ -4,24 +4,112 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".transaction.ProjectDetailActivity">
-
     <include layout="@layout/app_toolbar"/>
 
-    <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="535dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <capital.novum.concordia.customview.ParticipateHeader
+        android:id="@+id/header"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@mipmap/pattern"/>
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textColor="@color/white"
+        android:background="@color/light_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="NEXT"/>
 
-        <Button
+    <LinearLayout
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:alpha="0.9"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@id/btnNext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_horizontal"
+        android:background="@mipmap/pattern">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/check"
+            android:background="@drawable/circle_shape"
+            android:padding="16dp"
+            android:layout_marginTop="20dp"/>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Input wallet"
-            android:textColor="@android:color/white"
-            android:onClick="goNext"/>
+            android:text="IDENTITY VERIFICATION SUCCESSFUL"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:text="your current payment method:"/>
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/spinnerPaymentMethod"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                app:ms_multiline="false"
+                app:ms_enableFloatingLabel="false"
+                app:ms_enableErrorLabel="false"
+                app:ms_floatingLabelText="floating label"
+                app:ms_arrowColor="@color/dark_gray"
+                app:ms_highlightColor="@color/white"
+                app:ms_thickness="1dp"
+                app:ms_arrowSize="16dp"
+                app:ms_alignLabels="false"
+                app:ms_floatingLabelColor="@color/white" />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your ERC20 Wallet:"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"/>
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:ms_multiline="false"
+            app:ms_enableFloatingLabel="false"
+            app:ms_enableErrorLabel="false"
+            app:ms_floatingLabelText="floating label"
+            app:ms_arrowColor="@color/dark_gray"
+            app:ms_highlightColor="@color/white"
+            app:ms_thickness="1dp"
+            app:ms_arrowSize="16dp"
+            app:ms_alignLabels="false"
+            app:ms_floatingLabelColor="@color/white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_gray"
+            android:text="Your Ether must be sent from this wallet"/>
+        <capital.novum.concordia.customview.RoundButtonImage
+            android:layout_width="200dp"
+            android:layout_height="@dimen/round_button_image_size"/>
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

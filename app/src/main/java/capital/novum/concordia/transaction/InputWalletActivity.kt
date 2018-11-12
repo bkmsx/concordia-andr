@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
+import kotlinx.android.synthetic.main.transaction_input_wallet_activity.*
 
 class InputWalletActivity : BaseActivity() {
     /*
@@ -12,6 +13,11 @@ class InputWalletActivity : BaseActivity() {
 
     override fun getLayoutId(): Int {
         return R.layout.transaction_input_wallet_activity
+    }
+
+    override fun customViews() {
+        super.customViews()
+        header.setIndex(2)
     }
 
     override fun setupToolBar() {

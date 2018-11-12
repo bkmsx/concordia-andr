@@ -1,9 +1,11 @@
 package capital.novum.concordia.transaction
 
 import android.content.Intent
+import android.view.LayoutInflater
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
+import kotlinx.android.synthetic.main.transaction_terms_conditions_activity.*
 
 class TermsAndCoditionsActivity : BaseActivity() {
     /*

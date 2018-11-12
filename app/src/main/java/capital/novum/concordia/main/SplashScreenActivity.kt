@@ -11,14 +11,16 @@ import capital.novum.concordia.registration.RegisterInformationActivity
 import capital.novum.concordia.registration.RegistrationActivity
 import capital.novum.concordia.registration.RegistrationSuccessActivity
 import capital.novum.concordia.registration.VerifyOTPActivity
+import capital.novum.concordia.transaction.InputWalletActivity
 import capital.novum.concordia.transaction.ProjectDetailActivity
+import capital.novum.concordia.transaction.TermsAndCoditionsActivity
 
 class SplashScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen_activity)
-        val intent = Intent(applicationContext, ProjectDetailActivity::class.java)
+        val intent = Intent(applicationContext, InputWalletActivity::class.java)
         var slide = Slide()
         slide.setDuration(500)
         slide.slideEdge = Gravity.RIGHT
