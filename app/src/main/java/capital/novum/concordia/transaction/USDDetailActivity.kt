@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
+import kotlinx.android.synthetic.main.transaction_usd_detail_activity.*
 
 class USDDetailActivity : BaseActivity() {
     /*
@@ -12,6 +13,11 @@ class USDDetailActivity : BaseActivity() {
 
     override fun getLayoutId(): Int {
         return R.layout.transaction_usd_detail_activity
+    }
+
+    override fun customViews() {
+        super.customViews()
+        header.setIndex(4)
     }
 
     override fun setupToolBar() {

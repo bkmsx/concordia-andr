@@ -11,9 +11,7 @@ import capital.novum.concordia.registration.RegisterInformationActivity
 import capital.novum.concordia.registration.RegistrationActivity
 import capital.novum.concordia.registration.RegistrationSuccessActivity
 import capital.novum.concordia.registration.VerifyOTPActivity
-import capital.novum.concordia.transaction.InputWalletActivity
-import capital.novum.concordia.transaction.ProjectDetailActivity
-import capital.novum.concordia.transaction.TermsAndCoditionsActivity
+import capital.novum.concordia.transaction.*
 
 class SplashScreenActivity : AppCompatActivity() {
 

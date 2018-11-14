@@ -1,23 +1,25 @@
 package capital.novum.concordia.transaction
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
+import kotlinx.android.synthetic.main.test_activity.*
 import kotlinx.android.synthetic.main.transaction_input_wallet_activity.*
 
-class AmountTokensActivity : BaseActivity() {
+class TestActivity : BaseActivity() {
+    private val tag = javaClass.toString()
     /*
         Custom views
      */
 
     override fun getLayoutId(): Int {
-        return R.layout.transaction_amount_token_activity
+        return R.layout.test_activity
     }
 
     override fun customViews() {
         super.customViews()
-        header.setIndex(3)
     }
 
     override fun setupToolBar() {
@@ -33,7 +35,10 @@ class AmountTokensActivity : BaseActivity() {
      */
 
     fun goNext(view : View) {
-        val intent = Intent(this, ETHDetailActivity::class.java)
+        val intent = Intent(this, AmountTokensActivity::class.java)
         startActivity(intent)
+    }
+
+    fun openSpinner(view: View) {
     }
 }

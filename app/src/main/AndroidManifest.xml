@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="capital.novum.concordia">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon180"
@@ -29,6 +30,10 @@
         <activity android:name="capital.novum.concordia.transaction.TermsAndCoditionsActivity"/>
         <activity android:name="capital.novum.concordia.transaction.InputWalletActivity"/>
         <activity android:name="capital.novum.concordia.transaction.AmountTokensActivity"/>
+        <activity android:name="capital.novum.concordia.transaction.TestActivity"/>
+        <activity android:name="capital.novum.concordia.transaction.QrScannerActivity"/>
+        <activity android:name="capital.novum.concordia.transaction.ETHDetailActivity"/>
+        <activity android:name="capital.novum.concordia.transaction.USDDetailActivity"/>
     </application>
 
 </manifest>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/edit_spinner_size"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/edit_spinner_bg"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:id="@+id/mainLayout">
+    <ImageButton
+        android:id="@+id/dropdownBtn"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@mipmap/arrow_down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/spinner_arrow_bg"
+        android:scaleType="fitXY"
+        android:layout_marginEnd="10dp"/>
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/dropdownBtn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"/>
+    <EditText
+        android:id="@+id/edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/dropdownBtn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/light_blue"
+        android:background="@color/transparent"
+        android:layout_marginStart="20dp"
+        android:maxLines="1"
+        android:inputType="text" />
+</android.support.constraint.ConstraintLayout>
