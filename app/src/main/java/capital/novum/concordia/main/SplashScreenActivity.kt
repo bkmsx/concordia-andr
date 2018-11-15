@@ -7,10 +7,14 @@ import android.os.Handler
 import android.transition.Slide
 import android.view.Gravity
 import capital.novum.concordia.R
+import capital.novum.concordia.forgotpassword.ForgotPasswordActivity
+import capital.novum.concordia.forgotpassword.GotPasswordSuccessActivity
 import capital.novum.concordia.registration.RegisterInformationActivity
 import capital.novum.concordia.registration.RegistrationActivity
 import capital.novum.concordia.registration.RegistrationSuccessActivity
 import capital.novum.concordia.registration.VerifyOTPActivity
+import capital.novum.concordia.share.ShareInformationActivity
+import capital.novum.concordia.share.ShareMethodsActivity
 import capital.novum.concordia.transaction.*
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -18,7 +22,7 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen_activity)
-        val intent = Intent(applicationContext, InputWalletActivity::class.java)
+        val intent = Intent(applicationContext, ProjectListActivity::class.java)
         var slide = Slide()
         slide.setDuration(500)
         slide.slideEdge = Gravity.RIGHT
@@ -30,6 +34,5 @@ class SplashScreenActivity : AppCompatActivity() {
                 finish()
             }
         }, 700)
-
     }
 }

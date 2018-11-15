@@ -82,7 +82,6 @@ class InputWalletActivity : BaseActivity() {
 
     var isOpen = false
     fun registerKeyboardListener() {
-
         mainLayout.viewTreeObserver.addOnGlobalLayoutListener {
             if (keyboardShown(mainLayout.rootView)) {
                 isOpen = true

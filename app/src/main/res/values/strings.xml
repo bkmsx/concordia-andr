@@ -4,4 +4,11 @@
     <string name="resgitration_success_text2">You may proceed to login and view the list of token sales available for participation.</string>
     <string name="project_detail_user_status">You are successfully verified</string>
     <string name="amount_tokens_information">By clicking Submit you are bounded to purchase the tokens indicated above.</string>
+    <string name="share_information_caption">Earn 3% of whatever your referred friends purchase! As a bonus, you will also earn 1% of your friend\'s referees purchases</string>
+    <string name="share_information_description">First 3 top referrals get the new Apple iPhone XR. Promotion ends 31st Dec 2018</string>
+    <string name="share_information_example">Our unique two tier referral system will allow you to earn passive income for life. Earn 3% from direct referee and 1% from child referees</string>
+    <string name="share_information_example1">You</string>
+    <string name="share_information_example6">If A buys $100 worth of tokens, you will earn $3</string>
+    <string name="share_information_example7">If C buys $100 worth of tokens, A will earn $3 while You will earn $1</string>
+    <string name="got_password_success_information">Your password has been reset and a new password has been sent to you.</string>
 </resources>

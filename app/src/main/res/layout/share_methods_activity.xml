@@ -4,24 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".transaction.ProjectDetailActivity">
+    tools:context=".transaction.ProjectDetailActivity"
+    android:background="@mipmap/pattern">
 
     <include layout="@layout/app_toolbar"/>
 
     <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="535dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
-
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:src="@mipmap/app_invite"
+            android:scaleType="fitXY"
+            android:background="@color/light_blue"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share your referral code"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"/>
+        <capital.novum.concordia.customview.CopyTextView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Share methods"
-            android:textColor="@android:color/white"
-            android:onClick="goNext"/>
+            android:textColor="@color/light_blue"
+            android:text="App link"
+            android:textSize="14sp"
+            android:background="@color/transparent"
+            android:layout_marginTop="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start invite friends"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <ImageView
+                    android:layout_width="@dimen/share_methods_icon_size"
+                    android:layout_height="@dimen/share_methods_icon_size"
+                    android:src="@mipmap/whatsapp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="WHATSAPP"
+                    android:textSize="10sp"
+                    android:layout_marginTop="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginStart="30dp">
+                <ImageView
+                    android:layout_width="@dimen/share_methods_icon_size"
+                    android:layout_height="@dimen/share_methods_icon_size"
+                    android:src="@mipmap/sms"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:text="SMS"
+                    android:textSize="10sp"
+                    android:layout_marginTop="5dp"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

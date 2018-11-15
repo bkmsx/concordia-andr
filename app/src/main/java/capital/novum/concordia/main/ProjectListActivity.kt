@@ -27,6 +27,8 @@ class ProjectListActivity : BaseActivity(){
         super.setupToolBar()
         toolbarTitle.visibility = View.INVISIBLE
         leftToolbarButton.visibility = View.VISIBLE
+        rightToolbarButton.visibility = View.VISIBLE
+        leftToolbarButton.setImageResource(R.mipmap.concordia_5)
     }
 
     override fun rightToolbarClick() {
@@ -50,10 +52,10 @@ class ProjectListActivity : BaseActivity(){
     }
 
     override fun leftToolbarClick() {
-        super.leftToolbarClick()
+
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+
     }
 }

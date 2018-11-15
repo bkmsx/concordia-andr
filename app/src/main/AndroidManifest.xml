@@ -34,6 +34,8 @@
         <activity android:name="capital.novum.concordia.transaction.QrScannerActivity"/>
         <activity android:name="capital.novum.concordia.transaction.ETHDetailActivity"/>
         <activity android:name="capital.novum.concordia.transaction.USDDetailActivity"/>
+        <activity android:name="capital.novum.concordia.share.ShareInformationActivity"/>
+        <activity android:name="capital.novum.concordia.share.ShareMethodsActivity"/>
     </application>
 
 </manifest>

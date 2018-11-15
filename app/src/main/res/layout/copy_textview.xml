@@ -18,7 +18,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:maxLines="1"
         android:ellipsize="end"
-        android:text="0x8012eb27b9f5ac2b74a975a100f60d2403365871"/>
+        android:gravity="center_horizontal"
+        android:text="ABCDE"/>
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="25dp"
