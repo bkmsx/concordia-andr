@@ -42,14 +42,13 @@ class InputWalletActivity : BaseActivity() {
         paymentSpinner.setData(arrayOf("ETH", "USD", "XLM"))
         paymentSpinner.changeBackground(R.drawable.bottom_line_bg)
         paymentSpinner.changeTextColor(Color.WHITE)
+
+        btnNext.setOnClickListener { goToAmountTokens() }
     }
 
     override fun setupToolBar() {
         super.setupToolBar()
-        leftToolbarButton.setImageResource(R.mipmap.back_blue)
-        leftToolbarButton.visibility = View.VISIBLE
         toolbarTitle.text = "PARTICIPATE"
-        rightToolbarButton.visibility = View.INVISIBLE
     }
 
     /*
@@ -74,6 +73,11 @@ class InputWalletActivity : BaseActivity() {
     /**
      *  Navigations
      */
+
+    private fun goToAmountTokens() {
+        val intent = Intent(this, AmountTokensActivity::class.java)
+        startActivity(intent)
+    }
 
     fun gotoScanner() {
         val intent = Intent(this, QrScannerActivity::class.java)

@@ -56,10 +56,10 @@
         android:text="RESEND PIN"/>
 
     <Button
+        android:id="@+id/btnNext"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/light_blue"
-        android:onClick="goNext"
         android:text="CONTINUE"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"

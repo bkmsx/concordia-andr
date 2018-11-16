@@ -26,16 +26,27 @@
         <activity android:name=".forgotpassword.GotPasswordSuccessActivity" />
         <activity android:name=".main.ProjectListActivity" />
         <activity android:name=".main.LoginActivity" />
-        <activity android:name="capital.novum.concordia.transaction.ProjectDetailActivity"/>
-        <activity android:name="capital.novum.concordia.transaction.TermsAndCoditionsActivity"/>
-        <activity android:name="capital.novum.concordia.transaction.InputWalletActivity"/>
-        <activity android:name="capital.novum.concordia.transaction.AmountTokensActivity"/>
-        <activity android:name="capital.novum.concordia.transaction.TestActivity"/>
-        <activity android:name="capital.novum.concordia.transaction.QrScannerActivity"/>
-        <activity android:name="capital.novum.concordia.transaction.ETHDetailActivity"/>
-        <activity android:name="capital.novum.concordia.transaction.USDDetailActivity"/>
-        <activity android:name="capital.novum.concordia.share.ShareInformationActivity"/>
-        <activity android:name="capital.novum.concordia.share.ShareMethodsActivity"/>
+        <activity android:name=".transaction.ProjectDetailActivity"/>
+        <activity android:name=".transaction.TermsAndCoditionsActivity"/>
+        <activity android:name=".transaction.InputWalletActivity"/>
+        <activity android:name=".transaction.AmountTokensActivity"/>
+        <activity android:name=".transaction.TestActivity"/>
+        <activity android:name=".transaction.QrScannerActivity"/>
+        <activity android:name=".transaction.ETHDetailActivity"/>
+        <activity android:name=".transaction.USDDetailActivity"/>
+        <activity android:name=".share.ShareInformationActivity"/>
+        <activity android:name=".share.ShareMethodsActivity"/>
+        <activity android:name=".setting.PersonalConfigurationActivity"/>
+        <activity android:name=".setting.AddWalletActivity"/>
+        <activity android:name=".setting.WalletListActivity"/>
+        <activity android:name=".setting.ChangeMobilePhoneActivity"/>
+        <activity android:name=".setting.ChangePasswordActivity"/>
+        <activity android:name=".setting.EditWalletActivity"/>
+        <activity android:name=".setting.HistoryETHDetailActivity"/>
+        <activity android:name=".setting.HistoryUSDDetailActivity"/>
+        <activity android:name=".setting.HistoryListActivity"/>
+        <activity android:name=".setting.ReferralCodeActivity"/>
+        <activity android:name=".setting.UpdatePassportActivity"/>
     </application>
 
 </manifest>

@@ -11,6 +11,8 @@ import android.graphics.Color
 import android.opengl.ETC1.getHeight
 import android.opengl.ETC1.getWidth
 import android.widget.ImageView
+import capital.novum.concordia.main.ProjectListActivity
+import capital.novum.concordia.share.ShareInformationActivity
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.common.BitMatrix
 import kotlinx.android.synthetic.main.transaction_eth_detail_activity.*
@@ -29,23 +31,24 @@ class ETHDetailActivity : BaseActivity() {
     override fun customViews() {
         super.customViews()
         header.setIndex(4)
-
+        btnNext.setOnClickListener { goToShareInformation() }
         qrCode.setImageBitmap(getQrCode("Bkmsx"))
     }
 
     override fun setupToolBar() {
         super.setupToolBar()
-        leftToolbarButton.setImageResource(R.mipmap.back_blue)
         toolbarTitle.text = "PARTICIPATE"
+        rightToolbarButton.visibility = View.VISIBLE
+        rightToolbarButton.setImageResource(R.mipmap.done_blue)
     }
 
     /*
         Events
      */
 
-    fun goNext(view : View) {
-        val intent = Intent(this, InputWalletActivity::class.java)
-        startActivity(intent)
+    override fun rightToolbarClick() {
+        super.rightToolbarClick()
+        goToProjectList()
     }
 
     fun getQrCode(content: String) : Bitmap {
@@ -61,10 +64,24 @@ class ETHDetailActivity : BaseActivity() {
                     bmp.setPixel(x, y, if (bitMatrix.get(x, y)) Color.BLACK else Color.WHITE)
                 }
             }
-
         } catch (e: WriterException) {
             e.printStackTrace()
         }
         return bmp
+    }
+
+    /**
+     *  Navigations
+     */
+
+    fun goToShareInformation() {
+        val intent = Intent(this, ShareInformationActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun goToProjectList() {
+        val intent = Intent(this, ProjectListActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

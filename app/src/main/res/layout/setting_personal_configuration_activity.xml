@@ -8,20 +8,36 @@
 
     <include layout="@layout/app_toolbar"/>
 
-    <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="535dp"
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="RETRIEVE PASSWORD"
+        android:textColor="@color/white"
+        android:background="@color/light_blue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
-
-        <Button
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/btnNext">
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@mipmap/setting"
+            android:padding="20dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/circle_shape"/>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Touch id setting"
-            android:textColor="@android:color/white"
-            android:onClick="goNext"/>
+            android:textColor="@color/dark_gray"
+            android:text="ENABLE TOUCH ID"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"/>
     </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>

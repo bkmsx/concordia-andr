@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import fr.ganfra.materialspinner.MaterialSpinner
+import kotlinx.android.synthetic.main.register_information_activity.*
 
 class RegisterInformationActivity : BaseActivity(){
     /*
@@ -18,28 +19,20 @@ class RegisterInformationActivity : BaseActivity(){
 
     override fun customViews() {
         super.customViews()
-        val spinnerCitizenship = findViewById<MaterialSpinner>(R.id.spinner_citizenship)
-        val items = arrayOf("Vietnam", "Singapore")
-        val adapter = ArrayAdapter<String>(this, R.layout.spinner_item, items);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerCitizenship.adapter = adapter
-        val spinnerCountry = findViewById<MaterialSpinner>(R.id.spinner_country)
-        spinnerCountry.adapter = adapter
+
+        btnNext.setOnClickListener { goNext() }
     }
 
     override fun setupToolBar() {
         super.setupToolBar()
-        leftToolbarButton.setImageResource(R.mipmap.back_blue)
-        leftToolbarButton.visibility = View.VISIBLE
         toolbarTitle.text = "NEW USER REGISTRATION"
-        rightToolbarButton.visibility = View.INVISIBLE
     }
 
     /*
        Events
     */
 
-    fun goNext(view : View) {
+    fun goNext() {
         val intent = Intent(this, RegistrationSuccessActivity::class.java)
         startActivity(intent)
     }

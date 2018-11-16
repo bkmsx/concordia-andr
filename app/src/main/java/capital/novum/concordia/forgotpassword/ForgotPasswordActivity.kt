@@ -5,6 +5,7 @@ import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import capital.novum.concordia.main.LoginActivity
+import kotlinx.android.synthetic.main.forgot_password_activity.*
 
 class ForgotPasswordActivity : BaseActivity() {
     /*
@@ -19,11 +20,16 @@ class ForgotPasswordActivity : BaseActivity() {
         toolbarTitle.text = "FORGOT PASSWORD"
     }
 
+    override fun customViews() {
+        super.customViews()
+        btnNext.setOnClickListener { goNext() }
+    }
+
     /*
         Events
      */
 
-    fun goNext(view : View) {
+    fun goNext() {
         val intent = Intent(this, GotPasswordSuccessActivity::class.java)
         startActivity(intent)
     }

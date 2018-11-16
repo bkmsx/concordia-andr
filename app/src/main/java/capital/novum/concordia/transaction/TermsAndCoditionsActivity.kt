@@ -16,19 +16,21 @@ class TermsAndCoditionsActivity : BaseActivity() {
         return R.layout.transaction_terms_conditions_activity
     }
 
+    override fun customViews() {
+        super.customViews()
+        btnNext.setOnClickListener { goNext() }
+    }
+
     override fun setupToolBar() {
         super.setupToolBar()
-        leftToolbarButton.setImageResource(R.mipmap.back_blue)
-        leftToolbarButton.visibility = View.VISIBLE
         toolbarTitle.text = "PARTICIPATE"
-        rightToolbarButton.visibility = View.INVISIBLE
     }
 
     /*
         Events
      */
 
-    fun goNext(view : View) {
+    fun goNext() {
         val intent = Intent(this, InputWalletActivity::class.java)
         startActivity(intent)
     }

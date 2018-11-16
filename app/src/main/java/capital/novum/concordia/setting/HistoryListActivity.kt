@@ -16,10 +16,7 @@ class HistoryListActivity : BaseActivity() {
 
     override fun setupToolBar() {
         super.setupToolBar()
-        leftToolbarButton.setImageResource(R.mipmap.back_blue)
-        leftToolbarButton.visibility = View.VISIBLE
         toolbarTitle.text = "PARTICIPATE HISTORY"
-        rightToolbarButton.visibility = View.INVISIBLE
     }
 
     /*

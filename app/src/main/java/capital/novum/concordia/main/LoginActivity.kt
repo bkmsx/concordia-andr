@@ -30,6 +30,8 @@ class LoginActivity : BaseActivity() {
      */
 
     fun login(view : View) {
+        gotoProjectList()
+        return
         val email = findViewById<EditText>(R.id.edt_email).text.toString()
         val password = findViewById<EditText>(R.id.edt_password).text.toString()
         disposable = concordiaService.loginAccount(email, password, "123", "Android")

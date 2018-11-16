@@ -4,6 +4,9 @@ import android.content.Intent
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
+import capital.novum.concordia.main.LoginActivity
+import capital.novum.concordia.main.ProjectListActivity
+import capital.novum.concordia.share.ShareInformationActivity
 import kotlinx.android.synthetic.main.transaction_usd_detail_activity.*
 
 class USDDetailActivity : BaseActivity() {
@@ -22,18 +25,28 @@ class USDDetailActivity : BaseActivity() {
 
     override fun setupToolBar() {
         super.setupToolBar()
-        leftToolbarButton.setImageResource(R.mipmap.back_blue)
-        leftToolbarButton.visibility = View.VISIBLE
         toolbarTitle.text = "PARTICIPATE"
-        rightToolbarButton.visibility = View.INVISIBLE
+        rightToolbarButton.visibility = View.VISIBLE
+        rightToolbarButton.setImageResource(R.mipmap.done_blue)
+        btnNext.setOnClickListener { goToShareInformation() }
     }
 
-    /*
-        Events
-     */
+    override fun rightToolbarClick() {
+        super.rightToolbarClick()
+        goToProjectList()
+    }
 
-    fun goNext(view : View) {
-        val intent = Intent(this, InputWalletActivity::class.java)
+    /**
+     *  Navigations
+     */
+    fun goToShareInformation() {
+        val intent = Intent(this, ShareInformationActivity::class.java)
         startActivity(intent)
+    }
+
+    fun goToProjectList() {
+        val intent = Intent(this, ProjectListActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

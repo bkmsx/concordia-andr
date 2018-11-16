@@ -8,6 +8,7 @@ import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import capital.novum.concordia.main.ProjectListActivity
 import com.hbb20.CountryCodePicker
+import kotlinx.android.synthetic.main.registration_activity.*
 
 class RegistrationActivity: BaseActivity() {
     /*
@@ -18,19 +19,21 @@ class RegistrationActivity: BaseActivity() {
         return R.layout.registration_activity
     }
 
+    override fun customViews() {
+        super.customViews()
+        btnNext.setOnClickListener { goNext() }
+    }
+
     override fun setupToolBar() {
         super.setupToolBar()
-        leftToolbarButton.setImageResource(R.mipmap.back_blue)
-        leftToolbarButton.visibility = View.VISIBLE
         toolbarTitle.text = "NEW USER REGISTRATION"
-        rightToolbarButton.visibility = View.INVISIBLE
     }
 
     /*
         Events
      */
 
-    fun goNext(view : View) {
+    fun goNext() {
         val intent = Intent(this, VerifyOTPActivity::class.java)
         startActivity(intent)
     }

@@ -21,4 +21,7 @@
     <dimen name="setting_user_status_check_size">15dp</dimen>
     <dimen name="setting_user_status_size">30dp</dimen>
     <dimen name="setting_user_status_bg_radius">15dp</dimen>
+
+    <dimen name="setting_item_size">25dp</dimen>
+    <dimen name="setting_item_margin">25dp</dimen>
 </resources>

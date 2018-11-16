@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
+import capital.novum.concordia.share.ShareInformationActivity
 import kotlinx.android.synthetic.main.project_detail_activity.*
 
 class ProjectDetailActivity : BaseActivity() {
@@ -21,23 +22,27 @@ class ProjectDetailActivity : BaseActivity() {
             val view = LayoutInflater.from(this).inflate(R.layout.item_discount_tier, null)
             contentView.addView(view)
         }
+
+        btnParticipate.setOnClickListener { goToTermsAndCoditions() }
+        btnInviteFriend.setOnClickListener { goToShareInformation() }
     }
 
     override fun setupToolBar() {
         super.setupToolBar()
-        leftToolbarButton.setImageResource(R.mipmap.back_blue)
-        leftToolbarButton.visibility = View.VISIBLE
         toolbarTitle.text = "W GREEN PAY"
-        rightToolbarButton.visibility = View.INVISIBLE
     }
 
     /*
         Events
      */
 
-    fun goNext(view : View) {
+    private fun goToTermsAndCoditions() {
         val intent = Intent(this, TermsAndCoditionsActivity::class.java)
         startActivity(intent)
     }
 
+    private fun goToShareInformation() {
+        val intent = Intent(this, ShareInformationActivity::class.java)
+        startActivity(intent)
+    }
 }
