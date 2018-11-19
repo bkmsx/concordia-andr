@@ -12,7 +12,7 @@
         android:id="@+id/btnNext"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="RETRIEVE PASSWORD"
+        android:text="UPDATE"
         android:textColor="@color/white"
         android:background="@color/light_blue"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +37,29 @@
             android:layout_height="wrap_content"
             android:textColor="@color/dark_gray"
             android:text="ENABLE TOUCH ID"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_marginTop="20dp"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:checkedButton="@+id/btnYes"
+            android:layout_marginTop="30dp">
+            <RadioButton
+                android:id="@+id/btnYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:buttonTint="@color/light_blue"
+                android:textColor="@color/white"/>
+            <RadioButton
+                android:id="@+id/btnNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NO"
+                android:buttonTint="@color/light_blue"
+                android:textColor="@color/white"
+                android:layout_marginStart="30dp"/>
+        </RadioGroup>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

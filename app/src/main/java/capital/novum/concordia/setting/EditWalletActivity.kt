@@ -14,12 +14,13 @@ class EditWalletActivity : BaseActivity() {
         return R.layout.setting_edit_wallet_activity
     }
 
+    override fun customViews() {
+        super.customViews()
+    }
+
     override fun setupToolBar() {
         super.setupToolBar()
-        leftToolbarButton.setImageResource(R.mipmap.back_blue)
-        leftToolbarButton.visibility = View.VISIBLE
         toolbarTitle.text = "UPDATE WALLET"
-        rightToolbarButton.visibility = View.INVISIBLE
     }
 
     /*
