@@ -4,24 +4,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/pattern"
     tools:context=".transaction.ProjectDetailActivity">
 
     <include layout="@layout/app_toolbar"/>
 
-    <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="535dp"
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="SUBMIT"
+        android:textColor="@color/white"
+        android:background="@color/light_blue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
-
-        <Button
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/btnNext"
+        android:paddingStart="@dimen/update_passport_padding"
+        android:paddingEnd="@dimen/update_passport_padding">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CITIZENSHIP"
+            style="@style/TextViewTitle"
+            android:layout_marginTop="10dp"/>
+        <capital.novum.concordia.customview.EditSpinner
+            android:id="@+id/spinnerCitizenship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="COUNTRY"
+            style="@style/TextViewTitle"
+            android:layout_marginTop="@dimen/update_passport_margin_top"/>
+        <capital.novum.concordia.customview.EditSpinner
+            android:id="@+id/spinnerCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PASSPORT NUMBER"
+            style="@style/TextViewTitle"
+            android:layout_marginTop="@dimen/update_passport_margin_top"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/EditTextStyle"
+            android:gravity="start"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DATE OF BIRTH"
+            style="@style/TextViewTitle"
+            android:layout_marginTop="@dimen/update_passport_margin_top"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/EditTextStyle"
+            android:gravity="start"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MOBILE NUMBER"
+            style="@style/TextViewTitle"
+            android:layout_marginTop="@dimen/update_passport_margin_top"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.hbb20.CountryCodePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:ccp_contentColor="@android:color/white"
+                app:ccp_autoDetectCountry="true"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/EditTextStyle"/>
+        </LinearLayout>
+        <capital.novum.concordia.customview.RoundButtonImage
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"/>
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/camera"
+            android:padding="20dp"
+            android:background="@drawable/blue_stroke_circle_bg"
+            android:layout_marginTop="20dp"/>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Update passport"
-            android:textColor="@android:color/white"
-            android:onClick="goNext"/>
+            android:text="TAKE A SELFIE"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>

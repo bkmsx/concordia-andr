@@ -13,9 +13,7 @@ import capital.novum.concordia.registration.RegisterInformationActivity
 import capital.novum.concordia.registration.RegistrationActivity
 import capital.novum.concordia.registration.RegistrationSuccessActivity
 import capital.novum.concordia.registration.VerifyOTPActivity
-import capital.novum.concordia.setting.EditWalletActivity
-import capital.novum.concordia.setting.PersonalConfigurationActivity
-import capital.novum.concordia.setting.WalletListActivity
+import capital.novum.concordia.setting.*
 import capital.novum.concordia.share.ShareInformationActivity
 import capital.novum.concordia.share.ShareMethodsActivity
 import capital.novum.concordia.transaction.*
@@ -25,7 +23,7 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen_activity)
-        val intent = Intent(applicationContext, EditWalletActivity::class.java)
+        val intent = Intent(applicationContext, HistoryListActivity::class.java)
         var slide = Slide()
         slide.setDuration(500)
         slide.slideEdge = Gravity.RIGHT

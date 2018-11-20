@@ -46,7 +46,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@mipmap/check"
-            android:background="@drawable/circle_shape"
+            android:background="@drawable/blue_stroke_circle_bg"
             android:padding="16dp"
             android:layout_marginTop="20dp"/>
         <TextView

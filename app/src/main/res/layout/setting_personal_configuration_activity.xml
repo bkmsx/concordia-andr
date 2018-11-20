@@ -31,7 +31,7 @@
             android:src="@mipmap/setting"
             android:padding="20dp"
             android:layout_marginTop="50dp"
-            android:background="@drawable/circle_shape"/>
+            android:background="@drawable/blue_stroke_circle_bg"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

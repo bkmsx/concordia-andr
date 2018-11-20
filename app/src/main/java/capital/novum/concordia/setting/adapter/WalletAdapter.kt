@@ -30,7 +30,7 @@ class WalletAdapter : RecyclerView.Adapter<WalletAdapter.ViewHolder> {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (position == 2) {
-            holder.itemView.setBackgroundResource(R.drawable.wallet_footer_bg)
+            holder.itemView.setBackgroundResource(R.drawable.blur_gray_bottom_round_bg)
         }
     }
 

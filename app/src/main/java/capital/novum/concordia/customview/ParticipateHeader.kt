@@ -2,13 +2,10 @@ package capital.novum.concordia.customview
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.LayoutDirection
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import capital.novum.concordia.R
 import kotlinx.android.synthetic.main.participate_header.view.*
-import java.util.jar.Attributes
 
 class ParticipateHeader : LinearLayout{
 
@@ -21,9 +18,9 @@ class ParticipateHeader : LinearLayout{
     fun setIndex(index: Int) {
         for (i in 0..(indicator.childCount - 1)) {
             if (i < index) {
-                indicator.getChildAt(i).setBackgroundResource(R.drawable.participate_indicator_blue)
+                indicator.getChildAt(i).setBackgroundResource(R.drawable.light_blue_circle_bg)
             } else {
-                indicator.getChildAt(i).setBackgroundResource(R.drawable.participate_indicator_white)
+                indicator.getChildAt(i).setBackgroundResource(R.drawable.white_circle_bg)
             }
          }
     }

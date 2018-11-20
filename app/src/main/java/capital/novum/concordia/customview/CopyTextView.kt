@@ -9,6 +9,6 @@ import capital.novum.concordia.R
 class CopyTextView : LinearLayout {
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
         LayoutInflater.from(context).inflate(R.layout.copy_textview, this, true)
-        setBackgroundResource(R.drawable.round_edittext_bg)
+        setBackgroundResource(R.drawable.light_blue_stroke_round_bg)
     }
 }

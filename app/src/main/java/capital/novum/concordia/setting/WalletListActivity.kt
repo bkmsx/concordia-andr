@@ -21,6 +21,8 @@ class WalletListActivity : BaseActivity() {
         super.customViews()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = WalletAdapter(arrayOf("12"))
+
+        btnNext.setOnClickListener { goNext() }
     }
 
     override fun setupToolBar() {
@@ -32,7 +34,13 @@ class WalletListActivity : BaseActivity() {
         Events
      */
 
-    fun goNext(view : View) {
 
+
+    /**
+     *  Navigations
+     */
+    fun goNext() {
+        val intent = Intent(this, AddWalletActivity::class.java)
+        startActivity(intent)
     }
 }

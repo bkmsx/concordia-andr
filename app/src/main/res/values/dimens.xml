@@ -27,4 +27,6 @@
 
     <dimen name="wallet_item_height">40dp</dimen>
     <dimen name="wallet_button_size">20dp</dimen>
+    <dimen name="update_passport_padding">40dp</dimen>
+    <dimen name="update_passport_margin_top">5dp</dimen>
 </resources>

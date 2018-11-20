@@ -4,7 +4,7 @@
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/project_icon_background"
+        android:background="@drawable/white_round_bg"
         android:layout_marginTop="15dp"
         android:src="@mipmap/concordia_2"/>
     <TextView
@@ -21,7 +21,7 @@
         <View
             android:layout_width="@dimen/participate_indicator_size"
             android:layout_height="@dimen/participate_indicator_size"
-            android:background="@drawable/participate_indicator_blue"/>
+            android:background="@drawable/light_blue_circle_bg"/>
         <View
             android:layout_width="@dimen/participate_indicator_size"
             android:layout_height="@dimen/participate_indicator_size"

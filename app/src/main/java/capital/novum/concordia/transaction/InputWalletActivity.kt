@@ -4,19 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Rect
-import android.util.Log
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import kotlinx.android.synthetic.main.transaction_input_wallet_activity.*
-import android.widget.Toast
-import android.view.ViewTreeObserver.OnGlobalLayoutListener
-import android.opengl.ETC1.getHeight
-import android.support.v4.content.ContextCompat
-import android.view.View.MeasureSpec
-import android.util.DisplayMetrics
-import android.view.ViewTreeObserver
-import android.widget.EditText
 import kotlinx.android.synthetic.main.edit_spinner.view.*
 
 
@@ -40,7 +31,7 @@ class InputWalletActivity : BaseActivity() {
         registerKeyboardListener()
         paymentSpinner.preventEdit()
         paymentSpinner.setData(arrayOf("ETH", "USD", "XLM"))
-        paymentSpinner.changeBackground(R.drawable.bottom_line_bg)
+        paymentSpinner.changeBackground(R.drawable.blue_bottom_line_bg)
         paymentSpinner.changeTextColor(Color.WHITE)
 
         btnNext.setOnClickListener { goToAmountTokens() }
