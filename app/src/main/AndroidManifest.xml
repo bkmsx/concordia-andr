@@ -47,6 +47,9 @@
         <activity android:name=".setting.HistoryListActivity"/>
         <activity android:name=".setting.ReferralCodeActivity"/>
         <activity android:name=".setting.UpdatePassportActivity"/>
+        <activity android:name=".setting.CvenExchangeActivity"/>
+        <activity android:name=".setting.EthParticipateDetail"/>
+        <activity android:name=".setting.UsdParticipateDetail"/>
     </application>
 
 </manifest>

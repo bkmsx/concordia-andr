@@ -9,19 +9,90 @@
     <include layout="@layout/app_toolbar"/>
 
     <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="535dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@mipmap/app_invite"
+            android:background="@color/light_blue"/>
 
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Referral code"
-            android:textColor="@android:color/white"
-            android:onClick="goNext"/>
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextViewTitle"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                android:text="Enter your referral code"/>
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:background="@drawable/gray_bottom_line_bg"/>
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/blue_round_res_bg"
+                android:text="APPLY"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/referral_programme_padding"
+            android:paddingEnd="@dimen/referral_programme_padding"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:text="TOTAL CVEN EARNED"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25.34"
+                android:textSize="14sp"
+                android:textColor="@color/light_blue"/>
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:paddingStart="@dimen/referral_programme_padding"
+            android:paddingEnd="@dimen/referral_programme_padding"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_gray"
+            android:textSize="12sp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/referral_programme_cven_information"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_gray"
+            android:layout_marginBottom="10dp"
+            android:textSize="12sp"
+            android:gravity="center_horizontal"
+            android:text="@string/referral_programme_cven_value"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

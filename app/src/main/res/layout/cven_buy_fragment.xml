@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:padding="30dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buy_cven_first_message"
+        android:textColor="@color/dark_gray"
+        android:gravity="center_horizontal"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send ETH to:"
+        android:textColor="@color/dark_gray"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"/>
+    <capital.novum.concordia.customview.CopyTextView
+        android:id="@+id/cvenAddress"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/light_blue_stroke_round_bg"
+        android:layout_marginTop="10dp"/>
+    <ImageView
+        android:id="@+id/qrCode"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 ETH = 1 CVEN"
+        android:textColor="@color/white"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buy_cven_second_message"
+        android:textColor="@color/dark_gray"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:textColor="@color/light_blue"
+        android:text="WHAT IS CVEN?"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>

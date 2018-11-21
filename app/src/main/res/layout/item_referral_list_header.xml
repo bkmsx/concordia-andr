@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/light_blue_top_bottom_bg">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="DIRECT REFERRAL"
+        android:textSize="@dimen/referral_programme_textsize"
+        android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="2ND TIER"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/referral_programme_textsize"
+        android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="TOTAL EARNED (CVEN)"
+        android:textSize="@dimen/referral_programme_textsize"
+        android:textColor="@color/white"/>
+</LinearLayout>

@@ -41,6 +41,8 @@ class SettingFragment : Fragment() {
         view.btnLogout.setOnClickListener { logout() }
         view.btnEditPhone.setOnClickListener { goToChangeMobile() }
         view.btnShare.setOnClickListener { goToShareWithFriends() }
+
+        view.btnCven.setOnClickListener { goToCvenExchange() }
         return view
     }
 
@@ -85,6 +87,11 @@ class SettingFragment : Fragment() {
 
     private fun goToShareWithFriends() {
         val intent = Intent(activity, ShareInformationActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToCvenExchange() {
+        val intent = Intent(activity, CvenExchangeActivity::class.java)
         startActivity(intent)
     }
 

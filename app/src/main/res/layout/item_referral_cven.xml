@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:gravity="center_vertical">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="Trung Tien"
+        android:textSize="@dimen/referral_programme_textsize"
+        android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="2"
+        android:textSize="@dimen/referral_programme_textsize"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="20.02"
+        android:textSize="@dimen/referral_programme_textsize"
+        android:gravity="end"
+        android:textColor="@color/white" />
+</LinearLayout>

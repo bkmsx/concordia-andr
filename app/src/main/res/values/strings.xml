@@ -11,4 +11,9 @@
     <string name="share_information_example6">If A buys $100 worth of tokens, you will earn $3</string>
     <string name="share_information_example7">If C buys $100 worth of tokens, A will earn $3 while You will earn $1</string>
     <string name="got_password_success_information">Your password has been reset and a new password has been sent to you.</string>
+    <string name="referral_programme_cven_information">CVEN is the name Concordia Ventures token</string>
+    <string name="referral_programme_cven_value">1 CVEN = 1 ETH</string>
+    <string name="buy_cven_first_message">Please send ETH to the following smart contract address</string>
+    <string name="buy_cven_second_message">You will receive CVEN immediately via smart contract feature.</string>
+    <string name="sell_cven_first_message">Please send your CVEN tokens to the address indicated below. Ethereum gas fees apply. ETH will be credited back to the same wallet.</string>
 </resources>
