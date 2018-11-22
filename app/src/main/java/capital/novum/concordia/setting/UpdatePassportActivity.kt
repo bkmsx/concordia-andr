@@ -1,6 +1,9 @@
 package capital.novum.concordia.setting
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.view.View
 import capital.novum.concordia.R
@@ -24,6 +27,16 @@ class UpdatePassportActivity : BaseActivity() {
         spinnerCountry.changeBackground(R.drawable.gray_bottom_line_bg)
         spinnerCountry.setData(arrayOf("VietNam", "Singapore"))
         spinnerCountry.changeTextColor(Color.WHITE)
+
+        btnPassport.setOnClickListener {
+            val galleryIntent = Intent(Intent.ACTION_PICK)
+            galleryIntent.setType("image/*")
+            startActivityForResult(galleryIntent, 2)
+        }
+        btnSelfie.setOnClickListener {
+            val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(cameraIntent, 1)
+        }
     }
 
     override fun setupToolBar() {
@@ -31,11 +44,19 @@ class UpdatePassportActivity : BaseActivity() {
         toolbarTitle.text = "UPDATE PASSPORT DETAILS"
     }
 
-    /*
-        Events
-     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            val bitmap = data?.extras?.get("data") as Bitmap
+            btnSelfie.setImageBitmap(bitmap)
+        }
 
-    fun goNext(view : View) {
-
+        if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
+            val imageUri = data?.data
+            val imageStream = contentResolver.openInputStream(imageUri)
+            val image = BitmapFactory.decodeStream(imageStream)
+            btnPassport.setBitmap(image)
+        }
     }
+
 }

@@ -5,7 +5,8 @@
         android:id="@+id/icon"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@mipmap/blue_upload"/>
+        android:src="@mipmap/blue_upload"
+        android:scaleType="fitXY"/>
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"

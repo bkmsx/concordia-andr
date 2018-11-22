@@ -16,4 +16,15 @@
     <string name="buy_cven_first_message">Please send ETH to the following smart contract address</string>
     <string name="buy_cven_second_message">You will receive CVEN immediately via smart contract feature.</string>
     <string name="sell_cven_first_message">Please send your CVEN tokens to the address indicated below. Ethereum gas fees apply. ETH will be credited back to the same wallet.</string>
+    <string name="cven_dialog_text_1">What is CVEN?</string>
+    <string name="cven_dialog_text_2">CVEN is an ERC20 token and a stablecoin used within Concordia Ventures. You can use
+    CVEN to purchase projects\' tokens.</string>
+    <string name="cven_dialog_text_3">Why Use CVEN?</string>
+    <string name="cven_dialog_text_4">If you use CVEN (instead of BTC or ETH) to buy a project\'s tokens, you will receive 1% worth
+    of CVEN tokens as a bonus. For example, if you buy 1,000 tokens for 100 CVEN, you will receive 1 CVEN token for free.</string>
+    <string name="cven_dialog_text_5">Can I Exchange CVEN back to ETH?</string>
+    <string name="cven_dialog_text_6">Yes, since CVEN is our stable coin, you can Sell CVEN back to us at anytime for ETH. We will
+    deposit the ETH to your sending CVEN wallet address within one to three business days.</string>
+    <string name="cven_dialog_text_7">Are there any other fees for buying or selling CVEN tokens?</string>
+    <string name="cven_dialog_text_8">Since CVEN is an ERC20 token, all standard Ethereum blockchain gas fees apply.</string>
 </resources>

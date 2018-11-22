@@ -15,6 +15,7 @@ class CvenSellFragment : Fragment() {
         val view = inflater.inflate(R.layout.cven_sell_fragment, container, false)
         view.cvenAddress.setText(CVEN_ADDRESS)
         view.qrCode.setImageBitmap(Utils.getQrCode(CVEN_ADDRESS))
+        view.btnDialog.setOnClickListener { Utils.showDialog(context) }
         return view
     }
 }

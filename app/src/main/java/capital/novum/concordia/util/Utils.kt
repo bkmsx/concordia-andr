@@ -1,10 +1,15 @@
 package capital.novum.concordia.util
 
+import android.app.Dialog
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.view.ViewGroup
+import capital.novum.concordia.R
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
+import kotlinx.android.synthetic.main.dialog_cven_exchange.*
 
 object Utils {
     fun getQrCode(content: String) : Bitmap {
@@ -24,5 +29,15 @@ object Utils {
             e.printStackTrace()
         }
         return bmp
+    }
+
+    fun showDialog(context: Context?) {
+        val dialog = Dialog(context)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setContentView(R.layout.dialog_cven_exchange)
+        dialog.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window.setBackgroundDrawableResource(R.color.transparent)
+        dialog.btnClose.setOnClickListener { dialog.dismiss() }
+        dialog.show()
     }
 }
