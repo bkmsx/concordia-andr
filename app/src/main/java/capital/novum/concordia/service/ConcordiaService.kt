@@ -2,6 +2,7 @@ package capital.novum.concordia.service
 
 import capital.novum.concordia.model.LoginResult
 import capital.novum.concordia.model.Nationality
+import capital.novum.concordia.model.ProjectList
 import capital.novum.concordia.model.Result
 import capital.novum.concordia.util.Constant
 import com.google.gson.FieldNamingPolicy
@@ -10,10 +11,7 @@ import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ConcordiaService {
     @GET("citizenship/list")
@@ -26,6 +24,11 @@ interface ConcordiaService {
                      @Field("device_id") deviceId : String,
                      @Field("platform") platform : String
                      ) : Observable<LoginResult>
+
+    @GET("project/list")
+    fun getProjectList(
+            @Header("toke") token: String
+    ) : Observable<ProjectList>
 
     companion object {
         fun create() : ConcordiaService {

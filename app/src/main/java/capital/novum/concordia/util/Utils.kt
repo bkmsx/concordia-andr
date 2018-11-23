@@ -10,6 +10,7 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
 import kotlinx.android.synthetic.main.dialog_cven_exchange.*
+import kotlinx.android.synthetic.main.dialog_notice.*
 
 object Utils {
     fun getQrCode(content: String) : Bitmap {
@@ -31,13 +32,25 @@ object Utils {
         return bmp
     }
 
-    fun showDialog(context: Context?) {
+    fun showCvenDialog(context: Context?) {
         val dialog = Dialog(context)
         dialog.setCanceledOnTouchOutside(true)
         dialog.setContentView(R.layout.dialog_cven_exchange)
         dialog.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.window.setBackgroundDrawableResource(R.color.transparent)
         dialog.btnClose.setOnClickListener { dialog.dismiss() }
+        dialog.show()
+    }
+
+    fun showNoticeDialog(context: Context?, title: String = "Notice", msg: String = "There is an error") {
+        val dialog = Dialog(context)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setContentView(R.layout.dialog_notice)
+        dialog.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window.setBackgroundDrawableResource(R.color.transparent)
+        dialog.btnOk.setOnClickListener { dialog.dismiss() }
+        dialog.title.text = title
+        dialog.message.text = msg
         dialog.show()
     }
 }

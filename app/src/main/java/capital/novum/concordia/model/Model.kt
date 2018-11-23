@@ -43,3 +43,43 @@ data class LoginResult(
         var user: User
 )
 
+data class PaymentMethod (
+        var methodId: Int,
+        var methodName: String,
+        var pricePerToken: String,
+        var methodType: String,
+        var walletAddress: String
+)
+
+data class SalePeriod (
+        var title: String,
+        var saleStart: String,
+        var saleEnd: String,
+        var discount: String
+)
+
+data class Project (
+        var projectId: Int,
+        var logo: String,
+        var title: String,
+        var addedDate: String,
+        var shortDescription: String,
+        var detailedDescription: String,
+        var userParticipated: String,
+        var currentDiscount: String,
+        var currentSaleStart: String,
+        var currentSaleEnd: String,
+        var currentTier: String,
+        var minimumToken: String,
+        var termsUrl: String,
+        var websiteUrl: String,
+        var paymentMethods: List<PaymentMethod>,
+        var status: String,
+        var salePeriods: List<SalePeriod>
+)
+
+data class ProjectList(
+        var projects: List<Project>,
+        var message: String,
+        var code: Int
+)

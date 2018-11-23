@@ -15,4 +15,5 @@
     <color name="blue">@android:color/holo_blue_light</color>
     <color name="bank_detail_bg_color">#13fdfdfd</color>
     <color name="wallet_item_color">#64595959</color>
+    <color name="blur_black">#a5080808</color>
 </resources>

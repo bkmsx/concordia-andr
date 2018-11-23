@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/container"
     android:background="@mipmap/background">
 
 
@@ -21,7 +22,7 @@
         app:srcCompat="@mipmap/lock" />
 
     <EditText
-        android:id="@+id/edt_email"
+        android:id="@+id/edtEmail"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -39,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/edt_password"
+        android:id="@+id/edtPassword"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -54,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
     <Button
         android:id="@+id/btn_forgot_password"
@@ -67,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+        app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
 
     <Button
         android:id="@+id/btn_login"
@@ -109,6 +110,7 @@
             android:onClick="gotoRegister"
             android:text="REGISTER" />
     </LinearLayout>
+
 
 
 </android.support.constraint.ConstraintLayout>
