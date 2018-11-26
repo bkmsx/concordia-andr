@@ -17,7 +17,6 @@ class AddWalletActivity : BaseActivity() {
 
     override fun customViews() {
         super.customViews()
-        spinnerWalletType.setData(arrayOf("ETH", "USD"))
         spinnerWalletType.setText("ETH")
         spinnerWalletType.changeTextColor(Color.WHITE)
         spinnerWalletType.changeBackground(R.drawable.blue_bottom_line_bg)

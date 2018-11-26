@@ -11,6 +11,7 @@ import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
 import kotlinx.android.synthetic.main.dialog_cven_exchange.*
 import kotlinx.android.synthetic.main.dialog_notice.*
+import kotlinx.android.synthetic.main.dialog_term_conditions.*
 
 object Utils {
     fun getQrCode(content: String) : Bitmap {
@@ -39,6 +40,17 @@ object Utils {
         dialog.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.window.setBackgroundDrawableResource(R.color.transparent)
         dialog.btnClose.setOnClickListener { dialog.dismiss() }
+        dialog.show()
+    }
+
+    fun showTermConditions(context: Context?, link:String) {
+        val dialog = Dialog(context)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setContentView(R.layout.dialog_term_conditions)
+        dialog.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog.window.setBackgroundDrawableResource(R.color.transparent)
+        dialog.btnTermsClose.setOnClickListener { dialog.dismiss() }
+        dialog.webview.loadUrl(link)
         dialog.show()
     }
 

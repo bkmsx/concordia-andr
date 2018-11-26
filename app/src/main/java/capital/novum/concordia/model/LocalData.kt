@@ -10,6 +10,7 @@ object LocalData {
         sharePref.edit()
                 .putInt(UserConstant.id, user.id)
                 .putString(UserConstant.firstName, user.firstName)
+                .putString(UserConstant.token, user.token)
                 .apply()
     }
 }

@@ -22,10 +22,8 @@ class UpdatePassportActivity : BaseActivity() {
     override fun customViews() {
         super.customViews()
         spinnerCitizenship.changeBackground(R.drawable.gray_bottom_line_bg)
-        spinnerCitizenship.setData(arrayOf("VietNamese", "Singaporean"))
         spinnerCitizenship.changeTextColor(Color.WHITE)
         spinnerCountry.changeBackground(R.drawable.gray_bottom_line_bg)
-        spinnerCountry.setData(arrayOf("VietNam", "Singapore"))
         spinnerCountry.changeTextColor(Color.WHITE)
 
         btnPassport.setOnClickListener {

@@ -23,6 +23,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.app.Activity
 import android.database.Observable
+import android.renderscript.Element
 import android.view.inputmethod.InputMethodManager
 import capital.novum.concordia.model.LocalData
 import capital.novum.concordia.util.Utils
@@ -102,20 +103,5 @@ abstract class BaseActivity : AppCompatActivity() {
                 Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(
                 currentFocus!!.windowToken, 0)
-    }
-
-    fun httpRequest(params: HashMap<String, String>, url: String, handler: (Any) -> Unit) {
-        showProgressSpinner()
-        val observer = concordiaService.loginAccount(params["email"]!!, params["password"]!!, params["deviceId"]!!, params["platform"]!!)
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        handler(result)
-                    }
-                }
     }
 }

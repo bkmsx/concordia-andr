@@ -1,9 +1,6 @@
 package capital.novum.concordia.service
 
-import capital.novum.concordia.model.LoginResult
-import capital.novum.concordia.model.Nationality
-import capital.novum.concordia.model.ProjectList
-import capital.novum.concordia.model.Result
+import capital.novum.concordia.model.*
 import capital.novum.concordia.util.Constant
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
@@ -27,8 +24,20 @@ interface ConcordiaService {
 
     @GET("project/list")
     fun getProjectList(
-            @Header("toke") token: String
+            @Header("token") token: String
     ) : Observable<ProjectList>
+
+    @GET("project/detail")
+    fun getProjectDetail(
+            @Header("token") token: String,
+        @Query("project_id") projectId: Int
+    ) : Observable<ProjectDetail>
+
+    @GET("user-wallets")
+    fun getUserWallet(
+            @Header("token") token: String
+    ) : Observable<UserWallets>
+
 
     companion object {
         fun create() : ConcordiaService {

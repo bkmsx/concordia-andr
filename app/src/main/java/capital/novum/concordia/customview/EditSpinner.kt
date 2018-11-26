@@ -15,7 +15,9 @@ import kotlinx.android.synthetic.main.edit_spinner.view.*
 
 class EditSpinner : FrameLayout, AdapterView.OnItemSelectedListener {
     private val tag = javaClass.toString()
-    lateinit var source: Array<String>
+    lateinit var source: ArrayList<String>
+    var delegate: OnEditSpinnerChanged? = null
+    var selected = 0
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
         LayoutInflater.from(context).inflate(R.layout.edit_spinner, this, true)
@@ -23,7 +25,7 @@ class EditSpinner : FrameLayout, AdapterView.OnItemSelectedListener {
         dropdownBtn.setOnClickListener { spinner.performClick() }
     }
 
-    fun setData(data: Array<String>) {
+    fun setData(data: ArrayList<String>) {
         source = data
         spinner.adapter = SpinnerAdapter(context!!, data)
     }
@@ -44,8 +46,16 @@ class EditSpinner : FrameLayout, AdapterView.OnItemSelectedListener {
         edittext.setTextColor(color)
     }
 
+    fun getSelected() : String {
+        return edittext.text.toString()
+    }
+
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         edittext.setText(source[position], TextView.BufferType.EDITABLE)
+        if (delegate != null && selected++ > 0) {
+            (delegate as OnEditSpinnerChanged).onEditSpinnerChanged(source[position])
+        }
+
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -59,5 +69,9 @@ class EditSpinner : FrameLayout, AdapterView.OnItemSelectedListener {
         } else if (newConfig?.hardKeyboardHidden == Configuration.HARDKEYBOARDHIDDEN_YES) {
             Log.e(tag, "Keyboard hide")
         }
+    }
+
+    interface OnEditSpinnerChanged {
+        fun onEditSpinnerChanged(selectedItem: String)
     }
 }

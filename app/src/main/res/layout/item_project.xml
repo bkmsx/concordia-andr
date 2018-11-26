@@ -8,7 +8,7 @@
     android:background="@drawable/light_black_round_bg">
 
     <TextView
-        android:id="@+id/textview"
+        android:id="@+id/projectTitle"
         android:layout_width="190dp"
         android:layout_height="26dp"
         android:layout_marginEnd="8dp"
@@ -16,23 +16,23 @@
         android:text="W GREEN PAY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintStart_toEndOf="@+id/projectIcon"
+        app:layout_constraintTop_toTopOf="@+id/projectIcon" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/projectIcon"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/white_round_bg"
-        android:padding="15dp"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/concordia_2" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/addedDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -41,11 +41,11 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textview"
-        app:layout_constraintTop_toBottomOf="@+id/textview" />
+        app:layout_constraintStart_toStartOf="@+id/projectTitle"
+        app:layout_constraintTop_toBottomOf="@+id/projectTitle" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/shortDes"
         android:layout_width="195dp"
         android:layout_height="72dp"
         android:layout_marginEnd="8dp"
@@ -55,8 +55,8 @@
         android:textColor="@color/dark_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintStart_toStartOf="@+id/addedDate"
+        app:layout_constraintTop_toBottomOf="@+id/addedDate" />
 
     <TextView
         android:id="@+id/textView4"
@@ -65,11 +65,11 @@
         android:layout_marginTop="8dp"
         android:text="CURRENT DISCOUNT"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="@+id/shortDes"
+        app:layout_constraintTop_toBottomOf="@+id/shortDes" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/bonus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -108,8 +108,8 @@
         android:layout_marginTop="10dp"
         android:text="Sale Ended"
         android:textColor="@color/red"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/projectIcon"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintStart_toStartOf="@+id/projectIcon"
+        app:layout_constraintTop_toBottomOf="@+id/projectIcon" />
 </android.support.constraint.ConstraintLayout>

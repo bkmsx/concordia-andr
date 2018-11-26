@@ -1,11 +1,7 @@
 package capital.novum.concordia.main
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
-import android.util.Log
 import android.view.View
-import android.widget.EditText
 import capital.novum.concordia.R
 import capital.novum.concordia.forgotpassword.ForgotPasswordActivity
 import capital.novum.concordia.model.LocalData
@@ -15,6 +11,7 @@ import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.login_activity.*
+import java.util.HashMap
 
 class LoginActivity : BaseActivity() {
     override fun getLayoutId(): Int {
@@ -37,17 +34,27 @@ class LoginActivity : BaseActivity() {
             Utils.showNoticeDialog(this, msg = "Password is empty")
             return
         }
-        val params = hashMapOf(
-                "email" to email,
-                "password" to password,
-                "deviceId" to "123",
-                "platform" to "Android"
-        )
-        httpRequest(params, "loginAccount") {
-            val result = it as LoginResult
-            LocalData.saveUserDetail(this, result.user)
-            gotoProjectList()
-        }
+
+        loginAccount(email, password)
+    }
+
+    /**
+     *  Call API
+     */
+    private fun loginAccount(email: String, password: String) {
+        showProgressSpinner()
+        val observer = concordiaService.loginAccount(email, password, "123", "Android")
+        disposable = observer.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { result ->
+                    hideProgressSpinner()
+                    if (result.code != 200) {
+                        Utils.showNoticeDialog(this, msg = result.message)
+                    } else {
+                        LocalData.saveUserDetail(this, result.user)
+                        gotoProjectList()
+                    }
+                }
     }
 
     /**

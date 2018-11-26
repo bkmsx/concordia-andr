@@ -83,3 +83,26 @@ data class ProjectList(
         var message: String,
         var code: Int
 )
+
+data class ProjectDetail (
+        var project: Project,
+        var message: String,
+        var code: Int
+)
+
+data class  UserWalletAddress (
+        var walletId: Int,
+        var methodId: Int,
+        var address: String
+)
+
+data class UserWalletCategory (
+        var methodName: String,
+        var wallets: List<UserWalletAddress>
+)
+
+data class UserWallets (
+        var wallets: List<UserWalletCategory>,
+        var code: Int,
+        var message: String
+)

@@ -78,7 +78,7 @@
             android:textColor="@color/white"
             android:layout_marginTop="10dp"/>
         <capital.novum.concordia.customview.EditSpinner
-            android:id="@+id/editSpinner"
+            android:id="@+id/walletSpinner"
             android:layout_width="match_parent"
             android:layout_height="@dimen/edit_spinner_size"
             android:layout_marginStart="40dp"

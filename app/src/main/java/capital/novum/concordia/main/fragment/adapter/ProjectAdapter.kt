@@ -5,36 +5,46 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import capital.novum.concordia.R
+import capital.novum.concordia.model.Project
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_project.view.*
 
-class ProjectAdapter: RecyclerView.Adapter<ProjectAdapter.ViewHolder> {
+class ProjectAdapter: RecyclerView.Adapter<ProjectAdapter.ViewHolder>() {
     lateinit var onProjectListener: OnProjectListener
-
-    constructor()
+    var data: List<Project>? = null
 
     override fun getItemCount(): Int {
-        return 5
+        return if (data == null) 0 else (data as List<Project>).count()
+    }
+
+    fun loadData(data: List<Project>) {
+        this.data = data
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ProjectAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_project, parent, false)
-        view.button.setOnClickListener {
-            onProjectListener.onDetailButtonClick()
-        }
-        return ViewHolder(view);
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView("Tran Van Sieu")
-    }
-
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindView(name : String) {
-            itemView.textview.text = name
+        val project = data?.get(position)
+        val view = holder.itemView
+        view.projectTitle.text = project?.title?.toUpperCase()
+        Picasso.get().load(project?.logo).into(view.projectIcon)
+        view.addedDate.text = "ADDED: ${project?.addedDate}"
+        view.shortDes.text = project?.shortDescription
+        if (project?.currentDiscount != null) {
+            view.bonus.text = "${project?.currentDiscount}%"
+        }
+        view.button.setOnClickListener {
+            onProjectListener.onDetailButtonClick(project?.projectId)
         }
     }
 
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
     interface OnProjectListener {
-        fun onDetailButtonClick();
+        fun onDetailButtonClick(projectId: Int?)
     }
 }

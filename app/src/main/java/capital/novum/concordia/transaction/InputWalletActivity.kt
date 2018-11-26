@@ -4,15 +4,32 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Rect
+import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.View
 import capital.novum.concordia.R
+import capital.novum.concordia.customview.EditSpinner
 import capital.novum.concordia.main.BaseActivity
+import capital.novum.concordia.model.UserConstant
+import capital.novum.concordia.model.UserWalletCategory
+import capital.novum.concordia.util.Utils
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.transaction_input_wallet_activity.*
 import kotlinx.android.synthetic.main.edit_spinner.view.*
 
 
-class InputWalletActivity : BaseActivity() {
+class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
     private val tag = javaClass.toString()
+    var projectId = 0
+    var paymentMethods = ArrayList<String>()
+    lateinit var userWallets: List<UserWalletCategory>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        projectId = intent.getIntExtra("projectId", 5)
+        getProjectDetail()
+    }
     /*
         Custom views
      */
@@ -27,13 +44,11 @@ class InputWalletActivity : BaseActivity() {
         btnScan.setOnClickListener { gotoScanner() }
         btnScan.setTitle("SCAN")
         btnScan.setIcon(R.mipmap.blue_scan)
-        editSpinner.setData(arrayOf("1", "2", "3"))
         registerKeyboardListener()
         paymentSpinner.preventEdit()
-        paymentSpinner.setData(arrayOf("ETH", "USD", "XLM"))
         paymentSpinner.changeBackground(R.drawable.blue_bottom_line_bg)
         paymentSpinner.changeTextColor(Color.WHITE)
-
+        paymentSpinner.delegate = this
         btnNext.setOnClickListener { goToAmountTokens() }
     }
 
@@ -56,11 +71,66 @@ class InputWalletActivity : BaseActivity() {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 val qrCode = data?.getStringExtra("qrCode")
-                editSpinner.setText(qrCode!!)
+                walletSpinner.setText(qrCode!!)
             }
         }
     }
 
+    private fun filterUserWallet() {
+        val walletCategories = userWallets.filter { category -> category.methodName == paymentSpinner.getSelected() }
+        val wallets = ArrayList<String>()
+        if (!walletCategories.isEmpty()) {
+            for (wallet in walletCategories.first().wallets) {
+                wallets.add(wallet.address)
+            }
+        }
+        walletSpinner.setData(wallets)
+    }
+
+    override fun onEditSpinnerChanged(selectedItem: String) {
+        walletSpinner.setText("")
+        filterUserWallet()
+    }
+
+    /**
+     *  Call API
+     */
+    private fun getProjectDetail() {
+        showProgressSpinner()
+        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
+        val observer = concordiaService.getProjectDetail(token, projectId)
+        disposable = observer.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { result ->
+                    hideProgressSpinner()
+                    if (result.code != 200) {
+                        Utils.showNoticeDialog(this, msg = result.message)
+                    } else {
+                        for (method in result.project.paymentMethods) {
+                            paymentMethods.add(method.methodName)
+                        }
+                        paymentSpinner.setData(paymentMethods)
+                        getUserWallet()
+                    }
+                }
+    }
+
+    private fun getUserWallet() {
+        showProgressSpinner()
+        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
+        val observer = concordiaService.getUserWallet(token)
+        disposable = observer.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { result ->
+                    hideProgressSpinner()
+                    if (result.code != 200) {
+                        Utils.showNoticeDialog(this, msg = result.message)
+                    } else {
+                        userWallets = result.wallets
+                        filterUserWallet()
+                    }
+                }
+    }
     /**
      *  Navigations
      */
@@ -81,7 +151,7 @@ class InputWalletActivity : BaseActivity() {
             if (keyboardShown(mainLayout.rootView)) {
                 isOpen = true
             } else if (isOpen){
-                editSpinner.edittext.clearFocus()
+                walletSpinner.edittext.clearFocus()
                 isOpen = false
             }
         }

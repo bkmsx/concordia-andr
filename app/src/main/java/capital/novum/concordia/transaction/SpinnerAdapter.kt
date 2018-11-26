@@ -11,8 +11,8 @@ import kotlinx.android.synthetic.main.test_item.view.*
 
 class SpinnerAdapter : BaseAdapter {
     var context: Context
-    var data: Array<String>
-    constructor(context: Context, data: Array<String>) : super() {
+    var data: ArrayList<String>
+    constructor(context: Context, data: ArrayList<String>) : super() {
         this.context = context
         this.data = data
     }
@@ -42,7 +42,10 @@ class SpinnerAdapter : BaseAdapter {
     }
 
     override fun getCount(): Int {
-        return data.count()
+        if (data != null) {
+            return data.count()
+        }
+        return 0
     }
 
     internal class ViewHolder {
