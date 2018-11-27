@@ -39,7 +39,7 @@ abstract class BaseActivity : AppCompatActivity() {
     lateinit var progressSpinner: LinearLayout
 
     val concordiaService by lazy {
-        ConcordiaService.create()
+        ConcordiaService.create(Constant.BASE_URL)
     }
 
     var disposable: Disposable? = null

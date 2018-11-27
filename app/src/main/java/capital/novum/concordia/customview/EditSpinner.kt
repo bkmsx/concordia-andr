@@ -51,11 +51,11 @@ class EditSpinner : FrameLayout, AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.e("EditSpinner", source[position])
         edittext.setText(source[position], TextView.BufferType.EDITABLE)
         if (delegate != null && selected++ > 0) {
             (delegate as OnEditSpinnerChanged).onEditSpinnerChanged(source[position])
         }
-
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

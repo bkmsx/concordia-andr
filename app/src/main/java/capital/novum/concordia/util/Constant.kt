@@ -1,5 +1,6 @@
 package capital.novum.concordia.util
 
 object Constant {
-    const val BASE_URL = "https://kycapp.concordia.ventures/api/"
+    val BASE_URL = "https://kycapp.concordia.ventures/api/"
+    val COINMARKET_URL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/"
 }

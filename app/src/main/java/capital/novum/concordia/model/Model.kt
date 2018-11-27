@@ -43,12 +43,21 @@ data class LoginResult(
         var user: User
 )
 
+/**
+ *  Project Result
+ */
 data class PaymentMethod (
-        var methodId: Int,
-        var methodName: String,
-        var pricePerToken: String,
-        var methodType: String,
-        var walletAddress: String
+        val methodId: Int,
+        val methodName: String,
+        val pricePerToken: String,
+        val methodType: String,
+        val walletAddress: String,
+        val accountName: String,
+        val holderAddress: String,
+        val accountNumber: String,
+        val swiftCode: String,
+        val bankName: String,
+        val bankAddress: String
 )
 
 data class SalePeriod (
@@ -90,6 +99,9 @@ data class ProjectDetail (
         var code: Int
 )
 
+/**
+ *  Wallet address model
+ */
 data class  UserWalletAddress (
         var walletId: Int,
         var methodId: Int,
@@ -106,3 +118,23 @@ data class UserWallets (
         var code: Int,
         var message: String
 )
+
+/**
+ *  Coin Market
+ */
+
+data class Money (val price: Double)
+
+data class Quote (
+        val BTC: Money,
+        val XLM: Money,
+        val USD: Money
+)
+
+data class ETH (val quote: Quote)
+
+data class Data (val ETH: ETH)
+
+data class Status(val errorCode: Int, val errorMessage: String)
+
+data class CoinMarketResult(val data: Data, val status: Status)

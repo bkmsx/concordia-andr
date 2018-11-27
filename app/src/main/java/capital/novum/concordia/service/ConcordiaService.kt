@@ -38,16 +38,62 @@ interface ConcordiaService {
             @Header("token") token: String
     ) : Observable<UserWallets>
 
+    @POST("wallet-add")
+    @FormUrlEncoded
+    fun addWalletAddress(
+            @Header("token") token: String,
+            @Field("method_id") methodId : Int,
+            @Field("wallet_address") walletAddress : String
+    ) : Observable<Result>
+
+    @POST("project/participate")
+    @FormUrlEncoded
+    fun participate(
+            @Header("token") token: String,
+            @Field("project_id") projectId: Int,
+            @Field("payment_method") paymentMethod: String,
+            @Field("amount_tokens") amountToken: String,
+            @Field("payment_method_id") paymentMethodId: Int,
+            @Field("payment_amount") paymentAmount: String,
+            @Field("wallet_address") walletAddress: String,
+            @Field("discount") discount: String,
+            @Field("referral_code") referralCode: String,
+            @Field("payment_amount_eth") paymentAmountETH: String
+    ) : Observable<Result>
+
+
+
 
     companion object {
-        fun create() : ConcordiaService {
+        fun create(baseUrl: String) : ConcordiaService {
             val gson = GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
             val retrofit = Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create(gson))
-                    .baseUrl(Constant.BASE_URL)
+                    .baseUrl(baseUrl)
                     .build()
             return retrofit.create(ConcordiaService::class.java)
         }
     }
+}
+
+interface CoinMarketService {
+    @GET("quotes/latest")
+    fun getCryptoCurrencyQuotes(
+            @Header("X-CMC_PRO_API_KEY") token: String = "1046459a-6062-41e8-8f48-f8253ed4f81d",
+            @Query("symbol") symbol: String = "ETH",
+            @Query("convert") convert: String
+    ) : Observable<CoinMarketResult>
+
+    companion object {
+        fun create() : CoinMarketService {
+            val retrofit = Retrofit.Builder()
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .baseUrl(Constant.COINMARKET_URL)
+                    .build()
+            return retrofit.create(CoinMarketService::class.java)
+        }
+    }
+
 }

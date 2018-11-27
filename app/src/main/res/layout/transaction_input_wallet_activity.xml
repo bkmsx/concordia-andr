@@ -43,8 +43,8 @@
         android:gravity="center_horizontal"
         android:background="@mipmap/pattern">
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:src="@mipmap/check"
             android:background="@drawable/blue_stroke_circle_bg"
             android:padding="16dp"
@@ -82,16 +82,19 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/edit_spinner_size"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"/>
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/dark_gray"
-            android:text="Your Ether must be sent from this wallet"/>
+            android:text="Your Ether must be sent from this wallet"
+            android:layout_marginTop="10dp"/>
         <capital.novum.concordia.customview.RoundButtonImage
             android:id="@+id/btnScan"
             android:layout_width="300dp"
-            android:layout_height="@dimen/round_button_image_size"/>
+            android:layout_height="@dimen/round_button_image_size"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
 
 

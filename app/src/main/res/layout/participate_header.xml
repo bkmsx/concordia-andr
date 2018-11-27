@@ -2,15 +2,19 @@
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent">
     <ImageView
+        android:id="@+id/projectIcon"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@drawable/white_round_bg"
         android:layout_marginTop="15dp"
+        android:padding="10dp"
         android:src="@mipmap/concordia_2"/>
     <TextView
+        android:id="@+id/projectTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="W GREEN PAY"
+        android:textStyle="bold"
         android:textColor="@color/light_blue"
         android:layout_marginTop="15dp"/>
     <LinearLayout

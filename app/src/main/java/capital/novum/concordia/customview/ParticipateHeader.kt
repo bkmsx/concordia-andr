@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import capital.novum.concordia.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.participate_header.view.*
 
 class ParticipateHeader : LinearLayout{
@@ -23,5 +24,13 @@ class ParticipateHeader : LinearLayout{
                 indicator.getChildAt(i).setBackgroundResource(R.drawable.white_circle_bg)
             }
          }
+    }
+
+    fun setProjectIcon(link: String) {
+        Picasso.get().load(link).into(projectIcon)
+    }
+
+    fun setProjectTitle(title: String) {
+        projectTitle.text = title.toUpperCase()
     }
 }

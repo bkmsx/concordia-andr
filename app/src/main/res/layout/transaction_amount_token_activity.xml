@@ -42,6 +42,7 @@
         android:gravity="center_horizontal"
         android:background="@mipmap/pattern">
         <TextView
+            android:id="@+id/tokenPriceTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
@@ -56,12 +57,14 @@
             android:textSize="@dimen/normal_text_size"
             android:text="Amount of Tokens to buy:"/>
         <EditText
+            android:id="@+id/tokenAmountEdt"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:text="10000"
             android:layout_marginTop="5dp"
             android:textColor="@color/white"
             android:textSize="18sp"
+            android:inputType="number"
             android:background="@drawable/light_blue_stroke_round_bg"
             android:gravity="center"/>
         <LinearLayout
@@ -69,16 +72,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp">
             <TextView
+                android:id="@+id/amountTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/normal_text_size"
                 android:textColor="@color/dark_gray"
                 android:text="Total ETH amount:"/>
             <TextView
+                android:id="@+id/paymentAmountTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1.2323"
                 android:textColor="@color/white"
+                android:layout_marginStart="10dp"
                 android:textSize="@dimen/normal_text_size"/>
         </LinearLayout>
         <TextView
@@ -89,6 +95,7 @@
             android:text="Referral code:"
             android:layout_marginTop="15dp"/>
         <EditText
+            android:id="@+id/referralCodeEdt"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:hint="JBDFDF"

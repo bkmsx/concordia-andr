@@ -6,10 +6,13 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.customview.EditSpinner
 import capital.novum.concordia.main.BaseActivity
+import capital.novum.concordia.model.PaymentMethod
+import capital.novum.concordia.model.Project
 import capital.novum.concordia.model.UserConstant
 import capital.novum.concordia.model.UserWalletCategory
 import capital.novum.concordia.util.Utils
@@ -24,6 +27,8 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
     var projectId = 0
     var paymentMethods = ArrayList<String>()
     lateinit var userWallets: List<UserWalletCategory>
+    lateinit var project: Project
+    lateinit var selectedMethod: PaymentMethod
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +54,9 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
         paymentSpinner.changeBackground(R.drawable.blue_bottom_line_bg)
         paymentSpinner.changeTextColor(Color.WHITE)
         paymentSpinner.delegate = this
-        btnNext.setOnClickListener { goToAmountTokens() }
+        btnNext.setOnClickListener {
+            checkWalletAddress()
+        }
     }
 
     override fun setupToolBar() {
@@ -61,9 +68,14 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
         Events
      */
 
-    fun goNext(view : View) {
-        val intent = Intent(this, AmountTokensActivity::class.java)
-        startActivity(intent)
+    private fun checkWalletAddress() {
+        selectedMethod = project.paymentMethods.filter { it.methodName == paymentSpinner.getSelected() }.first()
+        val walletCategory = userWallets.filter { it.methodName == paymentSpinner.getSelected() }.firstOrNull()
+        if (walletCategory != null && !walletCategory.wallets.none { it.address == walletSpinner.getSelected() }) {
+                goToAmountTokens()
+                return
+        }
+        addWallet(selectedMethod.methodId, walletSpinner.getSelected())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -77,7 +89,7 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
     }
 
     private fun filterUserWallet() {
-        val walletCategories = userWallets.filter { category -> category.methodName == paymentSpinner.getSelected() }
+        val walletCategories = userWallets.filter { it.methodName == paymentSpinner.getSelected() }
         val wallets = ArrayList<String>()
         if (!walletCategories.isEmpty()) {
             for (wallet in walletCategories.first().wallets) {
@@ -95,6 +107,22 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
     /**
      *  Call API
      */
+    private fun addWallet(methodId: Int, walletAddress: String) {
+        showProgressSpinner()
+        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
+        val observer = concordiaService.addWalletAddress(token, methodId, walletAddress)
+        disposable = observer.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { result ->
+                    hideProgressSpinner()
+                    if (result.code != 200) {
+                        Utils.showNoticeDialog(this, msg = result.message)
+                    } else {
+                        goToAmountTokens()
+                    }
+                }
+    }
+
     private fun getProjectDetail() {
         showProgressSpinner()
         val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
@@ -106,7 +134,10 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
                     if (result.code != 200) {
                         Utils.showNoticeDialog(this, msg = result.message)
                     } else {
-                        for (method in result.project.paymentMethods) {
+                        project = result.project
+                        header.setProjectIcon(project.logo)
+                        header.setProjectTitle(project.title)
+                        for (method in project.paymentMethods) {
                             paymentMethods.add(method.methodName)
                         }
                         paymentSpinner.setData(paymentMethods)
@@ -137,6 +168,14 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
 
     private fun goToAmountTokens() {
         val intent = Intent(this, AmountTokensActivity::class.java)
+        intent.putExtra("projectId", projectId)
+        intent.putExtra("projectLink", project.logo)
+        intent.putExtra("projectName", project.title)
+        intent.putExtra("paymentMethod", selectedMethod.methodName)
+        intent.putExtra("paymentMethodId", selectedMethod.methodId)
+        intent.putExtra("tokenPrice", selectedMethod.pricePerToken)
+        intent.putExtra("walletAddress", walletSpinner.getSelected())
+        intent.putExtra("discount", project.currentDiscount ?: "0")
         startActivity(intent)
     }
 

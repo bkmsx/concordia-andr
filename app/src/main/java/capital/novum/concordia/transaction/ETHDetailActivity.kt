@@ -10,16 +10,33 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.opengl.ETC1.getHeight
 import android.opengl.ETC1.getWidth
+import android.os.Bundle
+import android.preference.PreferenceManager
 import android.widget.ImageView
 import capital.novum.concordia.main.ProjectListActivity
+import capital.novum.concordia.model.Project
+import capital.novum.concordia.model.UserConstant
 import capital.novum.concordia.share.ShareInformationActivity
+import capital.novum.concordia.util.Utils
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.common.BitMatrix
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.transaction_eth_detail_activity.*
-import org.jetbrains.annotations.Nullable
 
 
 class ETHDetailActivity : BaseActivity() {
+    lateinit var project: Project
+    var paymentMethod = ""
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val projectId = intent.getIntExtra("projectId", 0)
+        paymentMethod = intent.getStringExtra("paymentMethod")
+        val paymentAmount = intent.getStringExtra("paymentAmount")
+        paymentAmountTxt.text = "$paymentAmount $paymentMethod"
+        getProjectDetail(projectId)
+    }
     /*
         Custom views
      */
@@ -32,7 +49,7 @@ class ETHDetailActivity : BaseActivity() {
         super.customViews()
         header.setIndex(4)
         btnNext.setOnClickListener { goToShareInformation() }
-        qrCode.setImageBitmap(getQrCode("Bkmsx"))
+
     }
 
     override fun setupToolBar() {
@@ -40,6 +57,17 @@ class ETHDetailActivity : BaseActivity() {
         toolbarTitle.text = "PARTICIPATE"
         rightToolbarButton.visibility = View.VISIBLE
         rightToolbarButton.setImageResource(R.mipmap.done_blue)
+        leftToolbarButton.visibility = View.INVISIBLE
+    }
+
+    private fun setupLayout(){
+        header.setProjectTitle(project.title)
+        header.setProjectIcon(project.logo)
+        tokenNameTxt.text = "${project.title} tokens. "
+        val paymentMethod = project.paymentMethods.find{ it.methodName == paymentMethod }
+        val address = paymentMethod?.walletAddress!!
+        walletAddress.setText(address)
+        qrCode.setImageBitmap(Utils.getQrCode(address))
     }
 
     /*
@@ -51,25 +79,25 @@ class ETHDetailActivity : BaseActivity() {
         goToProjectList()
     }
 
-    fun getQrCode(content: String) : Bitmap {
-        var bmp = Bitmap.createBitmap(100, 100, Bitmap.Config.RGB_565)
-        val writer = QRCodeWriter()
-        try {
-            val bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 512, 512)
-            val width = bitMatrix.width
-            val height = bitMatrix.height
-            bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
-            for (x in 0 until width) {
-                for (y in 0 until height) {
-                    bmp.setPixel(x, y, if (bitMatrix.get(x, y)) Color.BLACK else Color.WHITE)
+    /**
+     *  Call API
+     */
+    private fun getProjectDetail(projectId: Int) {
+        showProgressSpinner()
+        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
+        val observer = concordiaService.getProjectDetail(token, projectId)
+        disposable = observer.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { result ->
+                    hideProgressSpinner()
+                    if (result.code != 200) {
+                        Utils.showNoticeDialog(this, msg = result.message)
+                    } else {
+                        project = result.project
+                        setupLayout()
+                    }
                 }
-            }
-        } catch (e: WriterException) {
-            e.printStackTrace()
-        }
-        return bmp
     }
-
     /**
      *  Navigations
      */
