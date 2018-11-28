@@ -5,6 +5,9 @@ import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import capital.novum.concordia.main.LoginActivity
+import capital.novum.concordia.util.Utils
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.forgot_password_activity.*
 
 class ForgotPasswordActivity : BaseActivity() {
@@ -22,14 +25,41 @@ class ForgotPasswordActivity : BaseActivity() {
 
     override fun customViews() {
         super.customViews()
-        btnNext.setOnClickListener { goNext() }
+        btnNext.setOnClickListener { retrievePassword() }
     }
 
     /*
         Events
      */
 
-    fun goNext() {
+    /**
+     *  Call API
+     */
+    private fun retrievePassword() {
+        val email = emailEdt.text.toString()
+        if (email == "") {
+            Utils.showNoticeDialog(this, msg = "Please input your email")
+            return
+        }
+
+        showProgressSpinner()
+        val observer = concordiaService.retrievePassword(email)
+        disposable = observer.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { result ->
+                    hideProgressSpinner()
+                    if (result.code != 200) {
+                        Utils.showNoticeDialog(this, msg = result.message)
+                    } else {
+                        goNext()
+                    }
+                }
+    }
+
+    /**
+     *  Navigations
+     */
+    private fun goNext() {
         val intent = Intent(this, GotPasswordSuccessActivity::class.java)
         startActivity(intent)
     }

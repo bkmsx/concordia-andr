@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".registration.RegistrationActivity" />
+        <activity android:name=".registration.RegistrationActivity"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".registration.VerifyOTPActivity" />
         <activity android:name=".registration.RegisterInformationActivity" />
         <activity android:name=".registration.RegistrationSuccessActivity" />

@@ -5,9 +5,10 @@
     <color name="colorAccent">@color/light_blue</color>
     <color name="actionBar">#121212</color>
     <color name="light_blue">#008ce5</color>
-    <color name="light_gray">#D3D3D3</color>
     <color name="light_black">#363636</color>
-    <color name="dark_gray">#818181</color>
+    <color name="gray1">#818181</color>
+    <color name="gray2">#a1a1a1</color>
+    <color name="gray3">#D3D3D3</color>
     <color name="white">#fff</color>
     <color name="transparent">@android:color/transparent</color>
     <color name="black">#000</color>

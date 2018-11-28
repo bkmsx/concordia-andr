@@ -12,6 +12,7 @@ import com.google.zxing.qrcode.QRCodeWriter
 import kotlinx.android.synthetic.main.dialog_cven_exchange.*
 import kotlinx.android.synthetic.main.dialog_notice.*
 import kotlinx.android.synthetic.main.dialog_term_conditions.*
+import org.jetbrains.annotations.Nullable
 
 object Utils {
     fun getQrCode(content: String) : Bitmap {
@@ -54,13 +55,16 @@ object Utils {
         dialog.show()
     }
 
-    fun showNoticeDialog(context: Context?, title: String = "Notice", msg: String = "There is an error") {
+    fun showNoticeDialog(context: Context?, title: String = "Notice", msg: String = "There is an error", callback: (() -> Unit)? = null) {
         val dialog = Dialog(context)
         dialog.setCanceledOnTouchOutside(true)
         dialog.setContentView(R.layout.dialog_notice)
         dialog.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.window.setBackgroundDrawableResource(R.color.transparent)
-        dialog.btnOk.setOnClickListener { dialog.dismiss() }
+        dialog.btnOk.setOnClickListener {
+            dialog.dismiss()
+            callback?.invoke()
+        }
         dialog.title.text = title
         dialog.message.text = msg
         dialog.show()

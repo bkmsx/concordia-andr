@@ -63,7 +63,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_gray"
+                android:textColor="@color/gray1"
                 android:text="your current payment method:"/>
             <capital.novum.concordia.customview.EditSpinner
                 android:id="@+id/paymentSpinner"
@@ -87,7 +87,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/dark_gray"
+            android:textColor="@color/gray1"
             android:text="Your Ether must be sent from this wallet"
             android:layout_marginTop="10dp"/>
         <capital.novum.concordia.customview.RoundButtonImage

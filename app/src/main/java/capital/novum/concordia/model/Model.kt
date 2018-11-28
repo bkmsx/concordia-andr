@@ -1,6 +1,6 @@
 package capital.novum.concordia.model
 
-data class Result (var code: Int, var message: String)
+data class Result (val code: Int, val message: String)
 
 data class Nationality(
         var citizenships: List<Citizenship>,

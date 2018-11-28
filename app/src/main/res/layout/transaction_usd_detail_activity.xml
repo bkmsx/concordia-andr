@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:text="You are approved to purchase"
                 android:textSize="@dimen/normal_text_size"
-                android:textColor="@color/dark_gray"
+                android:textColor="@color/gray1"
                 android:layout_marginTop="10dp"/>
 
             <LinearLayout
@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:text=". Please send "
                     android:textSize="@dimen/normal_text_size"
-                    android:textColor="@color/dark_gray"/>
+                    android:textColor="@color/gray1"/>
                 <TextView
                     android:id="@+id/amoutTxt"
                     android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:text="to this address below:"
                 android:textSize="@dimen/normal_text_size"
-                android:textColor="@color/dark_gray"/>
+                android:textColor="@color/gray1"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:text="BANK NAME"
                     android:textSize="@dimen/bank_detail_normal_text_size"
-                    android:textColor="@color/dark_gray"/>
+                    android:textColor="@color/gray1"/>
                 <TextView
                     android:id="@+id/bankNameTxt"
                     android:layout_width="wrap_content"
@@ -121,7 +121,7 @@
                     android:text="SWIFT CODE"
                     android:textSize="@dimen/bank_detail_normal_text_size"
                     android:layout_marginTop="@dimen/bank_detail_margin"
-                    android:textColor="@color/dark_gray"/>
+                    android:textColor="@color/gray1"/>
                 <TextView
                     android:id="@+id/swiftCodeTxt"
                     android:layout_width="wrap_content"
@@ -135,7 +135,7 @@
                     android:text="BANK ADDRESS"
                     android:textSize="@dimen/bank_detail_normal_text_size"
                     android:layout_marginTop="@dimen/bank_detail_margin"
-                    android:textColor="@color/dark_gray"/>
+                    android:textColor="@color/gray1"/>
                 <TextView
                     android:id="@+id/bankAddressTxt"
                     android:layout_width="wrap_content"
@@ -149,7 +149,7 @@
                     android:text="ACCOUNT NAME"
                     android:textSize="@dimen/bank_detail_normal_text_size"
                     android:layout_marginTop="@dimen/bank_detail_margin"
-                    android:textColor="@color/dark_gray"/>
+                    android:textColor="@color/gray1"/>
                 <TextView
                     android:id="@+id/accountNameTxt"
                     android:layout_width="wrap_content"
@@ -163,7 +163,7 @@
                     android:text="ACCOUNT NO."
                     android:textSize="@dimen/bank_detail_normal_text_size"
                     android:layout_marginTop="@dimen/bank_detail_margin"
-                    android:textColor="@color/dark_gray"/>
+                    android:textColor="@color/gray1"/>
                 <TextView
                     android:id="@+id/accountNumberTxt"
                     android:layout_width="wrap_content"
@@ -177,7 +177,7 @@
                     android:text="BUSINESS ADDRESS"
                     android:textSize="@dimen/bank_detail_normal_text_size"
                     android:layout_marginTop="@dimen/bank_detail_margin"
-                    android:textColor="@color/dark_gray" />
+                    android:textColor="@color/gray1" />
                 <TextView
                     android:id="@+id/businessAddressTxt"
                     android:layout_width="wrap_content"
@@ -192,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:text="SHARE THIS WITH YOUR FRIENDS AND"
                 android:textSize="@dimen/bank_detail_normal_text_size"
-                android:textColor="@color/dark_gray"
+                android:textColor="@color/gray1"
                 android:layout_marginTop="10dp"/>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -209,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:text="FOR EACH REFERRAL"
                     android:textSize="@dimen/bank_detail_normal_text_size"
-                    android:textColor="@color/dark_gray"/>
+                    android:textColor="@color/gray1"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

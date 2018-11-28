@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/dark_gray"
+            android:textColor="@color/gray1"
             android:text="ENABLE TOUCH ID"
             android:textSize="14sp"
             android:layout_marginTop="20dp"/>

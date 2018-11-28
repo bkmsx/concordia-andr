@@ -19,13 +19,13 @@
         android:gravity="center"
         android:maxLines="3"
         android:text="We have sent you a One Time PIN via SMS. Please enter the PIN number below:"
-        android:textColor="@color/light_gray"
+        android:textColor="@color/gray3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 
     <com.alimuzaffar.lib.pin.PinEntryEditText
-        android:id="@+id/txt_pin_entry"
+        android:id="@+id/otpCodeEdt"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -44,11 +44,12 @@
         app:pinLineStroke="2dp"
         app:pinLineStrokeSelected="2dp" />
     <Button
+        android:id="@+id/btnResend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:textColor="@color/light_blue"
-        app:layout_constraintTop_toBottomOf="@+id/txt_pin_entry"
+        app:layout_constraintTop_toBottomOf="@+id/otpCodeEdt"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

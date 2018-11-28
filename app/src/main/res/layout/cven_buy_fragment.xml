@@ -8,13 +8,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/buy_cven_first_message"
-        android:textColor="@color/dark_gray"
+        android:textColor="@color/gray1"
         android:gravity="center_horizontal"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Send ETH to:"
-        android:textColor="@color/dark_gray"
+        android:textColor="@color/gray1"
         android:gravity="center_horizontal"
         android:layout_marginTop="20dp"/>
     <capital.novum.concordia.customview.CopyTextView
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/buy_cven_second_message"
-        android:textColor="@color/dark_gray"
+        android:textColor="@color/gray1"
         android:gravity="center_horizontal"
         android:layout_marginTop="20dp"/>
     <Button

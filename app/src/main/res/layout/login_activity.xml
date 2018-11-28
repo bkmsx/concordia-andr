@@ -32,7 +32,7 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textColor="@android:color/white"
-        android:textColorHint="@color/light_gray"
+        android:textColorHint="@color/gray3"
         android:textColorLink="@color/light_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -50,7 +50,7 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:textColor="@android:color/white"
-        android:textColorHint="@color/light_gray"
+        android:textColorHint="@color/gray3"
         android:textColorLink="@color/light_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -98,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/light_gray"
+            android:textColor="@color/gray3"
             android:text="Don't have an account?" />
 
         <Button

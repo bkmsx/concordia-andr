@@ -70,7 +70,7 @@
                     android:layout_marginTop="8dp"
                     android:text="TextView dakfdsfjaljflsd dsklfjad sdklfajkf dsaftext of the printing and typesetting industry."
                     android:maxLines="3"
-                    android:textColor="@color/dark_gray"
+                    android:textColor="@color/gray1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/addedDate"
                     app:layout_constraintTop_toBottomOf="@+id/addedDate" />
@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="15dp"
-                    android:background="@color/dark_gray"
+                    android:background="@color/gray1"
                     app:layout_constraintTop_toBottomOf="@+id/shortDes"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +90,7 @@
                 android:id="@+id/longDes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_gray"
+                android:textColor="@color/gray1"
                 android:layout_marginTop="15dp"/>
             <TextView
                 android:layout_width="match_parent"
@@ -102,7 +102,7 @@
                 android:id="@+id/currentTier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/dark_gray"
+                android:textColor="@color/gray1"
                 android:text="Public Sale"
                 android:layout_marginTop="5dp"/>
             <TextView
@@ -128,7 +128,7 @@
             android:id="@+id/separate1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/dark_gray"
+            android:background="@color/gray1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

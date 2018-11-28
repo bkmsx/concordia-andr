@@ -33,7 +33,7 @@
         app:ms_enableFloatingLabel="false"
         app:ms_enableErrorLabel="false"
         app:ms_floatingLabelText="floating label"
-        app:ms_arrowColor="@color/dark_gray"
+        app:ms_arrowColor="@color/gray1"
         app:ms_highlightColor="@color/white"
         app:ms_thickness="2dp"
         app:ms_arrowSize="16dp"
@@ -66,7 +66,7 @@
         app:ms_enableFloatingLabel="false"
         app:ms_enableErrorLabel="false"
         app:ms_floatingLabelText="floating label"
-        app:ms_arrowColor="@color/dark_gray"
+        app:ms_arrowColor="@color/gray1"
         app:ms_highlightColor="@color/white"
         app:ms_thickness="2dp"
         app:ms_arrowSize="16dp"
@@ -85,7 +85,7 @@
         android:paddingStart="10dp"
         android:paddingTop="5dp"
         android:text="By clicking the Continue button below, you hereby confirm that all information submitted during this registration process is true and correct."
-        android:textColor="@color/light_gray"
+        android:textColor="@color/gray3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinner_country" />
@@ -102,7 +102,7 @@
         android:paddingStart="10dp"
         android:paddingTop="5dp"
         android:text="Agree to"
-        android:textColor="@color/light_gray"
+        android:textColor="@color/gray3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/checkbox1" />
 

@@ -43,7 +43,7 @@
         <EditText
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/dark_gray"
+            android:backgroundTint="@color/gray1"
             android:textColor="@color/white"
             android:gravity="center_horizontal"/>
         <TextView
@@ -56,7 +56,7 @@
         <EditText
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/dark_gray"
+            android:backgroundTint="@color/gray1"
             android:textColor="@color/white"
             android:gravity="center_horizontal"/>
 

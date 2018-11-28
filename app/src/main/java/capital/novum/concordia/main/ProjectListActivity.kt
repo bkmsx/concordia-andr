@@ -44,7 +44,6 @@ class ProjectListActivity : BaseActivity(){
             supportFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                     .replace(R.id.fragment_container, projectFragment)
-                    .addToBackStack("project")
                     .commit()
             isProjectFragment = true
             rightToolbarButton.setImageResource(R.mipmap.menu)

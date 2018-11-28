@@ -61,8 +61,49 @@ interface ConcordiaService {
             @Field("payment_amount_eth") paymentAmountETH: String
     ) : Observable<Result>
 
+    @POST("register")
+    @FormUrlEncoded
+    fun register(
+            @Field("first_name") firstName: String,
+            @Field("last_name") lastName: String,
+            @Field("date_of_birth") dob: String,
+            @Field("email") email: String,
+            @Field("password") password: String,
+            @Field("device_security_enable") securityEnable: String,
+            @Field("type_of_security") securityType: String,
+            @Field("referral_code") referralCode: String,
+            @Field("device_id") deviceId: String,
+            @Field("validation") validation: Int,
+            @Field("platform") platform: String
+    ) : Observable<Result>
 
+    @POST("forgot-password")
+    @FormUrlEncoded
+    fun retrievePassword(
+            @Field("email") firstName: String
+    ) : Observable<Result>
 
+    @POST("otp/send")
+    fun sendOTP(
+            @Body params: HashMap<String, String>
+    ) : Observable<Result>
+
+    @POST("otp/verify")
+    fun verifyOTP(
+            @Body params: HashMap<String, String>
+    ) : Observable<Result>
+
+    @POST("change-password")
+    fun changePassword(
+            @Header("token") token: String,
+            @Body params: HashMap<String, String>
+    ) : Observable<Result>
+
+    @POST("update-personal-info")
+    fun changePersonalCofiguration(
+            @Header("token") token: String,
+            @Body params: HashMap<String, String>
+    ) : Observable<Result>
 
     companion object {
         fun create(baseUrl: String) : ConcordiaService {
