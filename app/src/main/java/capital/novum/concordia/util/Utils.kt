@@ -9,10 +9,14 @@ import capital.novum.concordia.R
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
+import kotlinx.android.synthetic.main.dialog_confirm_delete_history.*
 import kotlinx.android.synthetic.main.dialog_cven_exchange.*
 import kotlinx.android.synthetic.main.dialog_notice.*
 import kotlinx.android.synthetic.main.dialog_term_conditions.*
 import org.jetbrains.annotations.Nullable
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 
 object Utils {
     fun getQrCode(content: String) : Bitmap {
@@ -68,5 +72,33 @@ object Utils {
         dialog.title.text = title
         dialog.message.text = msg
         dialog.show()
+    }
+
+    fun showConfirmDeleteHistoryDialog(context: Context?, callback: (() -> Unit)? = null) {
+        val dialog = Dialog(context)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setContentView(R.layout.dialog_confirm_delete_history)
+        dialog.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window.setBackgroundDrawableResource(R.color.transparent)
+        dialog.btnYes.setOnClickListener {
+            dialog.dismiss()
+            callback?.invoke()
+        }
+        dialog.btnCancel.setOnClickListener { dialog.dismiss() }
+        dialog.show()
+    }
+
+    fun getFileFromBitmap(context: Context, bitmap: Bitmap, fileName: String) : File {
+        val f = File(context.getCacheDir(), fileName);
+        f.createNewFile();
+        val bos = ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 90 /*ignored for PNG*/, bos);
+        val bitmapdata = bos.toByteArray();
+
+        val fos = FileOutputStream(f);
+        fos.write(bitmapdata);
+        fos.flush();
+        fos.close();
+        return f
     }
 }

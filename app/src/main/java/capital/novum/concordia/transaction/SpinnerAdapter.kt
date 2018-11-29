@@ -11,8 +11,8 @@ import kotlinx.android.synthetic.main.test_item.view.*
 
 class SpinnerAdapter : BaseAdapter {
     var context: Context
-    var data: ArrayList<String>
-    constructor(context: Context, data: ArrayList<String>) : super() {
+    var data: List<String>
+    constructor(context: Context, data: List<String>) : super() {
         this.context = context
         this.data = data
     }

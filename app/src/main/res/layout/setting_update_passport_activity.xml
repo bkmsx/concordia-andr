@@ -55,10 +55,10 @@
             style="@style/TextViewTitle"
             android:layout_marginTop="@dimen/update_passport_margin_top"/>
         <EditText
+            android:id="@+id/passportNumberEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
-            android:gravity="start"/>
+            style="@style/PassportEditText"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,9 +66,12 @@
             style="@style/TextViewTitle"
             android:layout_marginTop="@dimen/update_passport_margin_top"/>
         <EditText
+            android:id="@+id/dobEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
+            android:inputType="none"
+            android:focusable="false"
+            style="@style/PassportEditText"
             android:gravity="start"/>
         <TextView
             android:layout_width="match_parent"
@@ -80,14 +83,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.hbb20.CountryCodePicker
+                android:id="@+id/countryCodePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:ccp_contentColor="@android:color/white"
                 app:ccp_autoDetectCountry="true"/>
             <EditText
+                android:id="@+id/phoneNumberEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextStyle"/>
+                style="@style/PassportEditText"/>
         </LinearLayout>
         <capital.novum.concordia.customview.RoundButtonImage
             android:id="@+id/btnPassport"

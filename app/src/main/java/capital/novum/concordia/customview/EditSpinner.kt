@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.edit_spinner.view.*
 
 class EditSpinner : FrameLayout, AdapterView.OnItemSelectedListener {
     private val tag = javaClass.toString()
-    lateinit var source: ArrayList<String>
+    lateinit var source: List<String>
     var delegate: OnEditSpinnerChanged? = null
     var selected = 0
 
@@ -25,7 +25,7 @@ class EditSpinner : FrameLayout, AdapterView.OnItemSelectedListener {
         dropdownBtn.setOnClickListener { spinner.performClick() }
     }
 
-    fun setData(data: ArrayList<String>) {
+    fun setData(data: List<String>) {
         source = data
         spinner.adapter = SpinnerAdapter(context!!, data)
     }
@@ -53,8 +53,8 @@ class EditSpinner : FrameLayout, AdapterView.OnItemSelectedListener {
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         Log.e("EditSpinner", source[position])
         edittext.setText(source[position], TextView.BufferType.EDITABLE)
-        if (delegate != null && selected++ > 0) {
-            (delegate as OnEditSpinnerChanged).onEditSpinnerChanged(source[position])
+        if (selected++ > 0) {
+            delegate?.onEditSpinnerChanged(source[position])
         }
     }
 

@@ -28,7 +28,7 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.splash_screen_activity)
         val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
         Log.e("Token", token)
-        val intent = Intent(applicationContext, PersonalConfigurationActivity::class.java)
+        val intent = Intent(applicationContext, ProjectListActivity::class.java)
         var slide = Slide()
         slide.setDuration(500)
         slide.slideEdge = Gravity.RIGHT

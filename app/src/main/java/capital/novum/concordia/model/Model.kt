@@ -1,12 +1,14 @@
 package capital.novum.concordia.model
 
-data class Result (val code: Int, val message: String)
+open class Result {
+    var code: Int = 0
+    var message: String = "Success"
+}
 
-data class Nationality(
-        var citizenships: List<Citizenship>,
-        var countries: List<Country>,
-        var code: Int,
-        var message: String)
+class Nationality : Result() {
+        var citizenships: List<Citizenship>? = listOf()
+        var countries: List<Country>? = listOf()
+}
 data class Country(val countryId: Int, val country: String)
 data class Citizenship(val nationalityId: Int, val nationality: String)
 
@@ -138,3 +140,44 @@ data class Data (val ETH: ETH)
 data class Status(val errorCode: Int, val errorMessage: String)
 
 data class CoinMarketResult(val data: Data, val status: Status)
+
+/**
+ *  Participate history
+ */
+
+data class PaymentDestination(
+        val methodName: String,
+        val walletAddress: String,
+        val accountName: String,
+        val holderAddress: String,
+        val accountNumber: String,
+        val swiftCode: String,
+        val bankName: String,
+        val bankAddress: String
+)
+
+data class ParticipateHistory(
+        val logo: String,
+        val title: String,
+        val projectId: Int,
+        val historyId: Int,
+        val addedDate: String,
+        val tokensPurchased: String,
+        val paymentMode: String,
+        val discount: String,
+        val paymentStatus: String,
+        val paymentDestination: PaymentDestination,
+        val paymentSource: String,
+        val amount: String,
+        val promotion: String,
+        val pricePerToken: String
+)
+
+class ParticipateListResult : Result() {
+    val history: List<ParticipateHistory> = listOf()
+}
+
+class ParticipateDetailResult : Result() {
+    var historyDetail: ParticipateHistory? = null
+}
+

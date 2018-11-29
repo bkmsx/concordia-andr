@@ -6,13 +6,10 @@ import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import capital.novum.concordia.model.UserConstant
 import capital.novum.concordia.service.CoinMarketService
-import capital.novum.concordia.service.ConcordiaService
-import capital.novum.concordia.util.Constant
 import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

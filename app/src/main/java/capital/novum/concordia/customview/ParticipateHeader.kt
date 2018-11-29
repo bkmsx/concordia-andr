@@ -27,7 +27,7 @@ class ParticipateHeader : LinearLayout{
     }
 
     fun setProjectIcon(link: String) {
-        Picasso.get().load(link).into(projectIcon)
+        Picasso.get().load(link).into(projectIconImg)
     }
 
     fun setProjectTitle(title: String) {

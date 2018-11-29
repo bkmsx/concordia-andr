@@ -24,7 +24,6 @@ class ProjectDetailActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         projectId = intent.getIntExtra("projectId", 0)
-        projectId = 5
         getProjectDetail()
     }
     /*

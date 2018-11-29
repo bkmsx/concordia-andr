@@ -21,7 +21,6 @@ class TermsAndCoditionsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         projectId = intent.getIntExtra("projectId", 0)
-        projectId = 5
         getProjectDetail()
     }
     /*
@@ -68,6 +67,8 @@ class TermsAndCoditionsActivity : BaseActivity() {
                         Utils.showNoticeDialog(this, msg = result.message)
                     } else {
                         projectUrl = result.project.termsUrl
+                        header.setProjectIcon(result.project.logo)
+                        header.setProjectTitle(result.project.title)
                     }
                 }
     }

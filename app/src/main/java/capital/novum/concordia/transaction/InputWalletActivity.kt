@@ -32,7 +32,7 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        projectId = intent.getIntExtra("projectId", 5)
+        projectId = intent.getIntExtra("projectId", 0)
         getProjectDetail()
     }
     /*
@@ -70,6 +70,10 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
 
     private fun checkWalletAddress() {
         selectedMethod = project.paymentMethods.filter { it.methodName == paymentSpinner.getSelected() }.first()
+        if (selectedMethod.methodName == "USD") {
+            goToAmountTokens()
+            return
+        }
         val walletCategory = userWallets.filter { it.methodName == paymentSpinner.getSelected() }.firstOrNull()
         if (walletCategory != null && !walletCategory.wallets.none { it.address == walletSpinner.getSelected() }) {
                 goToAmountTokens()

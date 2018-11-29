@@ -32,15 +32,19 @@
             android:gravity="center_horizontal"
             android:padding="20dp">
             <ImageView
+                android:id="@+id/logoImg"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:src="@mipmap/concordia_2"
                 android:padding="20dp"
                 android:background="@drawable/white_round_bg"/>
             <TextView
+                android:id="@+id/titleTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="W GREEN PAY"
+                android:textStyle="bold"
+                android:textSize="16sp"
                 android:textColor="@color/light_blue"
                 android:layout_marginTop="20dp"/>
         </LinearLayout>
@@ -53,23 +57,27 @@
             android:orientation="vertical"
             android:padding="20dp">
             <TextView
+                android:id="@+id/priceTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/WhiteText"
                 android:textSize="14sp"
                 android:text="1 TOKEN = 0.00012323 ETH"/>
             <TextView
+                android:id="@+id/tokenAmountTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/WhiteText"
                 android:layout_marginTop="20dp"
                 android:text="Tokens purchased: 90000"/>
             <TextView
+                android:id="@+id/paymentMethodTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/WhiteText"
                 android:text="Payment method: ETH"/>
             <TextView
+                android:id="@+id/paymentAmountTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/WhiteText"

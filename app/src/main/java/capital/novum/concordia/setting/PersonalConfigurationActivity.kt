@@ -6,7 +6,9 @@ import android.util.Log
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
+import capital.novum.concordia.model.Result
 import capital.novum.concordia.model.UserConstant
+import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -43,25 +45,32 @@ class PersonalConfigurationActivity : BaseActivity() {
      */
 
     private fun updateConfiguration() {
-        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
+//        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
         val params = hashMapOf(
                 "device_security_enable" to "${btnYes.isChecked}"
         )
-        showProgressSpinner()
-        val observer = concordiaService.changePersonalCofiguration(token, params)
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        PreferenceManager.getDefaultSharedPreferences(this).edit()
-                                .putString(UserConstant.deviceSecurityEnable, "${btnYes.isChecked}").apply()
-                        Utils.showNoticeDialog(this, msg = "Configuration was updated") {
-                            finish()
-                        }
-                    }
-                }
+        requestHttp(UrlConstant.CHANGE_CONFIGURATION, params) {
+            PreferenceManager.getDefaultSharedPreferences(this).edit()
+                    .putString(UserConstant.deviceSecurityEnable, "${btnYes.isChecked}").apply()
+            Utils.showNoticeDialog(this, msg = "Configuration was updated") {
+                finish()
+            }
+        }
+//        showProgressSpinner()
+//        val observer = concordiaService.changePersonalCofiguration(token, params)
+//        disposable = observer.subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe { result ->
+//                    hideProgressSpinner()
+//                    if (result.code != 200) {
+//                        Utils.showNoticeDialog(this, msg = result.message)
+//                    } else {
+//                        PreferenceManager.getDefaultSharedPreferences(this).edit()
+//                                .putString(UserConstant.deviceSecurityEnable, "${btnYes.isChecked}").apply()
+//                        Utils.showNoticeDialog(this, msg = "Configuration was updated") {
+//                            finish()
+//                        }
+//                    }
+//                }
     }
 }

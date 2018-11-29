@@ -1,17 +1,19 @@
 package capital.novum.concordia.service
 
 import capital.novum.concordia.model.*
-import capital.novum.concordia.util.Constant
+import capital.novum.concordia.util.UrlConstant
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import io.reactivex.Observable
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 interface ConcordiaService {
-    @GET("citizenship/list")
+    @GET(UrlConstant.LIST_CITIZENSHIP)
     fun getNationalities(): Observable<Nationality>
 
     @POST("login/account")
@@ -83,7 +85,7 @@ interface ConcordiaService {
             @Field("email") firstName: String
     ) : Observable<Result>
 
-    @POST("otp/send")
+    @POST(UrlConstant.SEND_OTP)
     fun sendOTP(
             @Body params: HashMap<String, String>
     ) : Observable<Result>
@@ -99,10 +101,48 @@ interface ConcordiaService {
             @Body params: HashMap<String, String>
     ) : Observable<Result>
 
-    @POST("update-personal-info")
+    @POST(UrlConstant.CHANGE_CONFIGURATION)
     fun changePersonalCofiguration(
             @Header("token") token: String,
             @Body params: HashMap<String, String>
+    ) : Observable<Result>
+
+    @POST(UrlConstant.DELETE_PARTICIPATE)
+    fun deleteParticipate(
+            @Header("token") token: String,
+            @Body params: HashMap<String, String>
+    ) : Observable<Result>
+
+    @GET(UrlConstant.LIST_PARTICIPATE)
+    fun listParticipate(
+            @Header("token") token: String
+    ) : Observable<ParticipateListResult>
+
+    @GET(UrlConstant.PARTICIPATE_DETAIL)
+    fun participateDetail(
+            @Header("token") token: String,
+            @QueryMap params: HashMap<String, String>
+    ) : Observable<ParticipateDetailResult>
+
+    @POST(UrlConstant.DELETE_WALLET)
+    fun deleteWallet(
+            @Header("token") token: String,
+            @Body params: HashMap<String, String>
+    ) : Observable<Result>
+
+    @POST(UrlConstant.UPDATE_WALLET)
+    fun updateWallet(
+            @Header("token") token: String,
+            @Body params: HashMap<String, String>
+    ) : Observable<Result>
+
+    @Multipart
+    @POST(UrlConstant.UPDATE_PASSPORT)
+    fun updatePassport(
+            @Header("token") token: String,
+            @PartMap params: HashMap<String, RequestBody>,
+            @Part passport: MultipartBody.Part,
+            @Part selfie: MultipartBody.Part?
     ) : Observable<Result>
 
     companion object {
@@ -131,7 +171,7 @@ interface CoinMarketService {
             val retrofit = Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(Constant.COINMARKET_URL)
+                    .baseUrl(UrlConstant.COINMARKET_URL)
                     .build()
             return retrofit.create(CoinMarketService::class.java)
         }

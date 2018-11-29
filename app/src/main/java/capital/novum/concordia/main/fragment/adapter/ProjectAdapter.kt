@@ -31,7 +31,7 @@ class ProjectAdapter: RecyclerView.Adapter<ProjectAdapter.ViewHolder>() {
         val project = data?.get(position)
         val view = holder.itemView
         view.projectTitle.text = project?.title?.toUpperCase()
-        Picasso.get().load(project?.logo).into(view.projectIcon)
+        Picasso.get().load(project?.logo).into(view.projectIconImg)
         view.addedDate.text = "ADDED: ${project?.addedDate}"
         view.shortDes.text = project?.shortDescription
         if (project?.currentDiscount != null) {
