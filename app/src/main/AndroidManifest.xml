@@ -45,8 +45,6 @@
         <activity android:name=".setting.ChangeMobilePhoneActivity"/>
         <activity android:name=".setting.ChangePasswordActivity"/>
         <activity android:name=".setting.EditWalletActivity"/>
-        <activity android:name=".setting.HistoryETHDetailActivity"/>
-        <activity android:name=".setting.HistoryUSDDetailActivity"/>
         <activity android:name=".setting.HistoryListActivity"/>
         <activity android:name=".setting.ReferralCodeActivity"/>
         <activity android:name=".setting.UpdatePassportActivity"/>

@@ -5,11 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import capital.novum.concordia.R
+import capital.novum.concordia.model.DisplayType
+import capital.novum.concordia.model.DisplayWalletModel
+import capital.novum.concordia.model.UserWalletCategory
+import kotlinx.android.synthetic.main.item_wallet_body.view.*
 
-class WalletAdapter : RecyclerView.Adapter<WalletAdapter.ViewHolder> {
-
-    constructor(data: Array<String>): super() {
-
+class WalletAdapter : RecyclerView.Adapter<WalletAdapter.ViewHolder>() {
+    var delegate : WalletAdapterDelegate? = null
+    var listWallet: ArrayList<DisplayWalletModel> = ArrayList()
+    var data: List<UserWalletCategory> = listOf()
+    set(value) {
+        listWallet.clear()
+        value.forEach {
+            listWallet.add(DisplayWalletModel(0, 0, it.methodName, DisplayType.HEADER))
+            it.wallets.forEach {
+                listWallet.add(DisplayWalletModel(it.walletId, it.methodId, it.address, DisplayType.BODY))
+            }
+            listWallet.last().type = DisplayType.FOOTER
+        }
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -17,11 +31,11 @@ class WalletAdapter : RecyclerView.Adapter<WalletAdapter.ViewHolder> {
     }
 
     override fun getItemCount(): Int {
-       return 3
+       return listWallet.count()
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (position == 0) {
+        if (listWallet.get(position).type == DisplayType.HEADER) {
             return R.layout.item_wallet_header
         } else {
             return R.layout.item_wallet_body
@@ -29,10 +43,22 @@ class WalletAdapter : RecyclerView.Adapter<WalletAdapter.ViewHolder> {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (position == 2) {
+        val view = holder.itemView
+        val displayWalletModel = listWallet.get(position)
+        view.nameTxt.text = displayWalletModel.name
+        if (displayWalletModel.type != DisplayType.HEADER) {
+            view.deleteBtn.setOnClickListener { delegate?.deleteWallet(displayWalletModel.id) }
+            view.editBtn.setOnClickListener { delegate?.editWallet(displayWalletModel.id, displayWalletModel.methodId, displayWalletModel.name) }
+        }
+        if (displayWalletModel.type == DisplayType.FOOTER) {
             holder.itemView.setBackgroundResource(R.drawable.blur_gray_bottom_round_bg)
         }
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+    interface WalletAdapterDelegate {
+        fun deleteWallet(walletId: Int)
+        fun editWallet(walletId: Int, methodId: Int, wallet: String)
+    }
 }

@@ -14,8 +14,10 @@ import capital.novum.concordia.R
 import capital.novum.concordia.main.ProjectListActivity
 import capital.novum.concordia.main.fragment.adapter.ProjectAdapter
 import capital.novum.concordia.model.LocalData
+import capital.novum.concordia.model.ProjectList
 import capital.novum.concordia.model.UserConstant
 import capital.novum.concordia.transaction.ProjectDetailActivity
+import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -51,19 +53,10 @@ class ProjectFragment : Fragment(), ProjectAdapter.OnProjectListener {
      *  Call API
      */
     private fun getProjectList() {
-        projectListActivity.showProgressSpinner()
-        val token = PreferenceManager.getDefaultSharedPreferences(projectListActivity).getString(UserConstant.token, "")
-        val observer = projectListActivity.concordiaService.getProjectList(token)
-        projectListActivity.disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    projectListActivity.hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(projectListActivity, msg = result.message)
-                    } else {
-                        adapter.loadData(result.projects)
-                    }
-                }
+        projectListActivity.requestHttp(UrlConstant.PROJECT_LIST) {
+            val result = it as ProjectList
+            adapter.loadData(result.projects)
+        }
     }
 
     /**

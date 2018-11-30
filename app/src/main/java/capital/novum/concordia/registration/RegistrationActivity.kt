@@ -7,6 +7,7 @@ import android.widget.DatePicker
 import android.widget.TextView
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
+import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -52,20 +53,22 @@ class RegistrationActivity: BaseActivity(), DatePickerDialog.OnDateSetListener {
             Utils.showNoticeDialog(this, msg = "Passwords don\'t match")
             return
         }
-        showProgressSpinner()
-        val observer = concordiaService.register(firstNameEdt.text.toString(), lastNameEdt.text.toString(),
-                dobEdt.text.toString(), emailEdt.text.toString(), password, "${radioYes.isChecked}",
-                "TOUCHID", referralCodeEdt.text.toString(), "123", 0, "Android")
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        goNext()
-                    }
-                }
+        val params = hashMapOf(
+                "first_name" to firstNameEdt.text.toString(),
+                "last_name" to lastNameEdt.text.toString(),
+                "date_of_birth" to dobEdt.text.toString(),
+                "email" to emailEdt.text.toString(),
+                "password" to password,
+                "device_security_enable" to "${radioYes.isChecked}",
+                "type_of_security" to "TOUCHID",
+                "referral_code" to referralCodeEdt.text.toString(),
+                "device_id" to "123",
+                "platform" to "Android",
+                "validation" to "0"
+        )
+        requestHttp(UrlConstant.REGISTER, params) {
+            goNext()
+        }
     }
 
     /**

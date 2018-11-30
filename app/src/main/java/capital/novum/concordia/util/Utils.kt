@@ -9,11 +9,10 @@ import capital.novum.concordia.R
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
-import kotlinx.android.synthetic.main.dialog_confirm_delete_history.*
+import kotlinx.android.synthetic.main.dialog_ask_confirm.*
 import kotlinx.android.synthetic.main.dialog_cven_exchange.*
 import kotlinx.android.synthetic.main.dialog_notice.*
 import kotlinx.android.synthetic.main.dialog_term_conditions.*
-import org.jetbrains.annotations.Nullable
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -74,10 +73,13 @@ object Utils {
         dialog.show()
     }
 
-    fun showConfirmDeleteHistoryDialog(context: Context?, callback: (() -> Unit)? = null) {
+    fun showConfirmDialog(context: Context?, msg: String? = null, callback: (() -> Unit)? = null) {
         val dialog = Dialog(context)
         dialog.setCanceledOnTouchOutside(true)
-        dialog.setContentView(R.layout.dialog_confirm_delete_history)
+        dialog.setContentView(R.layout.dialog_ask_confirm)
+        if (msg != null) {
+            dialog.messageTxt.text = msg
+        }
         dialog.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.window.setBackgroundDrawableResource(R.color.transparent)
         dialog.btnYes.setOnClickListener {

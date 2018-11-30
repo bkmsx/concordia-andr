@@ -8,6 +8,7 @@
     android:paddingEnd="20dp"
     android:orientation="horizontal">
     <TextView
+        android:id="@+id/nameTxt"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
@@ -16,11 +17,13 @@
         android:maxLines="1"
         android:ellipsize="end"/>
     <ImageView
+        android:id="@+id/editBtn"
         android:layout_width="@dimen/wallet_button_size"
         android:layout_height="@dimen/wallet_button_size"
         android:src="@mipmap/blue_pencil"
         android:layout_marginStart="10dp"/>
     <ImageView
+        android:id="@+id/deleteBtn"
         android:layout_width="@dimen/wallet_button_size"
         android:layout_height="@dimen/wallet_button_size"
         android:src="@mipmap/trash_blue"

@@ -16,73 +16,48 @@ interface ConcordiaService {
     @GET(UrlConstant.LIST_CITIZENSHIP)
     fun getNationalities(): Observable<Nationality>
 
-    @POST("login/account")
-    @FormUrlEncoded
-    fun loginAccount(@Field("email") email : String,
-                     @Field("password") password : String,
-                     @Field("device_id") deviceId : String,
-                     @Field("platform") platform : String
-                     ) : Observable<LoginResult>
+    @GET(UrlConstant.APP_PAYMENT_METHOD)
+    fun getAppPaymentMethod(): Observable<PaymentMethodListResult>
 
-    @GET("project/list")
+    @POST(UrlConstant.LOGIN_ACCOUNT)
+    fun loginAccount(@Body params: HashMap<String, String>) : Observable<LoginResult>
+
+    @GET(UrlConstant.PROJECT_LIST)
     fun getProjectList(
             @Header("token") token: String
     ) : Observable<ProjectList>
 
-    @GET("project/detail")
+    @GET(UrlConstant.PROJECT_DETAIL)
     fun getProjectDetail(
             @Header("token") token: String,
-        @Query("project_id") projectId: Int
+            @QueryMap params: HashMap<String, String>
     ) : Observable<ProjectDetail>
 
-    @GET("user-wallets")
+    @GET(UrlConstant.LIST_WALLET)
     fun getUserWallet(
             @Header("token") token: String
     ) : Observable<UserWallets>
 
-    @POST("wallet-add")
-    @FormUrlEncoded
+    @POST(UrlConstant.ADD_WALLET)
     fun addWalletAddress(
             @Header("token") token: String,
-            @Field("method_id") methodId : Int,
-            @Field("wallet_address") walletAddress : String
+            @Body params: HashMap<String, String>
     ) : Observable<Result>
 
-    @POST("project/participate")
-    @FormUrlEncoded
+    @POST(UrlConstant.PROJECT_PARTICIPATE)
     fun participate(
             @Header("token") token: String,
-            @Field("project_id") projectId: Int,
-            @Field("payment_method") paymentMethod: String,
-            @Field("amount_tokens") amountToken: String,
-            @Field("payment_method_id") paymentMethodId: Int,
-            @Field("payment_amount") paymentAmount: String,
-            @Field("wallet_address") walletAddress: String,
-            @Field("discount") discount: String,
-            @Field("referral_code") referralCode: String,
-            @Field("payment_amount_eth") paymentAmountETH: String
+            @Body params: HashMap<String, String>
     ) : Observable<Result>
 
-    @POST("register")
-    @FormUrlEncoded
+    @POST(UrlConstant.REGISTER)
     fun register(
-            @Field("first_name") firstName: String,
-            @Field("last_name") lastName: String,
-            @Field("date_of_birth") dob: String,
-            @Field("email") email: String,
-            @Field("password") password: String,
-            @Field("device_security_enable") securityEnable: String,
-            @Field("type_of_security") securityType: String,
-            @Field("referral_code") referralCode: String,
-            @Field("device_id") deviceId: String,
-            @Field("validation") validation: Int,
-            @Field("platform") platform: String
+            @Body params: HashMap<String, String>
     ) : Observable<Result>
 
-    @POST("forgot-password")
-    @FormUrlEncoded
+    @POST(UrlConstant.FORGOT_PASSWORD)
     fun retrievePassword(
-            @Field("email") firstName: String
+            @Body params: HashMap<String, String>
     ) : Observable<Result>
 
     @POST(UrlConstant.SEND_OTP)
@@ -90,12 +65,12 @@ interface ConcordiaService {
             @Body params: HashMap<String, String>
     ) : Observable<Result>
 
-    @POST("otp/verify")
+    @POST(UrlConstant.VERIFY_OTP)
     fun verifyOTP(
             @Body params: HashMap<String, String>
     ) : Observable<Result>
 
-    @POST("change-password")
+    @POST(UrlConstant.CHANGE_PASSWORD)
     fun changePassword(
             @Header("token") token: String,
             @Body params: HashMap<String, String>
@@ -136,6 +111,17 @@ interface ConcordiaService {
             @Body params: HashMap<String, String>
     ) : Observable<Result>
 
+    @POST(UrlConstant.UPDATE_REFERRAL_CODE)
+    fun updateReferralCode(
+            @Header("token") token: String,
+            @Body params: HashMap<String, String>
+    ) : Observable<Result>
+
+    @GET(UrlConstant.LIST_REFERRAL_BONUS)
+    fun listReferralBonus(
+            @Header("token") token: String
+    ) : Observable<ReferralListResult>
+
     @Multipart
     @POST(UrlConstant.UPDATE_PASSPORT)
     fun updatePassport(
@@ -146,12 +132,12 @@ interface ConcordiaService {
     ) : Observable<Result>
 
     companion object {
-        fun create(baseUrl: String) : ConcordiaService {
-            val gson = GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
+        fun create(namePolicy: FieldNamingPolicy = FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES) : ConcordiaService {
+            val gson = GsonBuilder().setFieldNamingPolicy(namePolicy).create()
             val retrofit = Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create(gson))
-                    .baseUrl(baseUrl)
+                    .baseUrl(UrlConstant.BASE_URL)
                     .build()
             return retrofit.create(ConcordiaService::class.java)
         }

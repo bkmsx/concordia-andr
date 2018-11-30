@@ -6,6 +6,7 @@ import android.preference.PreferenceManager
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import capital.novum.concordia.model.UserConstant
+import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -48,18 +49,9 @@ class VerifyOTPActivity : BaseActivity(){
                 "phone_number" to phoneNumber,
                 "otp_code" to otpCodeEdt.text.toString()
         )
-        showProgressSpinner()
-        val observer = concordiaService.verifyOTP(params)
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        goBack()
-                    }
-                }
+        requestHttp(UrlConstant.VERIFY_OTP, params) {
+            goBack()
+        }
     }
 
     private fun reSendOTP() {
@@ -74,22 +66,15 @@ class VerifyOTPActivity : BaseActivity(){
                 .edit()
                 .putLong("otpTimeStamp", currentTime)
                 .apply()
-        showProgressSpinner()
-        val params = HashMap<String, String>()
-        params.put("country_code", countryCode)
-        params.put("phone_number", phoneNumber)
-        params.put("via", "sms")
-        val observer = concordiaService.sendOTP(params)
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        goBack()
-                    }
-                }
+
+        val params = hashMapOf(
+                "country_code" to countryCode,
+                "phone_number" to phoneNumber,
+                "via" to "sms"
+        )
+        requestHttp(UrlConstant.SEND_OTP, params) {
+            Utils.showNoticeDialog(this, msg = "New OTP was sent")
+        }
     }
     /**
      *  Navigation

@@ -1,9 +1,8 @@
 package capital.novum.concordia.setting.adapter
 
 import android.content.Context
-import android.support.v7.widget.LinearSmoothScroller
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,9 +43,15 @@ class ParticipateHistoryAdapter: RecyclerView.Adapter<ParticipateHistoryAdapter.
         view.tokenAmountTxt.text = "${history?.tokensPurchased} tokens purchased"
         view.paymentAmountTxt.text = "${history?.amount} ${history?.paymentMode} paid"
         view.discountTxt.text = "${history?.discount} Discount"
-        view.statusTxt.text = if(history?.paymentStatus == "pedding") "PENDING PAYMENT" else "COMPLETED PAYMENT"
+        if(history?.paymentStatus == "pending") {
+            view.statusTxt.text = "PENDING PAYMENT"
+            view.statusTxt.setTextColor(Color.WHITE)
+        } else {
+            view.statusTxt.text = "COMPLETED PAYMENT"
+            view.statusTxt.setTextColor(Color.GREEN)
+        }
         view.btnClose.setOnClickListener {
-            Utils.showConfirmDeleteHistoryDialog(context) {
+            Utils.showConfirmDialog(context) {
                 delegate?.onDeleteItem(history?.historyId!!)
             }
         }

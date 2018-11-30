@@ -10,6 +10,7 @@ import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import capital.novum.concordia.model.UserConstant
 import capital.novum.concordia.service.CoinMarketService
+import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -102,27 +103,26 @@ class AmountTokensActivity : BaseActivity(), TextWatcher {
     }
 
     private fun participate() {
-        showProgressSpinner()
-        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
         val paymentAmountETH = paymentAmountTxt.text.toString().toDouble() / ethPrice
-        Log.e("Amount Token", paymentAmountETH.toString())
-        val observer = concordiaService.participate(token, projectId, paymentMethod,
-                tokenAmountEdt.text.toString(), paymentMethodId, paymentAmountTxt.text.toString(),
-                walletAddress, discount, referralCodeEdt.text.toString(), "$paymentAmountETH")
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        if (paymentMethod == "USD") {
-                            goToUsdDetail()
-                        } else {
-                            goToEthDetail()
-                        }
-                    }
-                }
+
+        val params = hashMapOf(
+                "project_id" to projectId.toString(),
+                "payment_method" to paymentMethod,
+                "amount_tokens" to tokenAmountEdt.text.toString(),
+                "payment_method_id" to paymentMethodId.toString(),
+                "payment_amount" to paymentAmountTxt.text.toString(),
+                "wallet_address" to walletAddress,
+                "discount" to discount,
+                "referral_code" to referralCodeEdt.text.toString(),
+                "payment_amount_eth" to "$paymentAmountETH"
+        )
+        requestHttp(UrlConstant.PROJECT_PARTICIPATE, params) {
+            if (paymentMethod == "USD") {
+                goToUsdDetail()
+            } else {
+                goToEthDetail()
+            }
+        }
     }
 
     /**

@@ -10,8 +10,10 @@ import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import capital.novum.concordia.model.LocalData
 import capital.novum.concordia.model.Project
+import capital.novum.concordia.model.ProjectDetail
 import capital.novum.concordia.model.UserConstant
 import capital.novum.concordia.share.ShareInformationActivity
+import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -80,19 +82,9 @@ class ProjectDetailActivity : BaseActivity() {
      * Call API
      */
     private fun getProjectDetail() {
-        showProgressSpinner()
-        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
-
-        val observer = concordiaService.getProjectDetail(token, projectId)
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        setupLayout(result.project)
-                    }
-                }
+        requestHttp(UrlConstant.PROJECT_DETAIL, hashMapOf("project_id" to projectId.toString())) {
+            val result = it as ProjectDetail
+            setupLayout(result.project!!)
+        }
     }
 }

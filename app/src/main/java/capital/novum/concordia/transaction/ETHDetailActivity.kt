@@ -15,8 +15,10 @@ import android.preference.PreferenceManager
 import android.widget.ImageView
 import capital.novum.concordia.main.ProjectListActivity
 import capital.novum.concordia.model.Project
+import capital.novum.concordia.model.ProjectDetail
 import capital.novum.concordia.model.UserConstant
 import capital.novum.concordia.share.ShareInformationActivity
+import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.common.BitMatrix
@@ -83,20 +85,11 @@ class ETHDetailActivity : BaseActivity() {
      *  Call API
      */
     private fun getProjectDetail(projectId: Int) {
-        showProgressSpinner()
-        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
-        val observer = concordiaService.getProjectDetail(token, projectId)
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        project = result.project
-                        setupLayout()
-                    }
-                }
+        requestHttp(UrlConstant.PROJECT_DETAIL, hashMapOf("project_id" to projectId.toString())){
+            val result = it as ProjectDetail
+            project = result.project!!
+            setupLayout()
+        }
     }
     /**
      *  Navigations

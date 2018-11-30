@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
+import capital.novum.concordia.model.ProjectDetail
 import capital.novum.concordia.model.UserConstant
+import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -56,20 +58,12 @@ class TermsAndCoditionsActivity : BaseActivity() {
      *  Call API
      */
     private fun getProjectDetail() {
-        showProgressSpinner()
-        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
-        val observer = concordiaService.getProjectDetail(token, projectId)
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        projectUrl = result.project.termsUrl
-                        header.setProjectIcon(result.project.logo)
-                        header.setProjectTitle(result.project.title)
-                    }
-                }
+        requestHttp(UrlConstant.PROJECT_DETAIL, hashMapOf("project_id" to projectId.toString())) {
+            val result = it as ProjectDetail
+            val project = result.project!!
+            projectUrl = project.termsUrl
+            header.setProjectIcon(project.logo)
+            header.setProjectTitle(project.title)
+        }
     }
 }

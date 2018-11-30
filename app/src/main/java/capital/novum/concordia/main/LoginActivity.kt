@@ -1,12 +1,14 @@
 package capital.novum.concordia.main
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.forgotpassword.ForgotPasswordActivity
 import capital.novum.concordia.model.LocalData
 import capital.novum.concordia.model.LoginResult
 import capital.novum.concordia.registration.RegistrationActivity
+import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -42,19 +44,18 @@ class LoginActivity : BaseActivity() {
      *  Call API
      */
     private fun loginAccount(email: String, password: String) {
-        showProgressSpinner()
-        val observer = concordiaService.loginAccount(email, password, "123", "Android")
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        LocalData.saveUserDetail(this, result.user)
-                        gotoProjectList()
-                    }
-                }
+        val params = hashMapOf(
+                "email" to email,
+                "password" to password,
+                "device_id" to "123",
+                "platform" to "Android"
+        )
+        requestHttp(UrlConstant.LOGIN_ACCOUNT, params) {
+            val result = it as LoginResult
+            LocalData.saveUserDetail(this, result.user!!)
+            Log.e("Login", result.user!!.token)
+            gotoProjectList()
+        }
     }
 
     /**
@@ -76,5 +77,4 @@ class LoginActivity : BaseActivity() {
         val intent = Intent(this, ForgotPasswordActivity::class.java)
         startActivity(intent)
     }
-
 }

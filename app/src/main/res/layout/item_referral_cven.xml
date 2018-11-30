@@ -4,6 +4,7 @@
     android:layout_height="40dp"
     android:gravity="center_vertical">
     <TextView
+        android:id="@+id/nameTxt"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
@@ -11,6 +12,7 @@
         android:textSize="@dimen/referral_programme_textsize"
         android:textColor="@color/white"/>
     <TextView
+        android:id="@+id/tierTxt"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:text="2"
@@ -18,6 +20,7 @@
         android:gravity="center_horizontal"
         android:textColor="@color/white"/>
     <TextView
+        android:id="@+id/pointTxt"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"

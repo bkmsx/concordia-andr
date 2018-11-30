@@ -11,10 +11,8 @@ import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.customview.EditSpinner
 import capital.novum.concordia.main.BaseActivity
-import capital.novum.concordia.model.PaymentMethod
-import capital.novum.concordia.model.Project
-import capital.novum.concordia.model.UserConstant
-import capital.novum.concordia.model.UserWalletCategory
+import capital.novum.concordia.model.*
+import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -112,59 +110,31 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
      *  Call API
      */
     private fun addWallet(methodId: Int, walletAddress: String) {
-        showProgressSpinner()
-        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
-        val observer = concordiaService.addWalletAddress(token, methodId, walletAddress)
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        goToAmountTokens()
-                    }
-                }
+        requestHttp(UrlConstant.ADD_WALLET, hashMapOf("method_id" to methodId.toString(), "wallet_address" to walletAddress)) {
+            goToAmountTokens()
+        }
     }
 
     private fun getProjectDetail() {
-        showProgressSpinner()
-        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
-        val observer = concordiaService.getProjectDetail(token, projectId)
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        project = result.project
-                        header.setProjectIcon(project.logo)
-                        header.setProjectTitle(project.title)
-                        for (method in project.paymentMethods) {
-                            paymentMethods.add(method.methodName)
-                        }
-                        paymentSpinner.setData(paymentMethods)
-                        getUserWallet()
-                    }
-                }
+        requestHttp(UrlConstant.PROJECT_DETAIL, hashMapOf("project_id" to projectId.toString())) {
+            val result = it as ProjectDetail
+            project = result.project!!
+            header.setProjectIcon(project.logo)
+            header.setProjectTitle(project.title)
+            for (method in project.paymentMethods) {
+                paymentMethods.add(method.methodName)
+            }
+            paymentSpinner.setData(paymentMethods)
+            getUserWallet()
+        }
     }
 
     private fun getUserWallet() {
-        showProgressSpinner()
-        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
-        val observer = concordiaService.getUserWallet(token)
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        userWallets = result.wallets
-                        filterUserWallet()
-                    }
-                }
+        requestHttp(UrlConstant.LIST_WALLET) {
+            val result = it as UserWallets
+            userWallets = result.wallets
+            filterUserWallet()
+        }
     }
     /**
      *  Navigations

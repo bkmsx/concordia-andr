@@ -45,7 +45,6 @@ class PersonalConfigurationActivity : BaseActivity() {
      */
 
     private fun updateConfiguration() {
-//        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
         val params = hashMapOf(
                 "device_security_enable" to "${btnYes.isChecked}"
         )
@@ -56,21 +55,5 @@ class PersonalConfigurationActivity : BaseActivity() {
                 finish()
             }
         }
-//        showProgressSpinner()
-//        val observer = concordiaService.changePersonalCofiguration(token, params)
-//        disposable = observer.subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe { result ->
-//                    hideProgressSpinner()
-//                    if (result.code != 200) {
-//                        Utils.showNoticeDialog(this, msg = result.message)
-//                    } else {
-//                        PreferenceManager.getDefaultSharedPreferences(this).edit()
-//                                .putString(UserConstant.deviceSecurityEnable, "${btnYes.isChecked}").apply()
-//                        Utils.showNoticeDialog(this, msg = "Configuration was updated") {
-//                            finish()
-//                        }
-//                    }
-//                }
     }
 }

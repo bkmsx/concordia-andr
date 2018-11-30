@@ -5,6 +5,7 @@ import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import capital.novum.concordia.main.LoginActivity
+import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -41,19 +42,9 @@ class ForgotPasswordActivity : BaseActivity() {
             Utils.showNoticeDialog(this, msg = "Please input your email")
             return
         }
-
-        showProgressSpinner()
-        val observer = concordiaService.retrievePassword(email)
-        disposable = observer.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { result ->
-                    hideProgressSpinner()
-                    if (result.code != 200) {
-                        Utils.showNoticeDialog(this, msg = result.message)
-                    } else {
-                        goNext()
-                    }
-                }
+        requestHttp(UrlConstant.FORGOT_PASSWORD, hashMapOf("email" to email)){
+            goNext()
+        }
     }
 
     /**

@@ -41,11 +41,11 @@
             android:textSize="12sp"
             android:layout_marginTop="30dp"/>
         <EditText
+            android:id="@+id/oldWalletEdt"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray1"
-            android:textColor="@color/white"
-            android:gravity="center_horizontal"/>
+            style="@style/UpdateWalletEditText"
+            android:focusable="false"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,11 +54,10 @@
             android:layout_marginTop="10dp"
             android:textSize="12sp"/>
         <EditText
+            android:id="@+id/newWalletEdt"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray1"
-            android:textColor="@color/white"
-            android:gravity="center_horizontal"/>
+            style="@style/UpdateWalletEditText"/>
 
         <capital.novum.concordia.customview.RoundButtonImage
             android:id="@+id/btnScan"

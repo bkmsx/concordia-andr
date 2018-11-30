@@ -33,15 +33,14 @@ abstract class BaseActivity : AppCompatActivity() {
     lateinit var toolbarTitle: TextView
     lateinit var progressSpinner: LinearLayout
 
-    val concordiaService by lazy {
-        ConcordiaService.create(UrlConstant.BASE_URL)
-    }
+    lateinit var concordiaService: ConcordiaService
 
     var disposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+        concordiaService = ConcordiaService.create()
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         if (toolbar != null) {
             toolbar.title = ""
@@ -103,14 +102,36 @@ abstract class BaseActivity : AppCompatActivity() {
     fun requestHttp(url: String, params: HashMap<String, String>? = null, callback: (Any) -> Unit) {
         val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
         val observable = when (url) {
+
             UrlConstant.DELETE_PARTICIPATE -> concordiaService.deleteParticipate(token, params!!)
-            UrlConstant.DELETE_WALLET -> concordiaService.deleteWallet(token, params!!)
-            UrlConstant.CHANGE_CONFIGURATION -> concordiaService.changePersonalCofiguration(token, params!!)
             UrlConstant.LIST_PARTICIPATE -> concordiaService.listParticipate(token)
             UrlConstant.PARTICIPATE_DETAIL -> concordiaService.participateDetail(token, params!!)
+
             UrlConstant.LIST_CITIZENSHIP -> concordiaService.getNationalities()
+            UrlConstant.APP_PAYMENT_METHOD -> concordiaService.getAppPaymentMethod()
+
+            UrlConstant.CHANGE_CONFIGURATION -> concordiaService.changePersonalCofiguration(token, params!!)
             UrlConstant.SEND_OTP -> concordiaService.sendOTP(params!!)
-            else -> concordiaService.updateWallet(token, params!!)
+            UrlConstant.VERIFY_OTP -> concordiaService.verifyOTP(params!!)
+            UrlConstant.CHANGE_PASSWORD -> concordiaService.changePassword(token, params!!)
+
+            UrlConstant.UPDATE_REFERRAL_CODE -> concordiaService.updateReferralCode(token, params!!)
+            UrlConstant.LIST_REFERRAL_BONUS -> concordiaService.listReferralBonus(token)
+
+            UrlConstant.LIST_WALLET -> concordiaService.getUserWallet(token)
+            UrlConstant.DELETE_WALLET -> concordiaService.deleteWallet(token, params!!)
+            UrlConstant.ADD_WALLET -> concordiaService.addWalletAddress(token, params!!)
+            UrlConstant.UPDATE_WALLET -> concordiaService.updateWallet(token, params!!)
+
+            UrlConstant.PROJECT_DETAIL -> concordiaService.getProjectDetail(token, params!!)
+            UrlConstant.PROJECT_LIST -> concordiaService.getProjectList(token)
+            UrlConstant.PROJECT_PARTICIPATE -> concordiaService.participate(token, params!!)
+
+            UrlConstant.LOGIN_ACCOUNT -> concordiaService.loginAccount(params!!)
+            UrlConstant.REGISTER -> concordiaService.register(params!!)
+            UrlConstant.FORGOT_PASSWORD -> concordiaService.retrievePassword(params!!)
+
+            else -> concordiaService.getAppPaymentMethod()
         }
         showProgressSpinner()
         disposable = observable.subscribeOn(Schedulers.io())
