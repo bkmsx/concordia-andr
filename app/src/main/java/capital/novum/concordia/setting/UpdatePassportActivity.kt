@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -58,13 +59,10 @@ class UpdatePassportActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
         dobEdt.setOnClickListener { datePicker.show() }
 
         btnPassport.setOnClickListener {
-            val galleryIntent = Intent(Intent.ACTION_PICK)
-            galleryIntent.setType("image/*")
-            startActivityForResult(galleryIntent, 2)
+            gotoGallery()
         }
         btnSelfie.setOnClickListener {
-            val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(cameraIntent, 1)
+            askCameraPermission { gotoCamera() }
         }
 
         btnNext.setOnClickListener { validateData() }
@@ -121,6 +119,20 @@ class UpdatePassportActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
 
         if (requestCode == 3 && resultCode == Activity.RESULT_OK) {
             updatePassport()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode) {
+            1000 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    gotoCamera()
+                } else {
+                    Utils.showNoticeDialog(this, msg = "Take picture feature needs camera permission")
+                }
+            }
+            else -> {}
         }
     }
 
@@ -200,5 +212,16 @@ class UpdatePassportActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
         intent.putExtra("countryCode", countryCodePicker.selectedCountryCode)
         intent.putExtra("phoneNumber", phoneNumberEdt.text.toString())
         startActivityForResult(intent, 3)
+    }
+
+    private fun gotoGallery() {
+        val galleryIntent = Intent(Intent.ACTION_PICK)
+        galleryIntent.setType("image/*")
+        startActivityForResult(galleryIntent, 2)
+    }
+
+    private fun gotoCamera() {
+        val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(cameraIntent, 1)
     }
 }

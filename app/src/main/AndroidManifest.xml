@@ -16,6 +16,7 @@
         <activity android:name=".main.SplashScreenActivity" android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -51,7 +52,8 @@
         <activity android:name=".setting.CvenExchangeActivity"/>
         <activity android:name=".setting.EthParticipateDetail"/>
         <activity android:name=".setting.UsdParticipateDetail"/>
-        <activity android:name=".setting.PhoneListActivity"/>
+        <activity android:name=".setting.PhoneListActivity"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

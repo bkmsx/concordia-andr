@@ -1,5 +1,6 @@
 package capital.novum.concordia.main
 
+import android.Manifest
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
@@ -13,7 +14,10 @@ import capital.novum.concordia.service.ConcordiaService
 import capital.novum.concordia.util.UrlConstant
 import io.reactivex.disposables.Disposable
 import android.app.Activity
+import android.content.pm.PackageManager
 import android.preference.PreferenceManager
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import capital.novum.concordia.model.UserConstant
@@ -172,5 +176,36 @@ abstract class BaseActivity : AppCompatActivity() {
                         callback()
                     }
                 }
+    }
+
+    /**
+     *  Ask Permissions
+     */
+    fun askCameraPermission(callback: () -> Unit) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+                Utils.showNoticeDialog(this, msg = "You must grant camera permission to use this feature"){
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 1000)
+                }
+            } else {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 1000)
+            }
+        } else {
+            callback()
+        }
+    }
+
+    fun askContactPermission(callback: () -> Unit) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)) {
+                Utils.showNoticeDialog(this, msg = "You must grant camera permission to use this feature"){
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_CONTACTS), 1001)
+                }
+            } else {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_CONTACTS), 1001)
+            }
+        } else {
+            callback()
+        }
     }
 }

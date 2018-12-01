@@ -5,19 +5,25 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
-import capital.novum.concordia.setting.adapter.WalletAdapter
-import kotlinx.android.synthetic.main.setting_wallet_list_activity.*
 import android.provider.ContactsContract
 import android.content.ContentResolver
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
+import capital.novum.concordia.model.PhoneNumber
+import capital.novum.concordia.setting.adapter.PhoneListAdapter
+import capital.novum.concordia.util.Utils
+import kotlinx.android.synthetic.main.setting_phone_list_activity.*
 
 
-
-
-class PhoneListActivity : BaseActivity() {
-    /*
-        Custom views
+class PhoneListActivity : BaseActivity(), PhoneListAdapter.PhoneListAdapterDelegate {
+    lateinit var adapter: PhoneListAdapter
+    var phoneList = ArrayList<PhoneNumber>()
+    /**
+     *  Custom views
      */
 
     override fun getLayoutId(): Int {
@@ -26,7 +32,23 @@ class PhoneListActivity : BaseActivity() {
 
     override fun customViews() {
         super.customViews()
-        getContactList()
+        adapter = PhoneListAdapter()
+        adapter.delegate = this
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        askContactPermission { getContactList() }
+        searchEdt.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                adapter.data = phoneList.filter { it.name.contains(s.toString(), true) }
+            }
+        })
+        btnNext.setOnClickListener { gotoSendMsg() }
     }
 
     override fun setupToolBar() {
@@ -34,23 +56,48 @@ class PhoneListActivity : BaseActivity() {
         toolbarTitle.text = "SHARE WITH FRIENDS"
     }
 
-    /*
-        Events
+    /**
+     *  Events
      */
     private fun getContactList() {
         val phones = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null)
         while (phones!!.moveToNext()) {
             val name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
             val phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-            Log.e("Phone", "Name: $name, Number: $phoneNumber")
-
+            if (!name.startsWith("+") && !phoneList.map { it.number }.contains(phoneNumber))
+                phoneList.add(PhoneNumber(name, phoneNumber))
         }
         phones.close()
+        phoneList.sortBy { it.name }
+        adapter.data = phoneList
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode) {
+            1001 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getContactList()
+                } else {
+                    Utils.showNoticeDialog(this, msg = "Contacts list needs contacts permission")
+                }
+            }
+            else -> {}
+        }
+    }
+
+    override fun onSelectedNumberChanged(total: Int) {
+        totalTxt.text = total.toString()
+    }
 
     /**
      *  Navigations
      */
-
+    private fun gotoSendMsg() {
+        var number = ""
+        adapter.selectedData.forEach { number += "$it," }
+        val smsIntent = Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:$number"))
+        smsIntent.putExtra("sms_body", "Nothing")
+        startActivity(smsIntent)
+    }
 }

@@ -2,6 +2,7 @@ package capital.novum.concordia.setting
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -40,7 +41,7 @@ class AddWalletActivity : BaseActivity() {
 
         btnScan.setTitle("Scan QR")
         btnScan.setIcon(R.mipmap.blue_scan)
-        btnScan.setOnClickListener { gotoScanner() }
+        btnScan.setOnClickListener { askCameraPermission { gotoScanner() } }
 
         btnNext.setOnClickListener { addWallet() }
     }
@@ -60,6 +61,20 @@ class AddWalletActivity : BaseActivity() {
                 val qrCode = data?.getStringExtra("qrCode")
                 walletAddressEdt.setText(qrCode!!)
             }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode) {
+            1000 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    gotoScanner()
+                } else {
+                    Utils.showNoticeDialog(this, msg = "Scan feature needs camera permission")
+                }
+            }
+            else -> {}
         }
     }
 

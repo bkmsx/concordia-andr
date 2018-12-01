@@ -2,6 +2,7 @@ package capital.novum.concordia.setting
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import capital.novum.concordia.R
@@ -29,7 +30,7 @@ class EditWalletActivity : BaseActivity() {
         oldWalletEdt.setText(oldAddress)
         btnScan.setIcon(R.mipmap.blue_scan)
         btnScan.setTitle("Scan QR")
-        btnScan.setOnClickListener { gotoScanner() }
+        btnScan.setOnClickListener { askCameraPermission { gotoScanner() } }
         btnNext.setOnClickListener { updateWallet() }
     }
 
@@ -49,6 +50,20 @@ class EditWalletActivity : BaseActivity() {
                 val qrCode = data?.getStringExtra("qrCode")
                 newWalletEdt.setText(qrCode!!)
             }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode) {
+            1000 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    gotoScanner()
+                } else {
+                    Utils.showNoticeDialog(this, msg = "Scan feature needs camera permission")
+                }
+            }
+            else -> {}
         }
     }
 
