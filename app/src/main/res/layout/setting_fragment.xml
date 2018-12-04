@@ -22,7 +22,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"/>
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/nameTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@+id/avatar"
@@ -30,28 +30,29 @@
             android:textColor="@color/white"
             android:text="TRUNG TIEN LAI"
             android:textStyle="bold"
+            android:textSize="16sp"
             android:layout_marginStart="30dp"/>
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/emailTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="tien@novum.capital"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="@+id/name"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintStart_toStartOf="@+id/nameTxt"
+            app:layout_constraintTop_toBottomOf="@+id/nameTxt" />
 
         <TextView
-            android:id="@+id/mobileNumber"
+            android:id="@+id/mobileNumberTxt"
             android:layout_width="wrap_content"
             android:layout_height="23dp"
             android:text="+84984217085"
             android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@+id/emailTxt"
+            app:layout_constraintTop_toBottomOf="@+id/emailTxt"
             android:gravity="center_vertical"/>
 
         <ImageView
@@ -60,16 +61,16 @@
             android:layout_height="25dp"
             android:padding="2dp"
             android:layout_marginStart="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/mobileNumber"
-            app:layout_constraintStart_toEndOf="@+id/mobileNumber"
-            app:layout_constraintTop_toTopOf="@+id/mobileNumber"
+            app:layout_constraintBottom_toBottomOf="@+id/mobileNumberTxt"
+            app:layout_constraintStart_toEndOf="@+id/mobileNumberTxt"
+            app:layout_constraintTop_toTopOf="@+id/mobileNumberTxt"
             app:srcCompat="@mipmap/blue_pencil"
             android:background="@drawable/light_black_circle_res_bg"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="@dimen/setting_user_status_size"
-            app:layout_constraintStart_toStartOf="@id/mobileNumber"
-            app:layout_constraintTop_toBottomOf="@+id/mobileNumber"
+            app:layout_constraintStart_toStartOf="@id/mobileNumberTxt"
+            app:layout_constraintTop_toBottomOf="@+id/mobileNumberTxt"
             app:layout_constraintBottom_toBottomOf="parent"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
@@ -109,13 +110,14 @@
             android:layout_height="wrap_content"
             android:text="CVEN EXCHANGE"
             android:layout_marginStart="15dp"
+            android:textStyle="bold"
             android:textColor="@color/white"/>
     </LinearLayout>
 
     <capital.novum.concordia.customview.SettingItem
         android:id="@+id/touchSetting"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/setting_item_height"
         android:gravity="center_vertical"
         android:layout_marginStart="@dimen/setting_item_margin"
         android:layout_marginEnd="@dimen/setting_item_margin"
@@ -123,7 +125,7 @@
     <capital.novum.concordia.customview.SettingItem
         android:id="@+id/changePassword"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/setting_item_height"
         android:gravity="center_vertical"
         android:layout_marginStart="@dimen/setting_item_margin"
         android:layout_marginEnd="@dimen/setting_item_margin"
@@ -131,7 +133,7 @@
     <capital.novum.concordia.customview.SettingItem
         android:id="@+id/updatePassport"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/setting_item_height"
         android:gravity="center_vertical"
         android:layout_marginStart="@dimen/setting_item_margin"
         android:layout_marginEnd="@dimen/setting_item_margin"
@@ -139,7 +141,7 @@
     <capital.novum.concordia.customview.SettingItem
         android:id="@+id/walletList"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/setting_item_height"
         android:gravity="center_vertical"
         android:layout_marginStart="@dimen/setting_item_margin"
         android:layout_marginEnd="@dimen/setting_item_margin"
@@ -147,7 +149,7 @@
     <capital.novum.concordia.customview.SettingItem
         android:id="@+id/participateHistory"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/setting_item_height"
         android:gravity="center_vertical"
         android:layout_marginStart="@dimen/setting_item_margin"
         android:layout_marginEnd="@dimen/setting_item_margin"
@@ -155,7 +157,7 @@
     <capital.novum.concordia.customview.SettingItem
         android:id="@+id/referralNetwork"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/setting_item_height"
         android:gravity="center_vertical"
         android:layout_marginStart="@dimen/setting_item_margin"
         android:layout_marginEnd="@dimen/setting_item_margin"
@@ -165,7 +167,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/blue_round_res_bg"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:textSize="14sp"

@@ -30,7 +30,6 @@ class ProjectFragment : Fragment(), ProjectAdapter.OnProjectListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         projectListActivity = activity as ProjectListActivity
-        getProjectList()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -39,6 +38,7 @@ class ProjectFragment : Fragment(), ProjectAdapter.OnProjectListener {
         adapter = ProjectAdapter()
         adapter.onProjectListener = this
         view.recyclerview.adapter = adapter
+        getProjectList()
         return view
     }
 
@@ -67,6 +67,4 @@ class ProjectFragment : Fragment(), ProjectAdapter.OnProjectListener {
         intent.putExtra("projectId", projectId)
         activity?.startActivity(intent)
     }
-
-
 }

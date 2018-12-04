@@ -26,10 +26,13 @@
     <dimen name="setting_item_margin">25dp</dimen>
 
     <dimen name="wallet_item_height">40dp</dimen>
-    <dimen name="wallet_button_size">20dp</dimen>
+    <dimen name="wallet_button_size">25dp</dimen>
     <dimen name="update_passport_padding">40dp</dimen>
     <dimen name="update_passport_margin_top">5dp</dimen>
 
     <dimen name="referral_programme_padding">40dp</dimen>
     <dimen name="referral_programme_textsize">12sp</dimen>
+    <dimen name="item_project_normal_textsize">12sp</dimen>
+
+    <dimen name="setting_item_height">45dp</dimen>
 </resources>

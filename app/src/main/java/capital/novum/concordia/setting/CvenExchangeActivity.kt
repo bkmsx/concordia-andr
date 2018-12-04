@@ -23,20 +23,12 @@ class CvenExchangeActivity : BaseActivity() {
 
     override fun customViews() {
         super.customViews()
-        viewpager.adapter = CvenFragmentAdapter(this, supportFragmentManager)
+        viewpager.adapter = CvenFragmentAdapter(supportFragmentManager)
         tablayout.setupWithViewPager(viewpager)
     }
 
     override fun setupToolBar() {
         super.setupToolBar()
         toolbarTitle.text = "CVEN EXCHANGE"
-    }
-
-    /*
-        Events
-     */
-
-    fun goNext(view : View) {
-
     }
 }

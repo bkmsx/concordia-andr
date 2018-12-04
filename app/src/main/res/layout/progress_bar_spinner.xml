@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     android:translationZ="100dp"
-    android:background="@color/blur_black">
+    android:background="@color/black_alpha1">
     <ProgressBar
         android:layout_width="50dp"
         android:layout_height="50dp"

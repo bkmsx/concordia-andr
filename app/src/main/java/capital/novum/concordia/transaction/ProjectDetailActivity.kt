@@ -37,7 +37,6 @@ class ProjectDetailActivity : BaseActivity() {
 
     override fun customViews() {
         super.customViews()
-
         btnParticipate.setOnClickListener { goToTermsAndCoditions() }
         btnInviteFriend.setOnClickListener { goToShareInformation() }
     }
@@ -54,6 +53,10 @@ class ProjectDetailActivity : BaseActivity() {
         shortDes.text = project.shortDescription
         longDes.text = project.detailedDescription
         currentTier.text = project.currentTier
+        if (project.status == "sale_ended") {
+            btnParticipate.isEnabled = false
+            btnParticipate.setBackgroundResource(R.drawable.gray_round_bg)
+        }
         for (salePeriod in project.salePeriods) {
             val view = LayoutInflater.from(this).inflate(R.layout.item_discount_tier, null)
             view.period.text = "${salePeriod.title}: ${salePeriod.saleStart} - ${salePeriod.saleEnd}"
@@ -66,7 +69,6 @@ class ProjectDetailActivity : BaseActivity() {
     /*
         Events
      */
-
     private fun goToTermsAndCoditions() {
         val intent = Intent(this, TermsAndCoditionsActivity::class.java)
         intent.putExtra("projectId", projectId)

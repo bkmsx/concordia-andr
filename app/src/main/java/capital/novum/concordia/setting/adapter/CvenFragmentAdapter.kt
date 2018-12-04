@@ -1,18 +1,19 @@
 package capital.novum.concordia.setting.adapter
 
-import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import capital.novum.concordia.setting.fragment.CvenBuyFragment
 import capital.novum.concordia.setting.fragment.CvenSellFragment
 
-class CvenFragmentAdapter : FragmentPagerAdapter {
+class CvenFragmentAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    val cvenBuyFragment by lazy { CvenBuyFragment() }
+    val cvenSellFragment by lazy { CvenSellFragment() }
     override fun getItem(position: Int): Fragment {
         if (position == 0) {
-            return CvenBuyFragment()
+            return cvenBuyFragment
         } else {
-            return CvenSellFragment()
+            return cvenSellFragment
         }
     }
 
@@ -27,6 +28,4 @@ class CvenFragmentAdapter : FragmentPagerAdapter {
             return "SELL"
         }
     }
-
-    constructor(context: Context, fragmentManager: FragmentManager) : super(fragmentManager)
 }

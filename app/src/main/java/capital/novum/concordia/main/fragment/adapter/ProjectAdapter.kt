@@ -34,6 +34,8 @@ class ProjectAdapter: RecyclerView.Adapter<ProjectAdapter.ViewHolder>() {
         Picasso.get().load(project?.logo).into(view.projectIconImg)
         view.addedDate.text = "ADDED: ${project?.addedDate}"
         view.shortDes.text = project?.shortDescription
+        view.saleEndTxt.visibility = if (project?.status == "sale_ended") View.VISIBLE else View.INVISIBLE
+        view.participateImg.visibility = if (project?.userParticipated == "true") View.VISIBLE else View.INVISIBLE
         if (project?.currentDiscount != null) {
             view.bonus.text = "${project?.currentDiscount}%"
         }

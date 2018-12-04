@@ -1,5 +1,7 @@
 package capital.novum.concordia.setting.fragment
 
+import android.graphics.Bitmap
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -14,10 +16,21 @@ class CvenBuyFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.cven_buy_fragment, container, false)
         view.cvenAddress.setText(CVEN_ADDRESS)
-        view.qrCode.setImageBitmap(Utils.getQrCode(CVEN_ADDRESS))
+        doAsync{
+            view.qrCode.setImageBitmap(it)
+        }.execute(CVEN_ADDRESS)
         view.btnDialog.setOnClickListener { Utils.showCvenDialog(context) }
         return view
     }
 
+    class doAsync(val callback: (Bitmap) -> Unit) : AsyncTask<String, Void, Bitmap>() {
+        override fun doInBackground(vararg params: String?): Bitmap {
+            return Utils.getQrCode(params[0]!!)
+        }
 
+        override fun onPostExecute(result: Bitmap?) {
+            super.onPostExecute(result)
+            callback(result!!)
+        }
+    }
 }

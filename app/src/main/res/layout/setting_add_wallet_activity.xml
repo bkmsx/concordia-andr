@@ -12,7 +12,7 @@
         android:id="@+id/btnNext"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="UPDATE"
+        android:text="ADD WALLET"
         android:textColor="@color/white"
         android:background="@color/light_blue"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,13 +48,15 @@
             android:layout_height="wrap_content"
             android:text="WALLET ADDRESS"
             android:textSize="14sp"
-            android:textColor="@color/light_blue"
+            android:textColor="@color/gray1"
             android:layout_marginTop="20dp"/>
         <EditText
             android:id="@+id/walletAddressEdt"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            style="@style/UpdateWalletEditText"/>
+            style="@style/UpdateWalletEditText"
+            android:textSize="14sp"
+            android:backgroundTint="@color/light_blue"/>
 
         <capital.novum.concordia.customview.RoundButtonImage
             android:id="@+id/btnScan"
