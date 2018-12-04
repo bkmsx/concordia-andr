@@ -4,12 +4,14 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.view.View
 import android.view.ViewGroup
 import capital.novum.concordia.R
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
 import kotlinx.android.synthetic.main.dialog_ask_confirm.*
+import kotlinx.android.synthetic.main.dialog_ask_fingerprint.*
 import kotlinx.android.synthetic.main.dialog_cven_exchange.*
 import kotlinx.android.synthetic.main.dialog_notice.*
 import kotlinx.android.synthetic.main.dialog_term_conditions.*
@@ -88,6 +90,38 @@ object Utils {
         }
         dialog.btnCancel.setOnClickListener { dialog.dismiss() }
         dialog.show()
+    }
+
+    fun showFingerprintDialog(context: Context?, title: String? = null, msg: String? = null,
+                              cancelCallback: (()->Unit)? = null, tryAgainCallback: (()->Unit)? = null) : Dialog{
+        val dialog = Dialog(context)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setContentView(R.layout.dialog_ask_fingerprint)
+        if (msg != null) {
+            dialog.messageTxtFingerprint.text = msg
+        }
+
+        if (title != null) {
+            dialog.titleTxtFingerprint.text = title
+        }
+
+        if (tryAgainCallback == null) {
+            dialog.btnTryAgainFingerprint.visibility = View.GONE
+        }
+
+        dialog.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window.setBackgroundDrawableResource(R.color.transparent)
+        dialog.btnTryAgainFingerprint.setOnClickListener {
+            dialog.dismiss()
+            tryAgainCallback?.invoke()
+
+        }
+        dialog.btnCancelFingerprint.setOnClickListener {
+            dialog.dismiss()
+            cancelCallback?.invoke()
+        }
+        dialog.show()
+        return dialog
     }
 
     fun getFileFromBitmap(context: Context, bitmap: Bitmap, fileName: String) : File {

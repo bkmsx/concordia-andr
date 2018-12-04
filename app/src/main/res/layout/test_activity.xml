@@ -17,16 +17,6 @@
         android:orientation="vertical"
         android:background="@mipmap/pattern"
         android:alpha="0.9">
-        <capital.novum.concordia.customview.EditSpinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="100dp"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Open spinner"
-            android:onClick="openSpinner"/>
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -20,18 +20,20 @@ import capital.novum.concordia.setting.*
 import capital.novum.concordia.share.ShareInformationActivity
 import capital.novum.concordia.share.ShareMethodsActivity
 import capital.novum.concordia.transaction.*
+import capital.novum.concordia.util.Constants
 
 class SplashScreenActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen_activity)
-        val token = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.token, "")
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val token = sharedPreferences.getString(UserConstant.token, "")
         Log.e("Splash", token)
-        val intent = Intent(applicationContext, PhoneListActivity::class.java)
-        var slide = Slide()
+        val registered = sharedPreferences.getBoolean(Constants.REGISTED, false)
+        val intent = Intent(applicationContext, if (registered) LoginActivity::class.java else SlideShowActivity::class.java)
+        val slide = Slide()
         slide.setDuration(500)
-        slide.slideEdge = Gravity.RIGHT
+        slide.slideEdge = Gravity.END
         window.exitTransition = slide
         val handler = Handler()
         handler.postDelayed(Runnable {

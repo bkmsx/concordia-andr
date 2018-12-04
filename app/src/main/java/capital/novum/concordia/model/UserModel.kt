@@ -5,6 +5,7 @@ data class User (
         var id: Int,
         var firstName: String,
         var lastName: String,
+        var email: String,
         var dateOfBirth: String,
         var phoneNumber: String,
         var countryCode: String,

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_marginStart="60dp"
+    android:layout_marginEnd="60dp"
+    android:background="@drawable/white_round_bg">
+    <ImageView
+        android:layout_width="80dp"
+        android:gravity="center_horizontal"
+        android:layout_height="80dp"
+        android:padding="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/blue_stroke_circle_bg"
+        android:src="@mipmap/fingerprint"/>
+
+    <TextView
+        android:id="@+id/titleTxtFingerprint"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:text="Login With Fingerprint"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+    <TextView
+        android:id="@+id/messageTxtFingerprint"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/gray0"
+        android:text="tien@novum.capital"
+        android:paddingBottom="20dp"/>
+    <Button
+        android:id="@+id/btnTryAgainFingerprint"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="TRY AGAIN"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/blue_round_res_bg"/>
+    <Button
+        android:id="@+id/btnCancelFingerprint"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="CANCEL"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/gray_stroke_round_res_bg15"/>
+</LinearLayout>

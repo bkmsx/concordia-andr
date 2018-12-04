@@ -11,6 +11,7 @@ object LocalData {
                 .putInt(UserConstant.id, user.id)
                 .putString(UserConstant.firstName, user.firstName)
                 .putString(UserConstant.lastName, user.lastName)
+                .putString(UserConstant.email, user.email)
                 .putString(UserConstant.dateOfBirth, user.dateOfBirth)
                 .putString(UserConstant.phoneNumber, user.phoneNumber)
                 .putString(UserConstant.countryCode, user.countryCode)
@@ -44,6 +45,7 @@ object UserConstant {
     val dateOfBirth = "dateOfBirth"
     val phoneNumber = "phoneNumber"
     val countryCode = "countryCode"
+    val email = "email"
     val countryOfResidence = "countryOfResidence"
     val deviceSecurityEnable = "deviceSecurityEnable"
     val deviceId = "deviceId"

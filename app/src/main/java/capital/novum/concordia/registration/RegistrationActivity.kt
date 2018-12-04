@@ -2,11 +2,13 @@ package capital.novum.concordia.registration
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.DatePicker
 import android.widget.TextView
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
+import capital.novum.concordia.util.Constants
 import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -67,6 +69,8 @@ class RegistrationActivity: BaseActivity(), DatePickerDialog.OnDateSetListener {
                 "validation" to "0"
         )
         requestHttp(UrlConstant.REGISTER, params) {
+            PreferenceManager.getDefaultSharedPreferences(this)
+                    .edit().putBoolean(Constants.REGISTED, true).apply()
             goNext()
         }
     }
