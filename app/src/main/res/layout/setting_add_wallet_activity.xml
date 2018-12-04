@@ -14,7 +14,7 @@
         android:layout_height="50dp"
         android:text="ADD WALLET"
         android:textColor="@color/white"
-        android:background="@color/light_blue"
+        android:background="@color/blue2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             style="@style/UpdateWalletEditText"
             android:textSize="14sp"
-            android:backgroundTint="@color/light_blue"/>
+            android:backgroundTint="@color/blue2"/>
 
         <capital.novum.concordia.customview.RoundButtonImage
             android:id="@+id/btnScan"

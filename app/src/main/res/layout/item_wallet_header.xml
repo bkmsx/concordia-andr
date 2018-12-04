@@ -11,7 +11,7 @@
         android:id="@+id/nameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/light_blue"
+        android:textColor="@color/blue2"
         android:textSize="16sp"
         android:textStyle="bold"
         android:text="ETH Wallet"/>

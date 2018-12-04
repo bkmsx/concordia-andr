@@ -14,7 +14,7 @@
         android:layout_height="60dp"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:background="@color/light_blue"
+        android:background="@color/blue2"
         android:text="CONTINUE"
         app:layout_constraintBottom_toBottomOf="parent"/>
     <ScrollView
@@ -131,7 +131,7 @@
                     android:id="@+id/radioYes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/light_blue"
+                    android:buttonTint="@color/blue2"
                     android:text="YES"
                     android:textColor="@android:color/white" />
 
@@ -139,7 +139,7 @@
                     android:id="@+id/radioNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/light_blue"
+                    android:buttonTint="@color/blue2"
                     android:layout_marginStart="20dp"
                     android:text="NO"
                     android:textColor="@android:color/white" />

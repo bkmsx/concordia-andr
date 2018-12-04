@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="W GREEN PAY"
         android:textStyle="bold"
-        android:textColor="@color/light_blue"
+        android:textColor="@color/blue2"
         android:layout_marginTop="15dp"/>
     <LinearLayout
         android:id="@+id/indicator"

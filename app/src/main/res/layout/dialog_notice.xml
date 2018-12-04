@@ -37,6 +37,6 @@
         android:text="OK"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:textColor="@color/light_blue"
+        android:textColor="@color/blue2"
         android:background="@drawable/light_gray_round_res_bg"/>
 </LinearLayout>

@@ -17,7 +17,7 @@
     <dimen name="bank_detail_normal_text_size">13sp</dimen>
     <dimen name="bank_detail_margin">4dp</dimen>
     <dimen name="share_information_normal_text_size">14sp</dimen>
-    <dimen name="share_methods_icon_size">40dp</dimen>
+    <dimen name="share_methods_icon_size">60dp</dimen>
     <dimen name="setting_user_status_check_size">15dp</dimen>
     <dimen name="setting_user_status_size">30dp</dimen>
     <dimen name="setting_user_status_bg_radius">15dp</dimen>
@@ -35,4 +35,6 @@
     <dimen name="item_project_normal_textsize">12sp</dimen>
 
     <dimen name="setting_item_height">45dp</dimen>
+    <dimen name="item_participate_normal_textsize">12sp</dimen>
+    <dimen name="item_participate_button_margintop">10dp</dimen>
 </resources>

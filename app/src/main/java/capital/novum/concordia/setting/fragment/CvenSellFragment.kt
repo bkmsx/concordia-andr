@@ -16,9 +16,6 @@ class CvenSellFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.cven_sell_fragment, container, false)
         view.cvenAddress.setText(CVEN_ADDRESS)
-        doAsync {
-            view.qrCode.setImageBitmap(it)
-        }.execute(CVEN_ADDRESS)
         view.btnDialog.setOnClickListener { Utils.showCvenDialog(context) }
         return view
     }

@@ -21,14 +21,14 @@
         android:id="@+id/cvenAddress"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@drawable/light_blue_stroke_round_bg"
+        android:background="@drawable/blue2_stroke_round_bg20"
         android:layout_marginTop="10dp"/>
     <ImageView
         android:id="@+id/qrCode"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
-        android:background="@color/white"/>
+        android:src="@mipmap/cven_qr"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
-        android:textColor="@color/light_blue"
+        android:textColor="@color/blue2"
         android:text="WHAT IS CVEN?"
         android:layout_marginTop="20dp"/>
 </LinearLayout>

@@ -37,7 +37,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/light_blue"
+            android:textColor="@color/blue2"
             android:layout_marginStart="5dp"
             android:text="COMPLETE"/>
     </LinearLayout>
@@ -78,5 +78,5 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="0dp"
         android:textColor="@color/white"
-        android:background="@color/light_blue"/>
+        android:background="@color/blue2"/>
 </android.support.constraint.ConstraintLayout>

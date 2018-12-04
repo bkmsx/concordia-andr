@@ -19,7 +19,7 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:gravity="center_horizontal"
-        android:text="ABCDE"/>
+        android:text="****"/>
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="25dp"

@@ -100,7 +100,7 @@ abstract class BaseActivity : AppCompatActivity() {
         val inputMethodManager = getSystemService(
                 Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(
-                currentFocus!!.windowToken, 0)
+                currentFocus?.windowToken, 0)
     }
 
     fun requestHttp(url: String, params: HashMap<String, String>? = null, callback: (Any) -> Unit) {

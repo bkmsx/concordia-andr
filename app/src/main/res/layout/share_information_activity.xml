@@ -15,7 +15,7 @@
         android:layout_height="50dp"
         android:text="INVITE FRIENDS"
         android:textColor="@color/white"
-        android:background="@color/light_blue"
+        android:background="@color/blue2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="EARN LIFETIME COMMISSIONS"
                 android:textSize="18sp"
-                android:textColor="@color/light_blue"
+                android:textColor="@color/blue2"
                 android:layout_marginTop="20dp"/>
             <TextView
                 android:layout_width="wrap_content"

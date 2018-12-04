@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textColor="@color/white"
-        android:background="@color/light_blue"
+        android:background="@color/blue2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,13 +52,13 @@
             android:layout_marginTop="30dp"
             android:text="Accept"
             android:paddingStart="5dp"
-            android:buttonTint="@color/light_blue"
+            android:buttonTint="@color/blue2"
             android:textColor="@color/white"/>
         <Button
             android:id="@+id/btnDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/light_blue"
+            android:textColor="@color/blue2"
             android:text="Terms and Conditions"
             app:layout_constraintTop_toTopOf="@+id/checkbox1"
             app:layout_constraintBottom_toBottomOf="@+id/checkbox1"
@@ -76,7 +76,7 @@
             android:layout_marginTop="20dp"
             android:text="Confirm that I am not an USA citizen"
             android:paddingStart="5dp"
-            android:buttonTint="@color/light_blue"
+            android:buttonTint="@color/blue2"
             android:textColor="@color/white"/>
 
     </android.support.constraint.ConstraintLayout>

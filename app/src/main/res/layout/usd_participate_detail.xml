@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:text="SHARE WITH FRIENDS"
         android:textColor="@color/white"
-        android:background="@color/light_blue"
+        android:background="@color/blue2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -36,14 +36,14 @@
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:src="@mipmap/concordia_2"
-                android:padding="20dp"
+                android:padding="10dp"
                 android:background="@drawable/white_round_bg"/>
             <TextView
                 android:id="@+id/titleTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="W GREEN PAY"
-                android:textColor="@color/light_blue"
+                android:text="CONCORDIA"
+                android:textColor="@color/blue2"
                 android:layout_marginTop="20dp"/>
         </LinearLayout>
         <ScrollView
@@ -63,26 +63,26 @@
                     android:layout_height="wrap_content"
                     style="@style/WhiteText"
                     android:textSize="14sp"
-                    android:text="1 TOKEN = 0.00012323 ETH"/>
+                    android:text="1 TOKEN = 0.0000 ETH"/>
                 <TextView
                     android:id="@+id/tokenAmountTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/WhiteText"
                     android:layout_marginTop="20dp"
-                    android:text="Tokens purchased: 90000"/>
+                    android:text="Tokens purchased: 00000"/>
                 <TextView
                     android:id="@+id/paymentMethodTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/WhiteText"
-                    android:text="Payment method: ETH"/>
+                    android:text="Payment method: USD"/>
                 <TextView
                     android:id="@+id/paymentAmountTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/WhiteText"
-                    android:text="Total amount: 13.4234324"/>
+                    android:text="Total amount: 0.0000"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/WhiteText"
-                        android:text="Oversea-Chinese Banking Corporation Limited"/>
+                        android:text=" "/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/WhiteText"
-                        android:text="OCBCSGSG"/>
+                        android:text=" "/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/WhiteText"
-                        android:text="65 Chulia Street, OCBC Centre, Singapore 049513"/>
+                        android:text=" "/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/WhiteText"
-                        android:text="W Global Investment Pte, Ltd."/>
+                        android:text=" "/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/WhiteText"
-                        android:text="503232323"/>
+                        android:text=" "/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/WhiteText"
-                        android:text="54 East Coast Terrace #02-03 Singapore 458949"/>
+                        android:text=" "/>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

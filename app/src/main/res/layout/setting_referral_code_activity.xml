@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:src="@mipmap/app_invite"
-            android:background="@color/light_blue"/>
+            android:background="@color/blue2"/>
 
         <LinearLayout
             android:id="@+id/referralCodeLayout"
@@ -47,7 +47,7 @@
                 android:layout_width="200dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/blue_round_res_bg"
+                android:background="@drawable/blue4_round_res_bg"
                 android:text="APPLY"
                 android:textColor="@color/white"/>
         </LinearLayout>
@@ -68,9 +68,9 @@
                 android:id="@+id/totalPointTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="25.34"
+                android:text="0.00"
                 android:textSize="14sp"
-                android:textColor="@color/light_blue"/>
+                android:textColor="@color/blue2"/>
         </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
