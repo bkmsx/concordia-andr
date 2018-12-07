@@ -62,6 +62,7 @@ class UpdatePassportActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
             gotoGallery()
         }
         btnSelfie.setOnClickListener {
+            Utils.blinkView(this, btnSelfie)
             askCameraPermission { gotoCamera() }
         }
 

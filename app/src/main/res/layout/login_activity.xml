@@ -58,20 +58,19 @@
         app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
     <Button
-        android:id="@+id/btn_forgot_password"
+        android:id="@+id/forgotPasswordBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
         android:text="FORGOT PASSWORD?"
-        android:onClick="gotoForgotPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/loginBtn"
         android:layout_width="230dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
@@ -80,8 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_forgot_password"
-        android:onClick="login"/>
+        app:layout_constraintTop_toBottomOf="@+id/forgotPasswordBtn"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -91,7 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login">
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn">
 
         <TextView
             android:id="@+id/textView"
@@ -102,12 +100,11 @@
             android:text="Don't have an account?" />
 
         <Button
-            android:id="@+id/btn_register"
+            android:id="@+id/registerBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:onClick="gotoRegister"
             android:text="REGISTER" />
     </LinearLayout>
 

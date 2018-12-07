@@ -75,8 +75,8 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
         }
         val walletCategory = userWallets.filter { it.methodName == paymentSpinner.getSelected() }.firstOrNull()
         if (walletCategory != null && !walletCategory.wallets.none { it.address == walletSpinner.getSelected() }) {
-                goToAmountTokens()
-                return
+            goToAmountTokens()
+            return
         }
         addWallet(selectedMethod.methodId, walletSpinner.getSelected())
     }
@@ -93,7 +93,7 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode) {
+        when (requestCode) {
             1000 -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     gotoScanner()
@@ -101,12 +101,14 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
                     Utils.showNoticeDialog(this, msg = "Scan feature needs camera permission")
                 }
             }
-            else -> {}
+            else -> {
+            }
         }
     }
 
     private fun filterUserWallet() {
-        val walletCategories = userWallets.filter { it.methodName == paymentSpinner.getSelected() }
+        val selectedPayment = paymentSpinner.getSelected()
+        val walletCategories = userWallets.filter { it.methodName == selectedPayment }
         val wallets = ArrayList<String>()
         if (!walletCategories.isEmpty()) {
             for (wallet in walletCategories.first().wallets) {
@@ -114,6 +116,16 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
             }
         }
         walletSpinner.setData(wallets)
+        val walletVisible = if (selectedPayment == "USD") View.GONE else View.VISIBLE
+        walletTypeTxt.visibility = walletVisible
+        walletSpinner.visibility = walletVisible
+        noticeTxt.visibility = walletVisible
+        btnScan.visibility = walletVisible
+        walletCommentTxt.visibility = if (selectedPayment == "USD") View.VISIBLE else View.GONE
+        if (selectedPayment != "USD") {
+            walletTypeTxt.text = getString(R.string.input_wallet_type_txt, selectedPayment)
+            noticeTxt.text = getString(R.string.input_wallet_notice_txt, selectedPayment)
+        }
     }
 
     override fun onEditSpinnerChanged(selectedItem: String) {
@@ -151,6 +163,7 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
             filterUserWallet()
         }
     }
+
     /**
      *  Navigations
      */
@@ -178,7 +191,7 @@ class InputWalletActivity : BaseActivity(), EditSpinner.OnEditSpinnerChanged {
         mainLayout.viewTreeObserver.addOnGlobalLayoutListener {
             if (keyboardShown(mainLayout.rootView)) {
                 isOpen = true
-            } else if (isOpen){
+            } else if (isOpen) {
                 walletSpinner.edittext.clearFocus()
                 isOpen = false
             }

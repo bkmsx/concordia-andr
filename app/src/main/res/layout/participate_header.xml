@@ -13,15 +13,16 @@
         android:id="@+id/projectTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="W GREEN PAY"
+        android:text="CONCORDIA"
         android:textStyle="bold"
         android:textColor="@color/blue2"
+        android:textSize="16sp"
         android:layout_marginTop="15dp"/>
     <LinearLayout
         android:id="@+id/indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="10dp">
         <View
             android:layout_width="@dimen/participate_indicator_size"
             android:layout_height="@dimen/participate_indicator_size"

@@ -59,8 +59,13 @@ abstract class BaseActivity : AppCompatActivity() {
         rightToolbarButton = findViewById(R.id.right_button)
         leftToolbarButton = findViewById(R.id.left_button)
         toolbarTitle = findViewById(R.id.toolbar_title)
-        leftToolbarButton.setOnClickListener { leftToolbarClick() }
-        rightToolbarButton.setOnClickListener { rightToolbarClick() }
+        leftToolbarButton.setOnClickListener {
+            Utils.blinkView(this, leftToolbarButton, R.anim.blink1_anim)
+            leftToolbarClick()
+        }
+        rightToolbarButton.setOnClickListener {
+            rightToolbarClick()
+        }
     }
 
     open fun rightToolbarClick() {
@@ -134,7 +139,7 @@ abstract class BaseActivity : AppCompatActivity() {
             UrlConstant.LOGIN_ACCOUNT -> concordiaService.loginAccount(params!!)
             UrlConstant.REGISTER -> concordiaService.register(params!!)
             UrlConstant.FORGOT_PASSWORD -> concordiaService.retrievePassword(params!!)
-
+            UrlConstant.PROJECT_SHARE -> concordiaService.getProjectPromotion(token, params!!)
             else -> concordiaService.getAppPaymentMethod()
         }
         showProgressSpinner()

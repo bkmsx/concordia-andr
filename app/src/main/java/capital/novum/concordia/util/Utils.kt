@@ -1,11 +1,18 @@
 package capital.novum.concordia.util
 
 import android.app.Dialog
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.os.AsyncTask
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import android.widget.Toast
 import capital.novum.concordia.R
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
@@ -13,6 +20,7 @@ import com.google.zxing.qrcode.QRCodeWriter
 import kotlinx.android.synthetic.main.dialog_ask_confirm.*
 import kotlinx.android.synthetic.main.dialog_ask_fingerprint.*
 import kotlinx.android.synthetic.main.dialog_cven_exchange.*
+import kotlinx.android.synthetic.main.dialog_input_password.*
 import kotlinx.android.synthetic.main.dialog_notice.*
 import kotlinx.android.synthetic.main.dialog_term_conditions.*
 import java.io.ByteArrayOutputStream
@@ -57,6 +65,12 @@ object Utils {
         dialog.window.setBackgroundDrawableResource(R.color.transparent)
         dialog.btnTermsClose.setOnClickListener { dialog.dismiss() }
         dialog.webview.loadUrl(link)
+        dialog.webview.webViewClient = object : WebViewClient() {
+            override fun onPageCommitVisible(view: WebView?, url: String?) {
+                super.onPageCommitVisible(view, url)
+                dialog.progressBar.visibility = View.GONE
+            }
+        }
         dialog.show()
     }
 
@@ -99,6 +113,8 @@ object Utils {
         dialog.setContentView(R.layout.dialog_ask_fingerprint)
         if (msg != null) {
             dialog.messageTxtFingerprint.text = msg
+        } else {
+            dialog.messageTxtFingerprint.visibility = View.GONE
         }
 
         if (title != null) {
@@ -124,6 +140,32 @@ object Utils {
         return dialog
     }
 
+    fun showInputPasswordDialog(context: Context?, title: String? = null, msg: String? = null,
+                                submitCallback: ((String)->Unit)? = null) : Dialog{
+        val dialog = Dialog(context)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setContentView(R.layout.dialog_input_password)
+        if (msg != null) {
+            dialog.messageTxtInputPassword.text = msg
+        }
+
+        if (title != null) {
+            dialog.titleTxtInputPassword.text = title
+        }
+
+        dialog.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window.setBackgroundDrawableResource(R.color.transparent)
+        dialog.submitBtnInputPassword.setOnClickListener {
+            dialog.dismiss()
+            submitCallback?.invoke(dialog.passwordEdtInputPassword.text.toString())
+        }
+        dialog.cancelBtnInputPassword.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+        return dialog
+    }
+
     fun getFileFromBitmap(context: Context, bitmap: Bitmap, fileName: String) : File {
         val f = File(context.getCacheDir(), fileName);
         f.createNewFile();
@@ -136,5 +178,26 @@ object Utils {
         fos.flush();
         fos.close();
         return f
+    }
+
+    fun copyText(context: Context, text: String) {
+        val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        clipboardManager.primaryClip = ClipData.newPlainText("text", text)
+        Toast.makeText(context, "Copied: $text", Toast.LENGTH_LONG).show()
+    }
+
+    fun blinkView(context: Context?, view: View, animId: Int? = null) {
+        view.startAnimation(AnimationUtils.loadAnimation(context, animId ?: R.anim.blink_anim))
+    }
+}
+
+class LoadQrCodeAsync(val callback: (Bitmap) -> Unit) : AsyncTask<String, Void, Bitmap>() {
+    override fun doInBackground(vararg params: String?): Bitmap {
+        return Utils.getQrCode(params[0]!!)
+    }
+
+    override fun onPostExecute(result: Bitmap?) {
+        super.onPostExecute(result)
+        callback(result!!)
     }
 }

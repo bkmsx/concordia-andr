@@ -7,13 +7,13 @@
         android:id="@+id/period"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pre-Sale 1: 23rd September 2018 - 5th October 2018"
-        android:textColor="@color/gray1"/>
+        android:text=" "
+        style="@style/ProjectDetailTextView"/>
     <TextView
         android:id="@+id/bonus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/gray1"
+        style="@style/ProjectDetailTextView"
         android:text="Bonus: 0%"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="10dp"/>

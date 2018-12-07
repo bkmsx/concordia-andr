@@ -51,6 +51,7 @@ class ParticipateHistoryAdapter: RecyclerView.Adapter<ParticipateHistoryAdapter.
             view.statusTxt.setTextColor(Color.GREEN)
         }
         view.btnClose.setOnClickListener {
+            Utils.blinkView(context, it)
             Utils.showConfirmDialog(context) {
                 delegate?.onDeleteItem(history?.historyId!!)
             }

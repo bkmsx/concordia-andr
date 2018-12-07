@@ -1,15 +1,20 @@
 package capital.novum.concordia.setting
 
+import android.content.Intent
 import android.os.Bundle
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import capital.novum.concordia.model.ParticipateDetailResult
 import capital.novum.concordia.model.ParticipateHistory
+import capital.novum.concordia.model.Project
+import capital.novum.concordia.share.ShareInformationActivity
+import capital.novum.concordia.share.ShareMethodsActivity
 import capital.novum.concordia.util.UrlConstant
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.usd_participate_detail.*
 
 class UsdParticipateDetail : BaseActivity() {
+    lateinit var history: ParticipateHistory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getParticipateDetail()
@@ -23,6 +28,7 @@ class UsdParticipateDetail : BaseActivity() {
 
     override fun customViews() {
         super.customViews()
+        btnNext.setOnClickListener { gotoShareInformation() }
     }
 
     override fun setupToolBar() {
@@ -51,9 +57,21 @@ class UsdParticipateDetail : BaseActivity() {
      */
     private fun getParticipateDetail(){
         val historyId = intent.getIntExtra("historyId", 0)
-        requestHttp(UrlConstant.PARTICIPATE_DETAIL, hashMapOf("history_id" to "$historyId")){
+        requestHttp(UrlConstant.PARTICIPATE_DETAIL, hashMapOf("history_id" to historyId.toString())){
             val result = it as ParticipateDetailResult
+            history = result.historyDetail!!
             setupLayout(result.historyDetail)
         }
+    }
+
+    /**
+     *  Navigations
+     */
+    private fun gotoShareInformation() {
+        val intent = Intent(this, if (history.promotion == 0)
+            ShareMethodsActivity::class.java else ShareInformationActivity::class.java).apply {
+            putExtra("projectId", history.projectId)
+        }
+        startActivity(intent)
     }
 }

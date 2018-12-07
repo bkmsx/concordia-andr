@@ -122,6 +122,12 @@ interface ConcordiaService {
             @Header("token") token: String
     ) : Observable<ReferralListResult>
 
+    @GET(UrlConstant.PROJECT_SHARE)
+    fun getProjectPromotion(
+            @Header("token") token: String,
+            @QueryMap params: HashMap<String, String>
+    ) : Observable<PromotionResult>
+
     @Multipart
     @POST(UrlConstant.UPDATE_PASSPORT)
     fun updatePassport(

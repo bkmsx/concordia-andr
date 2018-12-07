@@ -18,6 +18,8 @@ import capital.novum.concordia.model.Project
 import capital.novum.concordia.model.ProjectDetail
 import capital.novum.concordia.model.UserConstant
 import capital.novum.concordia.share.ShareInformationActivity
+import capital.novum.concordia.share.ShareMethodsActivity
+import capital.novum.concordia.util.LoadQrCodeAsync
 import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import com.google.zxing.BarcodeFormat
@@ -69,7 +71,10 @@ class ETHDetailActivity : BaseActivity() {
         val paymentMethod = project.paymentMethods.find{ it.methodName == paymentMethod }
         val address = paymentMethod?.walletAddress!!
         walletAddress.setText(address)
-        qrCode.setImageBitmap(Utils.getQrCode(address))
+        LoadQrCodeAsync{
+            qrCode.setImageBitmap(it)
+            progressBar.visibility = View.GONE
+        }.execute(address)
     }
 
     /*
@@ -78,6 +83,7 @@ class ETHDetailActivity : BaseActivity() {
 
     override fun rightToolbarClick() {
         super.rightToolbarClick()
+        Utils.blinkView(this, rightToolbarButton)
         goToProjectList()
     }
 
@@ -95,12 +101,15 @@ class ETHDetailActivity : BaseActivity() {
      *  Navigations
      */
 
-    fun goToShareInformation() {
-        val intent = Intent(this, ShareInformationActivity::class.java)
+    private fun goToShareInformation() {
+        val intent = Intent(this, if (project.promotion == 0)
+            ShareMethodsActivity::class.java else ShareInformationActivity::class.java).apply {
+            putExtra("projectId", project.projectId)
+        }
         startActivity(intent)
     }
 
-    fun goToProjectList() {
+    private fun goToProjectList() {
         val intent = Intent(this, ProjectListActivity::class.java)
         startActivity(intent)
         finish()

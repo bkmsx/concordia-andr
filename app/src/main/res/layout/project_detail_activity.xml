@@ -44,8 +44,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="20dp"
-                    android:text="W GREEN PAY"
-                    android:textColor="@color/blue2"
+                    android:text="CONCORDIA"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue4"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/projectImage"
                     app:layout_constraintTop_toTopOf="@id/projectImage" />
@@ -58,6 +60,7 @@
                     android:layout_marginTop="5dp"
                     android:text="ADDED: 23/6/2018"
                     android:textColor="@color/white"
+                    android:textSize="@dimen/project_detail_normal_textsize"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/projectTitle"
                     app:layout_constraintTop_toBottomOf="@+id/projectTitle" />
@@ -68,9 +71,9 @@
                     android:layout_height="60dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="TextView dakfdsfjaljflsd dsklfjad sdklfajkf dsaftext of the printing and typesetting industry."
+                    android:text=""
                     android:maxLines="3"
-                    android:textColor="@color/gray1"
+                    style="@style/ProjectDetailTextView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/addedDate"
                     app:layout_constraintTop_toBottomOf="@+id/addedDate" />
@@ -90,20 +93,20 @@
                 android:id="@+id/longDes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray1"
+                style="@style/ProjectDetailTextView"
                 android:layout_marginTop="15dp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PRE-SALE PERIOD"
+                android:text="SALE PERIOD"
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp"/>
             <TextView
                 android:id="@+id/currentTier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray1"
-                android:text="Public Sale"
+                style="@style/ProjectDetailTextView"
+                android:text=" "
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_width="match_parent"
@@ -134,7 +137,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageStatus"
+            android:id="@+id/statusImg"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginBottom="10dp"
@@ -144,16 +147,16 @@
             app:layout_constraintTop_toBottomOf="@+id/separate1"/>
 
         <TextView
-            android:id="@+id/textStatus"
+            android:id="@+id/statusTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/project_detail_user_status"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@id/imageStatus"
+            app:layout_constraintBottom_toBottomOf="@id/statusImg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.068"
-            app:layout_constraintStart_toEndOf="@+id/imageStatus"
-            app:layout_constraintTop_toTopOf="@id/imageStatus"
+            app:layout_constraintStart_toEndOf="@+id/statusImg"
+            app:layout_constraintTop_toTopOf="@id/statusImg"
             app:layout_constraintVertical_bias="1.0" />
 
         <Button
@@ -168,7 +171,7 @@
             app:layout_constraintBottom_toTopOf="@id/btnInviteFriend"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageStatus" />
+            app:layout_constraintTop_toBottomOf="@+id/statusImg" />
 
         <Button
             android:id="@+id/btnInviteFriend"

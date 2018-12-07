@@ -8,6 +8,7 @@ import capital.novum.concordia.R
 import capital.novum.concordia.model.DisplayType
 import capital.novum.concordia.model.DisplayWalletModel
 import capital.novum.concordia.model.UserWalletCategory
+import capital.novum.concordia.util.Utils
 import kotlinx.android.synthetic.main.item_wallet_body.view.*
 
 class WalletAdapter : RecyclerView.Adapter<WalletAdapter.ViewHolder>() {
@@ -47,8 +48,14 @@ class WalletAdapter : RecyclerView.Adapter<WalletAdapter.ViewHolder>() {
         val displayWalletModel = listWallet.get(position)
         view.nameTxt.text = displayWalletModel.name
         if (displayWalletModel.type != DisplayType.HEADER) {
-            view.deleteBtn.setOnClickListener { delegate?.deleteWallet(displayWalletModel.id) }
-            view.editBtn.setOnClickListener { delegate?.editWallet(displayWalletModel.id, displayWalletModel.methodId, displayWalletModel.name) }
+            view.deleteBtn.setOnClickListener {
+                Utils.blinkView(it.context, view.deleteBtn)
+                delegate?.deleteWallet(displayWalletModel.id, displayWalletModel.name)
+            }
+            view.editBtn.setOnClickListener {
+                Utils.blinkView(it.context, it)
+                delegate?.editWallet(displayWalletModel.id, displayWalletModel.methodId, displayWalletModel.name)
+            }
         }
         if (displayWalletModel.type == DisplayType.FOOTER) {
             holder.itemView.setBackgroundResource(R.drawable.blur_gray_bottom_round_bg)
@@ -58,7 +65,7 @@ class WalletAdapter : RecyclerView.Adapter<WalletAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     interface WalletAdapterDelegate {
-        fun deleteWallet(walletId: Int)
+        fun deleteWallet(walletId: Int, walletAddress: String)
         fun editWallet(walletId: Int, methodId: Int, wallet: String)
     }
 }

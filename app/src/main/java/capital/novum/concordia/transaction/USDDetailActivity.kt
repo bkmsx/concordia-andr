@@ -12,6 +12,7 @@ import capital.novum.concordia.model.Project
 import capital.novum.concordia.model.ProjectDetail
 import capital.novum.concordia.model.UserConstant
 import capital.novum.concordia.share.ShareInformationActivity
+import capital.novum.concordia.share.ShareMethodsActivity
 import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -70,6 +71,7 @@ class USDDetailActivity : BaseActivity() {
      */
     override fun rightToolbarClick() {
         super.rightToolbarClick()
+        Utils.blinkView(this, rightToolbarButton)
         goToProjectList()
     }
 
@@ -88,7 +90,10 @@ class USDDetailActivity : BaseActivity() {
      *  Navigations
      */
     fun goToShareInformation() {
-        val intent = Intent(this, ShareInformationActivity::class.java)
+        val intent = Intent(this, if (project.promotion == 0)
+            ShareMethodsActivity::class.java else ShareInformationActivity::class.java).apply {
+            putExtra("projectId", project.projectId)
+        }
         startActivity(intent)
     }
 

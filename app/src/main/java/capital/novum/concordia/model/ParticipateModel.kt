@@ -28,7 +28,7 @@ data class ParticipateHistory(
         val paymentDestination: PaymentDestination,
         val paymentSource: String,
         val amount: String,
-        val promotion: String,
+        val promotion: Int,
         val pricePerToken: String
 )
 

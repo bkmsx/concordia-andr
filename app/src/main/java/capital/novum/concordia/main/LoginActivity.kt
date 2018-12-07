@@ -2,6 +2,7 @@ package capital.novum.concordia.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
@@ -26,6 +27,33 @@ class LoginActivity : BaseActivity() {
         edtEmail.setText(email, TextView.BufferType.EDITABLE)
         val securityEnable = sharedPreferences.getString(UserConstant.deviceSecurityEnable, "false")
         if (securityEnable == "false") return
+        Handler().postDelayed({
+            askForFingerprint(email)
+        },500)
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.login_activity
+    }
+
+    override fun customViews() {
+        super.customViews()
+        loginBtn.setOnClickListener { login() }
+        forgotPasswordBtn.setOnClickListener {
+            Utils.blinkView(this, forgotPasswordBtn)
+            gotoForgotPassword()
+        }
+
+        registerBtn.setOnClickListener {
+            Utils.blinkView(this, registerBtn)
+            gotoRegister()
+        }
+    }
+
+    /**
+     *      Events
+     */
+    private fun askForFingerprint(email: String) {
         val fingerprintUtil = FingerprintUtil(this)
         if (fingerprintUtil.canUseFingerprint()){
             fingerprintUtil.startAuth("Login With Fingerprint", email) {
@@ -34,15 +62,7 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    override fun getLayoutId(): Int {
-        return R.layout.login_activity
-    }
-
-    /**
-     *      Events
-     */
-
-    fun login(view: View) {
+    fun login() {
         val email = edtEmail.text.toString()
         val password = edtPassword.text.toString()
         if (email.isEmpty()) {
@@ -95,12 +115,12 @@ class LoginActivity : BaseActivity() {
         finish()
     }
 
-    fun gotoRegister(view: View) {
+    fun gotoRegister() {
         val intent = Intent(this, RegistrationActivity::class.java)
         startActivity(intent)
     }
 
-    fun gotoForgotPassword(view: View) {
+    fun gotoForgotPassword() {
         val intent = Intent(this, ForgotPasswordActivity::class.java)
         startActivity(intent)
     }

@@ -22,7 +22,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:text="CVEN"/>
+            android:text="TERMS AND CONDITIONS"/>
         <ImageView
             android:id="@+id/btnTermsClose"
             android:layout_width="30dp"
@@ -32,8 +32,18 @@
             android:tint="@color/gray1"
             android:background="@drawable/light_gray_circle_res_bg"/>
     </LinearLayout>
-    <WebView
-        android:id="@+id/webview"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:indeterminate="true"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 </LinearLayout>

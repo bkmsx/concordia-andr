@@ -9,11 +9,13 @@ import android.provider.ContactsContract
 import android.content.ContentResolver
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import capital.novum.concordia.model.PhoneNumber
+import capital.novum.concordia.model.UserConstant
 import capital.novum.concordia.setting.adapter.PhoneListAdapter
 import capital.novum.concordia.util.Utils
 import kotlinx.android.synthetic.main.setting_phone_list_activity.*
@@ -22,6 +24,7 @@ import kotlinx.android.synthetic.main.setting_phone_list_activity.*
 class PhoneListActivity : BaseActivity(), PhoneListAdapter.PhoneListAdapterDelegate {
     lateinit var adapter: PhoneListAdapter
     var phoneList = ArrayList<PhoneNumber>()
+
     /**
      *  Custom views
      */
@@ -50,6 +53,8 @@ class PhoneListActivity : BaseActivity(), PhoneListAdapter.PhoneListAdapterDeleg
         })
         btnNext.setOnClickListener { gotoSendMsg() }
     }
+
+
 
     override fun setupToolBar() {
         super.setupToolBar()
@@ -97,7 +102,11 @@ class PhoneListActivity : BaseActivity(), PhoneListAdapter.PhoneListAdapterDeleg
         var number = ""
         adapter.selectedData.forEach { number += "$it," }
         val smsIntent = Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:$number"))
-        smsIntent.putExtra("sms_body", "Nothing")
+        val refCode = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.referralCode, "")
+        val msg = "Hi there! I've just tried Concordia Ventures App and it looks interesting. " +
+                "It allows me to earn passive income for life! Sign up with this code \"$refCode\" to register for free! " +
+                "You can download from https://www.concordia.ventures"
+        smsIntent.putExtra("sms_body", msg)
         startActivity(smsIntent)
     }
 }

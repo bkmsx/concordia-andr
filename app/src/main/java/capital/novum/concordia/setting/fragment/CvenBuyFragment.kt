@@ -16,7 +16,10 @@ class CvenBuyFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.cven_buy_fragment, container, false)
         view.cvenAddress.setText(CVEN_ADDRESS)
-        view.btnDialog.setOnClickListener { Utils.showCvenDialog(context) }
+        view.btnDialog.setOnClickListener {
+            Utils.blinkView(context, it)
+            Utils.showCvenDialog(context)
+        }
         return view
     }
 }

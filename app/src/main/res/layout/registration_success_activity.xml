@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registration.RegistrationActivity">
+    tools:context=".registration.RegistrationSuccessActivity">
 
     <include layout="@layout/app_toolbar" />
 
@@ -69,14 +69,10 @@
         android:layout_marginTop="25dp"
         android:gravity="center"/>
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        style="@style/NextButton"
         android:onClick="goNext"
         android:text="GO TO LOGIN PAGE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="0dp"
-        android:textColor="@color/white"
-        android:background="@color/blue2"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 </android.support.constraint.ConstraintLayout>

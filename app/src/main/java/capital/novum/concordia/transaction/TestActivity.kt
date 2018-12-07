@@ -14,9 +14,11 @@ import android.security.keystore.KeyProperties
 import android.support.v4.app.ActivityCompat
 import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import capital.novum.concordia.util.Utils
+import kotlinx.android.synthetic.main.test_activity.*
 import java.lang.Exception
 import java.security.KeyStore
 import javax.crypto.Cipher
@@ -41,36 +43,7 @@ class TestActivity : BaseActivity() {
 
     override fun customViews() {
         super.customViews()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
-            fingerprintManager = getSystemService(Context.FINGERPRINT_SERVICE) as FingerprintManager
-            if (!fingerprintManager.isHardwareDetected) {
-                Utils.showNoticeDialog(this, msg = "Device doesn\'t support fingerprint authentication")
-                return
-            }
-
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
-                Utils.showNoticeDialog(this, msg = "Please grant fingerprint permission")
-                return
-            }
-
-            if (!fingerprintManager.hasEnrolledFingerprints()) {
-                Utils.showNoticeDialog(this, msg = "No fingerprint configured")
-                return
-            }
-
-            if (!keyguardManager.isKeyguardSecure) {
-                Utils.showNoticeDialog(this, msg = "Please enable lockscreen security in your device")
-                return
-            }
-
-            generateKey()
-            if (initCipher()) {
-                cryptoObject = FingerprintManager.CryptoObject(cipher)
-                val helper = FingerprintHandler()
-                helper.startAuth(fingerprintManager, cryptoObject)
-            }
-        }
+        testBtn.setOnClickListener { testBtn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.blink_anim)) }
     }
 
     @TargetApi(Build.VERSION_CODES.M)

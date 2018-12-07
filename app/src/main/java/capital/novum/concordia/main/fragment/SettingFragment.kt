@@ -9,9 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import capital.novum.concordia.R
 import capital.novum.concordia.main.LoginActivity
+import capital.novum.concordia.model.LocalData
 import capital.novum.concordia.model.UserConstant
 import capital.novum.concordia.setting.*
 import capital.novum.concordia.share.ShareInformationActivity
+import capital.novum.concordia.util.Constants
+import capital.novum.concordia.util.Utils
+import kotlinx.android.synthetic.main.setting_fragment.*
 import kotlinx.android.synthetic.main.setting_fragment.view.*
 
 class SettingFragment : Fragment() {
@@ -24,6 +28,12 @@ class SettingFragment : Fragment() {
         val email = sharedPreferences.getString(UserConstant.email, "")
         val countryCode = sharedPreferences.getString(UserConstant.countryCode, null)
         val phoneNumber = sharedPreferences.getString(UserConstant.phoneNumber, null)
+        val status = sharedPreferences.getString(UserConstant.status, null)
+        if (status != Constants.CLEARED) {
+            view.statusImg.setImageResource(R.mipmap.timer)
+            view.statusTxt.text = "Unverified"
+
+        }
         if (countryCode != null) {
             view.mobileNumberTxt.text = "+$countryCode $phoneNumber"
         } else {
@@ -40,7 +50,7 @@ class SettingFragment : Fragment() {
         view.changePassword.setOnClickListener { goToChangePassword() }
 
         view.updatePassport.setSettingIcon(R.mipmap.passport)
-        view.updatePassport.setSettingName("Update Passport")
+        view.updatePassport.setSettingName(if (status == Constants.CLEARED) "Update Passport" else "Update Passport (VERIFY NOW)")
         view.updatePassport.setOnClickListener { goToUpdatePassport() }
 
         view.walletList.setSettingIcon(R.mipmap.wallet)
@@ -56,7 +66,10 @@ class SettingFragment : Fragment() {
         view.referralNetwork.setOnClickListener { goToReferralNetwork() }
 
         view.btnLogout.setOnClickListener { logout() }
-        view.btnEditPhone.setOnClickListener { goToChangeMobile() }
+        view.btnEditPhone.setOnClickListener {
+            Utils.blinkView(activity, view.btnEditPhone)
+            goToChangeMobile()
+        }
         view.btnShare.setOnClickListener { goToShareWithFriends() }
 
         view.btnCven.setOnClickListener { goToCvenExchange() }
@@ -112,6 +125,7 @@ class SettingFragment : Fragment() {
     }
 
     private fun logout() {
+        LocalData.removeUserDetail(activity!!)
         val intent = Intent(activity, LoginActivity::class.java)
         startActivity(intent)
         activity?.finish()

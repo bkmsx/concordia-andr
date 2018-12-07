@@ -10,6 +10,8 @@ import android.util.Log
 import android.view.Gravity
 import capital.novum.concordia.R
 import capital.novum.concordia.model.UserConstant
+import capital.novum.concordia.registration.RegistrationActivity
+import capital.novum.concordia.transaction.TestActivity
 import capital.novum.concordia.util.Constants
 
 class SplashScreenActivity : AppCompatActivity() {

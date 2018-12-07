@@ -21,10 +21,7 @@
         android:background="@mipmap/pattern"/>
     <Button
         android:id="@+id/btnNext"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textColor="@color/white"
-        android:background="@color/blue2"
+        style="@style/NextButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

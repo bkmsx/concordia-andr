@@ -20,7 +20,7 @@ import javax.crypto.KeyGenerator
 
 @TargetApi(Build.VERSION_CODES.M)
 class FingerprintUtil(val context: Context) : FingerprintManager.AuthenticationCallback() {
-    private val cancellationSignal by lazy { CancellationSignal() }
+    lateinit var cancellationSignal: CancellationSignal
     private val fingerprintManager by lazy { context.getSystemService(Context.FINGERPRINT_SERVICE) as FingerprintManager }
     private val keyguardManager by lazy { context.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager }
     private val cipher by lazy {
@@ -73,6 +73,7 @@ class FingerprintUtil(val context: Context) : FingerprintManager.AuthenticationC
         dialog = Utils.showFingerprintDialog(context, title = title, msg = msg, cancelCallback = {cancel()})
         this.callback = callback
         this.email = msg
+        cancellationSignal = CancellationSignal()
         fingerprintManager.authenticate(cryptoObject, cancellationSignal, 0, this, null)
     }
 

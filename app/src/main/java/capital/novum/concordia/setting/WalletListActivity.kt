@@ -46,8 +46,8 @@ class WalletListActivity : BaseActivity(), WalletAdapter.WalletAdapterDelegate {
     /**
      *  Events
      */
-    override fun deleteWallet(walletId: Int) {
-        Utils.showConfirmDialog(this, "Are you sure you want to delete this address?"){
+    override fun deleteWallet(walletId: Int, walletAddress: String) {
+        Utils.showConfirmDialog(this, "Are you sure you want to delete \"$walletAddress\" ?"){
             callDeleteWallet(walletId)
         }
     }

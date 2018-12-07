@@ -41,7 +41,8 @@ data class Project (
         var websiteUrl: String,
         var paymentMethods: List<PaymentMethod>,
         var status: String,
-        var salePeriods: List<SalePeriod>
+        var salePeriods: List<SalePeriod>,
+        var promotion: Int
 )
 
 class ProjectList : Result() {

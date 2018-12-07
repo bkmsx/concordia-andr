@@ -29,6 +29,7 @@ data class User (
         var createdAt: String,
         var updatedAt: String
 )
+
 class LoginResult : Result() {
     var user: User? = null
 }

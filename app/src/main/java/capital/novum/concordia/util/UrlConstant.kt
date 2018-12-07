@@ -28,9 +28,9 @@ object UrlConstant {
     const val PROJECT_DETAIL = "project/detail"
     const val PROJECT_LIST = "project/list"
     const val PROJECT_PARTICIPATE = "project/participate"
+    const val PROJECT_SHARE = "project/share"
 
     const val LOGIN_ACCOUNT = "login/account"
     const val REGISTER = "register"
     const val FORGOT_PASSWORD = "forgot-password"
-
 }

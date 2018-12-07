@@ -27,4 +27,10 @@
     deposit the ETH to your sending CVEN wallet address within one to three business days.</string>
     <string name="cven_dialog_text_7">Are there any other fees for buying or selling CVEN tokens?</string>
     <string name="cven_dialog_text_8">Since CVEN is an ERC20 token, all standard Ethereum blockchain gas fees apply.</string>
+
+    <string name="input_wallet_type_txt">Your %s Wallet:</string>
+    <string name="input_wallet_notice_txt">Your %s must be sent from this wallet</string>
+    <string name="input_wallet_comment">Please include your email to bank transaction, so we can identify your transaction.</string>
+
+    <string name="project_detail_notice_unverified">Your account is unverified. Please go to Update Passport to verify your account</string>
 </resources>

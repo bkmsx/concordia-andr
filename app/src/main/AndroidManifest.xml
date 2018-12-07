@@ -34,7 +34,7 @@
         <activity android:name=".main.ProjectListActivity" />
         <activity android:name=".main.LoginActivity" />
         <activity android:name=".transaction.ProjectDetailActivity"/>
-        <activity android:name=".transaction.TermsAndCoditionsActivity"/>
+        <activity android:name=".transaction.TermsAndConditionsActivity"/>
         <activity android:name=".transaction.InputWalletActivity"/>
         <activity android:name=".transaction.AmountTokensActivity"/>
         <activity android:name=".transaction.TestActivity"/>
@@ -50,7 +50,8 @@
         <activity android:name=".setting.ChangePasswordActivity"/>
         <activity android:name=".setting.EditWalletActivity"/>
         <activity android:name=".setting.HistoryListActivity"/>
-        <activity android:name=".setting.ReferralCodeActivity"/>
+        <activity android:name=".setting.ReferralCodeActivity"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".setting.UpdatePassportActivity"/>
         <activity android:name=".setting.CvenExchangeActivity"/>
         <activity android:name=".setting.EthParticipateDetail"/>

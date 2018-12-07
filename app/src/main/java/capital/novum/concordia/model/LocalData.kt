@@ -4,7 +4,6 @@ import android.content.Context
 import android.preference.PreferenceManager
 
 object LocalData {
-
     fun saveUserDetail(context : Context, user: User) {
         val sharePref = PreferenceManager.getDefaultSharedPreferences(context)
         sharePref.edit()
@@ -34,6 +33,38 @@ object LocalData {
                 .putString(UserConstant.createdAt, user.createdAt)
                 .putString(UserConstant.updatedAt, user.updatedAt)
                 .putString(UserConstant.token, user.token)
+                .apply()
+    }
+
+    fun removeUserDetail(context : Context) {
+        val sharePref = PreferenceManager.getDefaultSharedPreferences(context)
+        sharePref.edit()
+                .remove(UserConstant.id)
+                .remove(UserConstant.firstName)
+                .remove(UserConstant.lastName)
+                .remove(UserConstant.email)
+                .remove(UserConstant.dateOfBirth)
+                .remove(UserConstant.phoneNumber)
+                .remove(UserConstant.countryCode)
+                .remove(UserConstant.countryOfResidence)
+                .remove(UserConstant.deviceSecurityEnable)
+                .remove(UserConstant.deviceId)
+                .remove(UserConstant.typeOfSecurity)
+                .remove(UserConstant.securityToken)
+                .remove(UserConstant.status)
+                .remove(UserConstant.citizenshipId)
+                .remove(UserConstant.citizenship)
+                .remove(UserConstant.passportNumber)
+                .remove(UserConstant.passportPhoto)
+                .remove(UserConstant.selfiePhoto)
+                .remove(UserConstant.erc20Address)
+                .remove(UserConstant.kycStatus)
+                .remove(UserConstant.referralCode)
+                .remove(UserConstant.referredBy)
+                .remove(UserConstant.passportVerified)
+                .remove(UserConstant.createdAt)
+                .remove(UserConstant.updatedAt)
+                .remove(UserConstant.token)
                 .apply()
     }
 }

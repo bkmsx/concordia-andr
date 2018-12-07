@@ -51,10 +51,10 @@ class ChangeMobilePhoneActivity : BaseActivity() {
         val sharedPreference = PreferenceManager.getDefaultSharedPreferences(this)
         val oldCountryCode = sharedPreference.getString(UserConstant.countryCode, "")
         val oldPhoneNumber = sharedPreference.getString(UserConstant.phoneNumber, "")
-//        if (countryCode == oldCountryCode && phoneNumber == oldPhoneNumber) {
-//            Utils.showNoticeDialog(this, msg = "Phone number must be different")
-//            return
-//        }
+        if (countryCode == oldCountryCode && phoneNumber == oldPhoneNumber) {
+            Utils.showNoticeDialog(this, msg = "Phone number must be different")
+            return
+        }
 
         PreferenceManager.getDefaultSharedPreferences(this)
                 .edit()

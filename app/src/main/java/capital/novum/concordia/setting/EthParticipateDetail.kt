@@ -2,18 +2,21 @@ package capital.novum.concordia.setting
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
 import capital.novum.concordia.model.ParticipateDetailResult
 import capital.novum.concordia.model.ParticipateHistory
 import capital.novum.concordia.share.ShareInformationActivity
+import capital.novum.concordia.share.ShareMethodsActivity
+import capital.novum.concordia.util.LoadQrCodeAsync
 import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.eth_participate_detail.*
 
 class EthParticipateDetail : BaseActivity() {
-
+    lateinit var history: ParticipateHistory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getParticipateDetail()
@@ -39,7 +42,10 @@ class EthParticipateDetail : BaseActivity() {
         paymentAmountTxt.text = "Total amount: ${history?.amount}"
         val address = history?.paymentDestination?.walletAddress!!
         walletAddress.setText(address)
-        qrAddress.setImageBitmap(Utils.getQrCode(address))
+        LoadQrCodeAsync{
+            qrAddress.setImageBitmap(it)
+            progressBar.visibility = View.GONE
+        }.execute(address)
         btnNext.setOnClickListener { gotoShareInformation() }
     }
 
@@ -48,9 +54,9 @@ class EthParticipateDetail : BaseActivity() {
      */
     private fun getParticipateDetail() {
         val historyId = intent.getIntExtra("historyId", 0)
-        requestHttp(UrlConstant.PARTICIPATE_DETAIL, hashMapOf("history_id" to "$historyId")) {
+        requestHttp(UrlConstant.PARTICIPATE_DETAIL, hashMapOf("history_id" to historyId.toString())) {
             val result = it as ParticipateDetailResult
-            val history = result.historyDetail
+            history = result.historyDetail!!
             setupLayout(history)
         }
     }
@@ -59,7 +65,10 @@ class EthParticipateDetail : BaseActivity() {
      *  Navigations
      */
     private fun gotoShareInformation() {
-        val intent = Intent(this, ShareInformationActivity::class.java)
+        val intent = Intent(this, if (history.promotion == 0)
+            ShareMethodsActivity::class.java else ShareInformationActivity::class.java).apply {
+            putExtra("projectId", history.projectId)
+        }
         startActivity(intent)
     }
 }
