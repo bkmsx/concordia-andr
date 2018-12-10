@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "657550941185",
+    "firebase_url": "https://concordia-27e37.firebaseio.com",
+    "project_id": "concordia-27e37",
+    "storage_bucket": "concordia-27e37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657550941185:android:80a853cd8cf11f19",
+        "android_client_info": {
+          "package_name": "capital.novum.concordia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "657550941185-i2s3ohs8519fh5ku2aag4gsii9lmjl93.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "capital.novum.concordia",
+            "certificate_hash": "b65c93a399e0575e557a46f44269c73038dc678f"
+          }
+        },
+        {
+          "client_id": "657550941185-nfflt0sccspj8ed7qfn86d8qefpfj37b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXoVtYdWaEV_o-hGrU8FF0BoNAYCmcz_A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "657550941185-nfflt0sccspj8ed7qfn86d8qefpfj37b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "657550941185-5j7ovr1iilcr7d3fsrnik392t1or4osu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "novum.capital.kyc.app"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

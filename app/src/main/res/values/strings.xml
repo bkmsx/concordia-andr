@@ -33,4 +33,11 @@
     <string name="input_wallet_comment">Please include your email to bank transaction, so we can identify your transaction.</string>
 
     <string name="project_detail_notice_unverified">Your account is unverified. Please go to Update Passport to verify your account</string>
+    <string name="update_passport_waiting_msg">We are in the process of verifying your passport details</string>
+
+    <string name="wallet_list_no_wallet_title">No wallet found</string>
+    <string name="wallet_list_no_wallet_msg">You have not added any wallet</string>
+    <string name="history_list_no_participate_title">Ooops!</string>
+    <string name="history_list_no_participate_msg">You have not participated in any Token sale</string>
+    <string name="bonus_list_no_referrer_msg">0 friends signed up using your referral code</string>
 </resources>

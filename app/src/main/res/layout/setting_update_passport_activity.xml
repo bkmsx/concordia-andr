@@ -106,11 +106,21 @@
             android:layout_marginTop="20dp"
             android:scaleType="fitXY"/>
         <TextView
+            android:id="@+id/selfieTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TAKE A SELFIE"
             android:textSize="14sp"
             android:textColor="@color/white"
             android:layout_marginTop="5dp"/>
+        <TextView
+            android:id="@+id/waitingTxt"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:text="@string/update_passport_waiting_msg"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

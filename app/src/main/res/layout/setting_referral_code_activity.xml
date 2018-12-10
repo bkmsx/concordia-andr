@@ -72,14 +72,28 @@
                 android:textSize="14sp"
                 android:textColor="@color/blue2"/>
         </LinearLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="20dp"
-            android:paddingStart="@dimen/referral_programme_padding"
-            android:paddingEnd="@dimen/referral_programme_padding"/>
+            android:layout_marginTop="20dp">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/referral_programme_padding"
+                android:paddingEnd="@dimen/referral_programme_padding"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:text="@string/bonus_list_no_referrer_msg"
+                android:layout_marginTop="100dp"
+                android:paddingStart="@dimen/referral_programme_padding"
+                android:paddingEnd="@dimen/referral_programme_padding"/>
+        </RelativeLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

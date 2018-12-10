@@ -101,4 +101,12 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
     </style>
+    <style name="SettingItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/setting_item_height</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginStart">@dimen/setting_item_margin</item>
+        <item name="android:layout_marginEnd">@dimen/setting_item_margin</item>
+        <item name="android:background">@drawable/gray_bottom_line_res_bg</item>
+    </style>
 </resources>

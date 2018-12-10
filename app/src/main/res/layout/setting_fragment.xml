@@ -118,52 +118,22 @@
 
     <capital.novum.concordia.customview.SettingItem
         android:id="@+id/touchSetting"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/setting_item_height"
-        android:gravity="center_vertical"
-        android:layout_marginStart="@dimen/setting_item_margin"
-        android:layout_marginEnd="@dimen/setting_item_margin"
-        android:background="@drawable/gray_bottom_line_res_bg"/>
+        style="@style/SettingItem"/>
     <capital.novum.concordia.customview.SettingItem
         android:id="@+id/changePassword"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/setting_item_height"
-        android:gravity="center_vertical"
-        android:layout_marginStart="@dimen/setting_item_margin"
-        android:layout_marginEnd="@dimen/setting_item_margin"
-        android:background="@drawable/gray_bottom_line_res_bg"/>
+        style="@style/SettingItem"/>
     <capital.novum.concordia.customview.SettingItem
         android:id="@+id/updatePassport"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/setting_item_height"
-        android:gravity="center_vertical"
-        android:layout_marginStart="@dimen/setting_item_margin"
-        android:layout_marginEnd="@dimen/setting_item_margin"
-        android:background="@drawable/gray_bottom_line_res_bg"/>
+        style="@style/SettingItem"/>
     <capital.novum.concordia.customview.SettingItem
         android:id="@+id/walletList"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/setting_item_height"
-        android:gravity="center_vertical"
-        android:layout_marginStart="@dimen/setting_item_margin"
-        android:layout_marginEnd="@dimen/setting_item_margin"
-        android:background="@drawable/gray_bottom_line_res_bg"/>
+        style="@style/SettingItem"/>
     <capital.novum.concordia.customview.SettingItem
         android:id="@+id/participateHistory"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/setting_item_height"
-        android:gravity="center_vertical"
-        android:layout_marginStart="@dimen/setting_item_margin"
-        android:layout_marginEnd="@dimen/setting_item_margin"
-        android:background="@drawable/gray_bottom_line_res_bg"/>
+        style="@style/SettingItem"/>
     <capital.novum.concordia.customview.SettingItem
         android:id="@+id/referralNetwork"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/setting_item_height"
-        android:gravity="center_vertical"
-        android:layout_marginStart="@dimen/setting_item_margin"
-        android:layout_marginEnd="@dimen/setting_item_margin"
-        android:background="@drawable/gray_bottom_line_res_bg"/>
+        style="@style/SettingItem"/>
     <Button
         android:id="@+id/btnShare"
         android:layout_width="match_parent"

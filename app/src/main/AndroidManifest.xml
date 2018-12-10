@@ -59,6 +59,15 @@
         <activity android:name=".setting.PhoneListActivity"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".main.SlideShowActivity"/>
+
+        <service android:name=".service.ConcordiaFirebaseMessageService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/concordia_white" />
     </application>
 
 </manifest>

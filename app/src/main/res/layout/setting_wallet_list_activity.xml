@@ -24,7 +24,8 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
-        app:layout_constraintBottom_toTopOf="@+id/btnNext">
+        app:layout_constraintBottom_toTopOf="@+id/btnNext"
+        android:background="@mipmap/pattern">
         <ImageView
             android:layout_width="90dp"
             android:layout_height="90dp"
@@ -37,6 +38,31 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"/>
+        <LinearLayout
+            android:id="@+id/noWalletLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/blue2"
+                android:textSize="18sp"
+                android:text="@string/wallet_list_no_wallet_title"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:layout_marginTop="15dp"
+                android:text="@string/wallet_list_no_wallet_msg"/>
+        </LinearLayout>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

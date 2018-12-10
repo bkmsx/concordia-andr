@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
@@ -21,6 +22,7 @@ import capital.novum.concordia.model.Country
 import capital.novum.concordia.model.Nationality
 import capital.novum.concordia.model.UserConstant
 import capital.novum.concordia.registration.VerifyOTPActivity
+import capital.novum.concordia.util.Constants
 import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import kotlinx.android.synthetic.main.setting_update_passport_activity.*
@@ -54,6 +56,17 @@ class UpdatePassportActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
         passportNumberEdt.setText(sharedPreference.getString(UserConstant.passportNumber, ""))
         dobEdt.setText(sharedPreference.getString(UserConstant.dateOfBirth, ""))
         phoneNumberEdt.setText(sharedPreference.getString(UserConstant.phoneNumber, ""))
+        val status = sharedPreference.getString(UserConstant.kycStatus, null)
+        val passportVerified = sharedPreference.getString(UserConstant.passportVerified, null)
+        val countryCode = sharedPreference.getString(UserConstant.countryCode, null)
+        if (countryCode != null) countryCodePicker.setCountryForPhoneCode(countryCode.toInt())
+
+        if (passportVerified == Constants.VERIFIED && status != Constants.CLEARED) {
+            btnPassport.visibility = View.GONE
+            btnSelfie.visibility = View.GONE
+            selfieTxt.visibility = View.GONE
+            waitingTxt.visibility = View.VISIBLE
+        }
 
         val datePicker = DatePickerDialog(this, this, 1993, 0, 1)
         dobEdt.setOnClickListener { datePicker.show() }
@@ -169,6 +182,7 @@ class UpdatePassportActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
                         .putString(UserConstant.countryCode, countryCode)
                         .putString(UserConstant.phoneNumber, phoneNumber)
                         .putString(UserConstant.dateOfBirth, dob)
+                        .putString(UserConstant.passportVerified, "1")
                         .apply()
                 finish()
             }
@@ -182,6 +196,14 @@ class UpdatePassportActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
             countries = result.countries!!
             spinnerCitizenship.setData(citizenships.map { it.nationality })
             spinnerCountry.setData(countries.map { it.country })
+            Handler().postDelayed({
+                val citizenship = sharedPreference.getString(UserConstant.citizenship, null)
+                val country = sharedPreference.getString(UserConstant.countryOfResidence, null)
+                if (citizenship != null) spinnerCitizenship.setText(citizenship)
+                if (country != null) spinnerCountry.setText(country)
+            }, 500)
+
+
         }
     }
 

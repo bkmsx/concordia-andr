@@ -36,7 +36,7 @@ class ProjectDetailActivity : BaseActivity() {
     override fun customViews() {
         super.customViews()
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val status = sharedPreferences.getString(UserConstant.status, null)
+        val status = sharedPreferences.getString(UserConstant.kycStatus, null)
         if (status != Constants.CLEARED) {
             statusImg.setImageResource(R.mipmap.timer)
             statusTxt.text = "You are unverified"

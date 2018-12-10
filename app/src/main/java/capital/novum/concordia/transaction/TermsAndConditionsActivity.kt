@@ -70,10 +70,11 @@ class TermsAndConditionsActivity : BaseActivity() {
             }
         } else {
             Utils.showInputPasswordDialog(this) {
+                val deviceId = sharedPreferences.getString(Constants.DEVICE_ID, "")
                 loginAccount(hashMapOf(
                         "email" to email,
                         "password" to it,
-                        "device_id" to "123",
+                        "device_id" to deviceId,
                         "platform" to "Android"
                 ))
             }

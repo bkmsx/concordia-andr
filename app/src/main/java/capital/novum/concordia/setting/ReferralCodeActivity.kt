@@ -37,7 +37,6 @@ class ReferralCodeActivity : BaseActivity() {
         recyclerView.adapter = adapter
         val referralBy = PreferenceManager.getDefaultSharedPreferences(this).getString(UserConstant.referredBy, null)
         if (referralBy != null) referralCodeLayout.visibility = View.GONE
-
         btnUpdate.setOnClickListener { updateReferralCode() }
     }
 

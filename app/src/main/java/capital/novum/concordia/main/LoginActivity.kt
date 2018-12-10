@@ -73,20 +73,22 @@ class LoginActivity : BaseActivity() {
             Utils.showNoticeDialog(this, msg = "Password is empty")
             return
         }
+        val deviceId = sharedPreferences.getString(Constants.DEVICE_ID, "")
         val params = hashMapOf(
                 "email" to email,
                 "password" to password,
-                "device_id" to "123",
+                "device_id" to deviceId,
                 "platform" to "Android"
         )
         loginAccount(params)
     }
 
     private fun loginWithSecurityToken() {
+        val deviceId = sharedPreferences.getString(Constants.DEVICE_ID, "")
         val params = hashMapOf(
                 "email" to edtEmail.text.toString(),
                 "security_token" to sharedPreferences.getString(UserConstant.securityToken, ""),
-                "device_id" to "123",
+                "device_id" to deviceId,
                 "platform" to "Android"
         )
         loginAccount(params)
@@ -99,7 +101,7 @@ class LoginActivity : BaseActivity() {
         requestHttp(UrlConstant.LOGIN_ACCOUNT, params) {
             val result = it as LoginResult
             LocalData.saveUserDetail(this, result.user!!)
-            Log.e("Login", result.user!!.token)
+            Log.e("Login", result.user!!.deviceId)
             sharedPreferences.edit().putBoolean(Constants.REGISTED, true).apply()
             gotoProjectList()
         }

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
+import capital.novum.concordia.main.ProjectListActivity
 import capital.novum.concordia.model.ParticipateListResult
 import capital.novum.concordia.setting.adapter.ParticipateHistoryAdapter
 import capital.novum.concordia.transaction.ETHDetailActivity
@@ -36,6 +37,7 @@ class HistoryListActivity : BaseActivity(), ParticipateHistoryAdapter.OnParticip
         adapter = ParticipateHistoryAdapter(this)
         adapter.delegate = this
         recyclerView.adapter = adapter
+        nextBtn.setOnClickListener { gotoProjectList() }
     }
 
     override fun setupToolBar() {
@@ -49,7 +51,14 @@ class HistoryListActivity : BaseActivity(), ParticipateHistoryAdapter.OnParticip
     private fun getHistoryList() {
         requestHttp(UrlConstant.LIST_PARTICIPATE) {
             val result = it as ParticipateListResult
-            adapter.loadData(result.history)
+            if (result.history.isEmpty()) {
+                recyclerView.visibility = View.GONE
+                emptyLayout.visibility = View.VISIBLE
+            } else {
+                adapter.loadData(result.history)
+                recyclerView.visibility = View.VISIBLE
+                emptyLayout.visibility = View.GONE
+            }
         }
     }
 
@@ -74,6 +83,15 @@ class HistoryListActivity : BaseActivity(), ParticipateHistoryAdapter.OnParticip
         val intent = Intent(this, ProjectDetailActivity::class.java)
         intent.putExtra("projectId", projectId)
         startActivity(intent)
+    }
+
+    /**
+     *  Navigations
+     */
+    private fun gotoProjectList() {
+        val intent = Intent(this, ProjectListActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 }

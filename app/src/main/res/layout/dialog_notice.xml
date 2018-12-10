@@ -25,7 +25,7 @@
         android:paddingEnd="10dp"
         android:gravity="center_horizontal"
         android:layout_height="wrap_content"
-        android:textColor="@color/gray1"
+        android:textColor="@color/black3"
         android:text="Email is empty"
         android:background="@drawable/gray_bottom_line_bg"
         android:paddingTop="10dp"

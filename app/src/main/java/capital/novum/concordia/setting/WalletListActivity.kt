@@ -35,6 +35,7 @@ class WalletListActivity : BaseActivity(), WalletAdapter.WalletAdapterDelegate {
         adapter.delegate = this
         recyclerView.adapter = adapter
 
+
         btnNext.setOnClickListener { gotoAddWallet() }
     }
 
@@ -69,7 +70,14 @@ class WalletListActivity : BaseActivity(), WalletAdapter.WalletAdapterDelegate {
     private fun getWalletList() {
         requestHttp(UrlConstant.LIST_WALLET) {
             val result = it as UserWallets
-            adapter.data = result.wallets
+            if (result.wallets.isEmpty()) {
+                recyclerView.visibility = View.GONE
+                noWalletLayout.visibility = View.VISIBLE
+            } else {
+                recyclerView.visibility = View.VISIBLE
+                noWalletLayout.visibility = View.GONE
+                adapter.data = result.wallets
+            }
         }
     }
 

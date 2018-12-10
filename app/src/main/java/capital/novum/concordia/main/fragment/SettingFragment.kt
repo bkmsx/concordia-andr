@@ -28,11 +28,11 @@ class SettingFragment : Fragment() {
         val email = sharedPreferences.getString(UserConstant.email, "")
         val countryCode = sharedPreferences.getString(UserConstant.countryCode, null)
         val phoneNumber = sharedPreferences.getString(UserConstant.phoneNumber, null)
-        val status = sharedPreferences.getString(UserConstant.status, null)
+        val status = sharedPreferences.getString(UserConstant.kycStatus, null)
+        val passportVerify = sharedPreferences.getString(UserConstant.passportVerified, null)
         if (status != Constants.CLEARED) {
             view.statusImg.setImageResource(R.mipmap.timer)
             view.statusTxt.text = "Unverified"
-
         }
         if (countryCode != null) {
             view.mobileNumberTxt.text = "+$countryCode $phoneNumber"
@@ -50,7 +50,8 @@ class SettingFragment : Fragment() {
         view.changePassword.setOnClickListener { goToChangePassword() }
 
         view.updatePassport.setSettingIcon(R.mipmap.passport)
-        view.updatePassport.setSettingName(if (status == Constants.CLEARED) "Update Passport" else "Update Passport (VERIFY NOW)")
+        view.updatePassport.setSettingName(if (status == Constants.CLEARED || passportVerify == "1")
+            "Update Passport" else "Update Passport (VERIFY NOW)")
         view.updatePassport.setOnClickListener { goToUpdatePassport() }
 
         view.walletList.setSettingIcon(R.mipmap.wallet)
