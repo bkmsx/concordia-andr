@@ -84,12 +84,14 @@
                 android:paddingStart="@dimen/referral_programme_padding"
                 android:paddingEnd="@dimen/referral_programme_padding"/>
             <TextView
+                android:id="@+id/emptyTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:textColor="@color/white"
                 android:text="@string/bonus_list_no_referrer_msg"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="150dp"
+                android:visibility="gone"
                 android:paddingStart="@dimen/referral_programme_padding"
                 android:paddingEnd="@dimen/referral_programme_padding"/>
         </RelativeLayout>

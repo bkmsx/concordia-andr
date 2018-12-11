@@ -46,10 +46,6 @@ class ReferralCodeActivity : BaseActivity() {
     }
 
     /**
-     *  Events
-     */
-
-    /**
      *  Call API
      */
     private fun updateReferralCode() {
@@ -67,6 +63,10 @@ class ReferralCodeActivity : BaseActivity() {
         requestHttp(UrlConstant.LIST_REFERRAL_BONUS){
             val result = it as ReferralListResult
             adapter.data = result.referralList
+            if (result.referralList.isEmpty()) {
+                emptyTxt.visibility = View.VISIBLE
+                return@requestHttp
+            }
             var totalPoint: Double = 0.0
             result.referralList.forEach { totalPoint += it.amount.toDouble() }
             totalPointTxt.text = "$totalPoint"

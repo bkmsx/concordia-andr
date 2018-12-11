@@ -60,7 +60,6 @@ abstract class BaseActivity : AppCompatActivity() {
         leftToolbarButton = findViewById(R.id.left_button)
         toolbarTitle = findViewById(R.id.toolbar_title)
         leftToolbarButton.setOnClickListener {
-            Utils.blinkView(this, leftToolbarButton, R.anim.blink1_anim)
             leftToolbarClick()
         }
         rightToolbarButton.setOnClickListener {
@@ -73,6 +72,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     open fun leftToolbarClick() {
+        Utils.blinkView(this, leftToolbarButton, R.anim.blink1_anim)
         onBackPressed()
     }
 

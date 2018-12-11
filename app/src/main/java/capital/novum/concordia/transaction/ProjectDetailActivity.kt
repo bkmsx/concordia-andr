@@ -67,6 +67,8 @@ class ProjectDetailActivity : BaseActivity() {
             btnParticipate.isEnabled = false
             btnParticipate.setBackgroundResource(R.drawable.gray_round_bg)
             currentTier.text = "Sale Ended"
+        } else if (project.status == "not_started") {
+            currentTier.text = "Not Started"
         } else {
             currentTier.text = project.currentTier
         }

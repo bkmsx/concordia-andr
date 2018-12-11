@@ -55,6 +55,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
+                android:maxLines="1"
+                android:inputType="phone"
                 android:backgroundTint="@color/gray1"/>
         </LinearLayout>
     </LinearLayout>

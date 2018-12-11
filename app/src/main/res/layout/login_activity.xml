@@ -16,10 +16,11 @@
         android:background="@drawable/blue_stroke_circle_bg"
         android:cropToPadding="false"
         android:padding="15dp"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/lock" />
+        app:srcCompat="@mipmap/concordia_white" />
 
     <EditText
         android:id="@+id/edtEmail"

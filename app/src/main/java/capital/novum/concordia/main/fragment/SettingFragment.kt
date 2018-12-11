@@ -50,7 +50,7 @@ class SettingFragment : Fragment() {
         view.changePassword.setOnClickListener { goToChangePassword() }
 
         view.updatePassport.setSettingIcon(R.mipmap.passport)
-        view.updatePassport.setSettingName(if (status == Constants.CLEARED || passportVerify == "1")
+        view.updatePassport.setSettingName(if (status == Constants.CLEARED || passportVerify != Constants.PASSPORT_UNVERIFIED)
             "Update Passport" else "Update Passport (VERIFY NOW)")
         view.updatePassport.setOnClickListener { goToUpdatePassport() }
 

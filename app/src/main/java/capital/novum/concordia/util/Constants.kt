@@ -4,5 +4,6 @@ object Constants {
     val DEVICE_ID = "DEVICE_ID"
     val REGISTED = "Registered"
     val CLEARED = "CLEARED"
-    val VERIFIED = "1"
+    val PASSPORT_UPLOADED = "1"
+    val PASSPORT_UNVERIFIED = "0"
 }

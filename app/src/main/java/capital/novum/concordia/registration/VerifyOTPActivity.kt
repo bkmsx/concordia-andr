@@ -50,6 +50,10 @@ class VerifyOTPActivity : BaseActivity(){
                 "otp_code" to otpCodeEdt.text.toString()
         )
         requestHttp(UrlConstant.VERIFY_OTP, params) {
+            PreferenceManager.getDefaultSharedPreferences(this).edit()
+                    .putString(UserConstant.countryCode, countryCode)
+                    .putString(UserConstant.phoneNumber, phoneNumber)
+                    .apply()
             goBack()
         }
     }

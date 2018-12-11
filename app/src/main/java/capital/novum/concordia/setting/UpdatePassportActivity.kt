@@ -11,18 +11,15 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
-import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import android.widget.TextView
 import capital.novum.concordia.R
 import capital.novum.concordia.main.BaseActivity
-import capital.novum.concordia.model.Citizenship
-import capital.novum.concordia.model.Country
-import capital.novum.concordia.model.Nationality
-import capital.novum.concordia.model.UserConstant
+import capital.novum.concordia.model.*
 import capital.novum.concordia.registration.VerifyOTPActivity
 import capital.novum.concordia.util.Constants
+import capital.novum.concordia.util.FingerprintUtil
 import capital.novum.concordia.util.UrlConstant
 import capital.novum.concordia.util.Utils
 import kotlinx.android.synthetic.main.setting_update_passport_activity.*
@@ -33,6 +30,7 @@ class UpdatePassportActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
     lateinit var sharedPreference: SharedPreferences
     var passportBitmap: Bitmap? = null
     var selfieBitmap: Bitmap? = null
+    val fingerprintUtil by lazy { FingerprintUtil(this) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getCitizenship()
@@ -61,7 +59,7 @@ class UpdatePassportActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
         val countryCode = sharedPreference.getString(UserConstant.countryCode, null)
         if (countryCode != null) countryCodePicker.setCountryForPhoneCode(countryCode.toInt())
 
-        if (passportVerified == Constants.VERIFIED && status != Constants.CLEARED) {
+        if (passportVerified == Constants.PASSPORT_UPLOADED) {
             btnPassport.visibility = View.GONE
             btnSelfie.visibility = View.GONE
             selfieTxt.visibility = View.GONE
@@ -110,7 +108,37 @@ class UpdatePassportActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
             return
         }
 
-        sendOTP()
+
+        val currentTime = System.currentTimeMillis()
+        val otpTimeStamp = sharedPreference.getLong("otpTimeStamp", 0)
+        if (currentTime - otpTimeStamp < 60000L) {
+            gotoOtpVerification()
+            return
+        }
+        sharedPreference.edit().putLong("otpTimeStamp", currentTime).apply()
+
+        authenticate()
+    }
+
+    private fun authenticate() {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val securityEnable = sharedPreferences.getString(UserConstant.deviceSecurityEnable, "false")
+        val email = sharedPreferences.getString(UserConstant.email, "")
+        if (securityEnable != "false" && fingerprintUtil.canUseFingerprint()) {
+            fingerprintUtil.startAuth(title = "Authenticate Your Fingerprint", msg = ""){
+                sendOTP()
+            }
+        } else {
+            Utils.showInputPasswordDialog(this) {
+                val deviceId = sharedPreferences.getString(Constants.DEVICE_ID, "")
+                loginAccount(hashMapOf(
+                        "email" to email,
+                        "password" to it,
+                        "device_id" to deviceId,
+                        "platform" to "Android"
+                ))
+            }
+        }
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
@@ -182,10 +210,18 @@ class UpdatePassportActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
                         .putString(UserConstant.countryCode, countryCode)
                         .putString(UserConstant.phoneNumber, phoneNumber)
                         .putString(UserConstant.dateOfBirth, dob)
-                        .putString(UserConstant.passportVerified, "1")
+                        .putString(UserConstant.passportVerified, Constants.PASSPORT_UPLOADED)
                         .apply()
                 finish()
             }
+        }
+    }
+
+    private fun loginAccount(params: HashMap<String, String>) {
+        requestHttp(UrlConstant.LOGIN_ACCOUNT, params) {
+            val result = it as LoginResult
+            LocalData.saveUserDetail(this, result.user!!)
+            sendOTP()
         }
     }
 
@@ -210,13 +246,6 @@ class UpdatePassportActivity : BaseActivity(), DatePickerDialog.OnDateSetListene
     private fun sendOTP() {
         val countryCode = countryCodePicker.selectedCountryCode
         val phoneNumber = phoneNumberEdt.text.toString()
-        val currentTime = System.currentTimeMillis()
-        val otpTimeStamp = sharedPreference.getLong("otpTimeStamp", 0)
-        if (currentTime - otpTimeStamp < 60000L) {
-            gotoOtpVerification()
-            return
-        }
-        sharedPreference.edit().putLong("otpTimeStamp", currentTime).apply()
 
         requestHttp(UrlConstant.SEND_OTP, hashMapOf(
                 "country_code" to countryCode,

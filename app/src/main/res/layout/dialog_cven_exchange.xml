@@ -27,7 +27,7 @@
             android:layout_height="30dp"
             android:padding="3dp"
             android:src="@mipmap/close"
-            android:tint="@color/gray1"
+            android:tint="@color/gray2"
             android:background="@drawable/light_gray_circle_res_bg"/>
     </LinearLayout>
     <TextView
